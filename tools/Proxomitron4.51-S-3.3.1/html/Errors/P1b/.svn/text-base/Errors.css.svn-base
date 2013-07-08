@@ -1,0 +1,29 @@
+
+/* Stylesheet für Proxomitron-Fehlermeldungen */
+
+/* Design: P1b */
+
+
+img#i1 {
+	display: none;
+}
+div#e3 {
+	line-height: 1.3em;
+	color: #ff0000;
+	overflow: auto;
+}
+div#block2:after {
+	display: block;
+	border: inset #bbb 1px;
+	content: " ";
+	margin-top: 1em;
+}
+div#d5:after {
+	display: block;
+	margin-top: 0.8em;
+	content: "Proxomitron Webfilter";
+	font-style: oblique;
+}
+div#d1, div#d2, div#d3, div#d4 {
+	display: none;
+}

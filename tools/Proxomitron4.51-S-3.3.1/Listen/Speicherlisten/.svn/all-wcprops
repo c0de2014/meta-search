@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/metasearchproto/!svn/ver/36/tools/Proxomitron4.51-S-3.3.1/Listen/Speicherlisten
+END
+Google-Killfile.txt
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svnroot/metasearchproto/!svn/ver/36/tools/Proxomitron4.51-S-3.3.1/Listen/Speicherlisten/Google-Killfile.txt
+END
+SSLManagerAllow.txt
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svnroot/metasearchproto/!svn/ver/36/tools/Proxomitron4.51-S-3.3.1/Listen/Speicherlisten/SSLManagerAllow.txt
+END
+SSLManagerDeny.txt
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svnroot/metasearchproto/!svn/ver/36/tools/Proxomitron4.51-S-3.3.1/Listen/Speicherlisten/SSLManagerDeny.txt
+END

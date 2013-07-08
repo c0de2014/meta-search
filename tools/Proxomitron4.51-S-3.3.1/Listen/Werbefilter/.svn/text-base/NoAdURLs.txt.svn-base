@@ -1,0 +1,222 @@
+# NoAdURLs
+#
+# Diese Liste dient als "Negativ-Liste" oder "Ausschluss-Liste" für die
+# URL-bezogenen Blocklisten der Werbefilter.
+# 
+# Jeder von den modularen Blocklisten als Werbung erkannte URL wird mit dieser Liste
+# verglichen und - wenn er hier ebenfalls von einem Eintrag erfasst wird - NICHT als
+# Werbung betrachtet und somit nicht ausgefiltert.
+# 
+# In einem Satz:
+# -----------------
+# Ein Element wird dann als Werbung angesehen, wenn es von einem Eintrag in einer der
+# modularen Blocklisten erfasst wird UND NICHT von einem Eintrag in der Liste
+# "NoAdURLs" erfasst wird.
+# -----------------
+# 
+# 
+# ## Beispiel:
+# 
+# Wenn man also z.B. die Domain "datensammler.tld" über einen Eintrag in der Liste
+# "AdDomains" sperren möchte, aber trotzdem Zugriff auf einen bestimmten Ordner
+# oder ein bestimmtes Skript auf dieser Domain braucht, dann kann das über einen
+# zusätzlichen Eintrag in der Liste "NoAdURLs" realisiert werden.
+# 
+# Liste: AdDomains
+# -----------------
+# mediaplex.com
+# -----------------
+# 
+# Liste: NoAdURLs
+# -----------------
+# adfarm.mediaplex.com/ad/\wRedirectEnter\whttp://search.ebay.de/search/search.dll
+# -----------------
+# 
+# In diesem Fall blockiert Proxomitron alle Elemente von "mediaplex.com", mit Ausnahme
+# des von eBay benötigten Weiterleitungsskripts.
+# 
+# 
+# 
+# ## Format der Einträge:
+#
+# Die Einträge dieser Liste sind vom Aufbau her vollständige URLs, ohne
+# Protokollangabe. Ein Eintrag, der auf "http://www.buerschgens.de/" zutreffen soll,
+# muss also "www.buerschgens.de/" heißen.
+# Platzhalter und die üblichen Metazeichen sind auch erlaubt und ermöglichen die
+# Umschreibung veränderlicher URL-Bestandteile.
+#
+# Die URLs werden als "zum Ende hin offen" betrachtet. Wenn der Listeneintrag also
+# "www.buerschgens.de/Prox/" lautet, dann erfasst er alle URLs, die mit dieser
+# Zeichenfolge beginnen. Beispielsweise "www.buerschgens.de/Prox/Seiten/Datei.html".
+#
+# Wenn SSL-verschlüsselte Seiten gefiltert werden und die URLs mit "https://" beginnen,
+# dann muss im Listeneintrag zusätzlich die SSL-Portnummer "443" angegeben werden.
+# Wenn also der URL "https://www.buerschgens.de/Prox/" erfasst werden soll, dann muss
+# in der Liste "www.buerschgens.de:443/Prox/" stehen.
+#
+#
+#
+#
+#
+# Stand: 21.02.2010
+#
+# Michael Bürschgens
+# http://www.buerschgens.de/Prox/
+
+
+
+## Lokale Info-Seiten auf keinen Fall als Werbung ansehen:
+local.ptron/
+[^/]+/file(..|//)
+
+
+
+## eBay/PayPal/Mediaplex; interne Linkzähler und Werbeserver:
+banners.ebay.com/de/homepage/
+banners.ebay.com/de/Ads/
+promo.ebay.de/ws/eBayISAPI.dll\?GetCrossPromos
+promo.ebay.de/ws/eBayISAPI.dll\?CrossPromoEditItemRule
+altfarm.mediaplex.com/ad/ck/
+pics.ebay.com/aw/pics/de/promos/
+www.paypal.com:443/de/cgi-bin/webscr\?cmd=xpt/popup/
+adfarm.mediaplex.com/ad/ck/
+adfarm.mediaplex.com/ad/\wloc\=http%3A%2F%2Fcgi.ebay.de%2F
+adfarm.mediaplex.com/ad/\wRedirectEnter\w\&http%3a%2f%2fsearch.ebay.de%2f
+adfarm.mediaplex.com/ad/\wmpro=http%3a%2f%2fcgi.ebay.de%2f
+adfarm.mediaplex.com/ad/\wmpro=http%3A%2F%2Fsearch.ebay.de%2F
+adfarm.mediaplex.com/ad/\wmpro=http://search.ebay.de/
+adfarm.mediaplex.com/ad/\wmpro=http://pages.ebay.de/
+rd.apmebf.com/ad/\wmpre\=http://[a-z\-]+.kijiji.de/
+mp.apmebf.com/ad/ck/
+
+## Bezahlte Links neben Google-Suchergebnissen benutzbar machen:
+64.158.223.128/ad/\wmpre\=http%3A%2F%2Fsearch-desc%2Eebay%2Ede%2F
+adfarm.mediaplex.com/ad/\wmpre\=http%3A%2F%2Fcgi.ebay.de%2F
+adfarm.mediaplex.com/ad/\wmpre=http%3A%2F%2Fsearch-desc%2Eebay%2Ede%2F
+www.google.com/pagead/iclk\?
+www.googleadservices.com/pagead/adclick\?
+www.etracker.de/rdirect.php\?$OHDR(Referer: http://www.google.de/search\?)
+stats.komdat.com/c/track.redir\?$OHDR(Referer: http://www.google.de/search\?)
+counter.eanalyzer.de/index.php3\?type\=redirect\&
+adfarm.mediaplex.com/ad/\wmpro=http://lt.dell.com/
+pagead2.googlesyndication.com/pagead/iclk\?
+pagead2.googlesyndication.com/pagead/adclick\?
+www.googleadservices.com/pagead/conversion/[0-9]+/adclick\?
+www.googleadservices.com/pagead/aclk\?
+
+## Linkzähler auf diversen Websites:
+ad.doubleclick.net/clk
+ad.de.doubleclick.net/clk
+ad.doubleclick.net/click
+www.etracker.de/lnkcnt.php\?
+www.ad.mobilityguru.com/cgi-bin/bc.m\?
+stat.dealtime.com/DealFrame/DealFrame.cmp
+james.adbutler.de/click.php\?pid=
+www.ox007.com/p-click.php
+www.downloadcounter.de/counter.pl
+de.sitestat.com/\w\&ns_type=clickin\&ns_url=
+clk.atdmt.com/DEM/go/
+de.sitestat.com/\w\&ns_type=clickout
+offers.cnet.com/redir
+ad.zanox.com/ppc/
+banner.nonstoppartner.de/common/banner.php\?i=click
+tracking.mlsat04.de/tmobile/forwardingrotation.php
+tracking.mlsat02.de:443/
+tracking.mlsat02.de/tmobile/forwarding.php
+kalaydo.ivwbox.de/
+view.atdmt.com/action/
+tracking.3gnet.de/tracking/
+
+## Google-Maps:
+pagead2.googlesyndication.com/afmaps/ads
+
+## MSN:
+switch.atdmt.com/action/msn_hm_en_US_signup_link\?
+
+## Statik vs. Statistik:
+stat.wdr.de/
+stat.tagesschau.de/
+stat.livejournal.com
+stats.break.com
+
+## Ordnername "Popup":
+www.bpb.de/popup/
+www.medionshop.de:443/deshop/popup/
+portale.web.de/popup/news/drucken/
+images.gmx.net/images/\wpopup/
+www.metageek.net/index.php\?q=img_assist/popup/
+service.gmx.net/\w/popup/
+
+## Ergänzung zu Eintrag "activex.microsoft.com" in Liste "AdHosts":
+activex.microsoft.com/activex/controls/mplayer/
+
+## Workaround für Problem mit Werbeskriptfilter:
+document.layers
+
+## Probleme auf n-tv.de wegen kombiniertem Werbe- und Nutzskript:
+ntv.ivwbox.de/cgi-bin/ivw/
+
+## GMX:
+adclient.uimserv.net/event.ng/Type\=click
+
+## Youtube:
+[^.]+.de.doubleclick.net/pfadx/com.ytpwatch
+[^.]+.de.doubleclick.net/pfadx/com.ytawatch
+[^.]+.de.doubleclick.net/pfadx/com.ytpwmpu.music/main_
+
+## Besonderes Problem auf www.imdb.com; muss durch Ausnahmen in mehreren Listen umgangen werden
+ad.doubleclick.net/ad[i|j]/imdb[2|].consumer.video/
+
+## Sonstige:
+www.samplitude.de/flash/banner.swf
+www.samplitude.com/flash/banner.swf
+www.channel4.com/entertainment/tv/microsites/
+alt.pelikan.de/
+www.karstadtquelle-versicherungen.de/system/scripts/s_code.js
+webkatalog.lycos.de/x/kiti.php
+kyoto-mz-dl.sinet.ad.jp/
+partner.microsoft.com:443/
+partner.microsoft.com/
+kb.vmware.com/selfservice/microsites/
+portale.web.de/popup/news/drucken/
+adserv.quality-channel.de/RealMedia/ads/adstream_sx.ads/www.kicker.de/
+kicker.ivwbox.de/cgi-bin/ivw/cp/
+pro7.ivwbox.de/cgi-bin/ivw/cp/
+toi.ivwbox.de/cgi-bin/ivw/cp/
+de.sitestat.com/idgcom-de/pcwelt/
+ad.de.doubleclick.net/[0-9]+/DartShell\w.swf
+ad.de.doubleclick.net/pfadx/DARTSHELLCONFIGXML
+ad.de.doubleclick.net/pfadx/\w/video_ads
+ad.doubleclick.net/[0-9]+/DartShell\w.swf
+ad.de.doubleclick.net/adx/\w.smartclip/
+ad.doubleclick.net/adx/smartclip.
+ad.doubleclick.net/adx/\w.smartclip/
+ad.doubleclick.net/adj/\w.smartclip
+ad.doubleclick.net/adj/cbsi.last.de/
+ad.de.doubleclick.net/ad/\w.smartclip.de/
+ad.de.doubleclick.net/ad/\w.smartclip/
+ad.doubleclick.net/noidad/\w.smartclip/
+ad.smartclip.net/delivery/
+www.lastfm.de/ads.php
+partner.verivox.de/
+ad1.chefkoch.de/adclick.php
+ad1.chefkoch.de/adview.php
+adimg.chefkoch.de/
+cobranding.partner.microsoft.com:443/
+
+
+
+
+
+####################################################################################
+# Benutzerdefinierte Einträge #
+###############################
+
+
+
+
+
+
+
+
+

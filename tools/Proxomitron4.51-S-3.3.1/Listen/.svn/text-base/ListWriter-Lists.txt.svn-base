@@ -1,0 +1,16 @@
+# ListWriter-Lists (NoAddURL)
+#
+# Diese Liste wird vom Filter ".Prox: (Out) 02 [# WICHTIG! #] Prox: Listenschreiber [MB]" benutzt.
+# Normalerweise sind hier keinerlei Änderungen nötig.
+#
+#
+#
+# Michael Bürschgens (31.08.2008)
+# http://www.buerschgens.de/Prox/
+
+
+
+$TST(Liste=Google-Killfile)$TST(temp1=(\#%20$SET(\#= ))+\#)$SET(Daten=\@)$ADDLST(Google-Killfile,$GET(Daten))
+
+$TST(Liste=HeiseForum-negativ)$TST(temp1=(\#(((%c[0-3]%[0-9a-z]+{2})\0&&$LST(chr.uesc.UTF8)&$SET(\#=$GET(CUOut3)))|%20$SET(\#= )|\\\[$SET(\#=[)|\\\]$SET(\#=])))+\#)$SET(Daten=\@)$ADDLST(HeiseForum-negativ,$GET(Daten))
+

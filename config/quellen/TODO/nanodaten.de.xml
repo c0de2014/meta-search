@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="passwordfeldattribut"/>
+<entry key="maxanzahl">2000</entry>
+<entry key="resulttag">a</entry>
+<entry key="linktiefe">3</entry>
+<entry key="host">http://www.nanodaten.de</entry>
+<entry key="url">http://www.nanodaten.de/index2.php?pID=11&amp;cat=-1&amp;submit=Finden&amp;searchall=1</entry>
+<entry key="suchbuttontag">input</entry>
+<entry key="suchbuttonwert">btnG</entry>
+<entry key="useProxy">false</entry>
+<entry key="suchfeldattribut">name</entry>
+<entry key="suchfeldwert">q</entry>
+<entry key="loginbuttonxpath"/>
+<entry key="titlexpath">.</entry>
+<entry key="maxSpeed">0</entry>
+<entry key="proxyPort">4001</entry>
+<entry key="usedocumentxpath">false</entry>
+<entry key="loginbuttonwert"/>
+<entry key="addType">false</entry>
+<entry key="nextpageattribut">href</entry>
+<entry key="loginbuttontag"/>
+<entry key="useIt">false</entry>
+<entry key="suchfeldtag">input</entry>
+<entry key="pdfCrawlerDelay">100</entry>
+<entry key="password"/>
+<entry key="passwordfeldwert"/>
+<entry key="username"/>
+<entry key="nextpagexpath">//a[contains(text(),'Next Page')]</entry>
+<entry key="nextpagetag">a</entry>
+<entry key="suchfeldxpath">//input[@name='searchterm' and @value='']</entry>
+<entry key="passwordfeldxpath"/>
+<entry key="resultwert">l</entry>
+<entry key="suchbuttonxpath">//input[@name='submit']</entry>
+<entry key="quellenname">nanodaten.de</entry>
+<entry key="resultattribut">class</entry>
+<entry key="nextpagetext">Vorwärts</entry>
+<entry key="usernamefeldattribut"/>
+<entry key="zusatz">/index2.php?pID=11&amp;cat=-1&amp;submit=Finden&amp;searchall=1</entry>
+<entry key="loginbuttonattribut"/>
+<entry key="usernamefeldxpath"/>
+<entry key="generateFilename">false</entry>
+<entry key="suchbuttonattribut">name</entry>
+<entry key="documentxpath">//a[contains(text(),'Informationen zum Download')]</entry>
+<entry key="useCookies">false</entry>
+<entry key="usernamefeldtag"/>
+<entry key="crawlerDelay">2000</entry>
+<entry key="nextpagewert">*</entry>
+<entry key="javascript">true</entry>
+<entry key="passwordfeldtag"/>
+<entry key="proxyIp">127.0.0.1</entry>
+<entry key="usernamefeldwert"/>
+<entry key="resultxpath">//tr/td[1]/a</entry>
+</properties>

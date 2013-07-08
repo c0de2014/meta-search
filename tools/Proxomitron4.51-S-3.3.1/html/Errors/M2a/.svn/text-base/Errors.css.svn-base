@@ -1,0 +1,93 @@
+
+/* Stylesheet für Proxomitron-Fehlermeldungen */
+
+/* Design: M2a */
+
+
+body { 
+	background-image: url(ErrGrad.jpg);
+	background-repeat: repeat-x;
+	background-color: #e8eaef;
+	color: #575757;
+	font-family: "Segoe UI", Verdana, sans-serif;
+	margin: 0;
+}
+div#block1 {
+	background-image: url(ErrSymb.png);
+	background-repeat: no-repeat;
+	background-position: 12px 12px;
+	position: absolute;
+	z-index: 1;
+	right: 8px;
+	left: 8px;
+	top: 8px;
+}
+img#i1 {
+	display: none;
+}
+div#block2 {
+	padding: 0;
+	margin-left: 78px;
+	margin-right: 78px;
+	font-size: 0.9em;
+	line-height: 1.22em;
+}
+div#block2:after {
+	display: block;
+	text-align: right;
+	padding-top: 0.5em;
+	padding-bottom: 1em;
+	margin-top: 2em;
+	border-top: solid #b6bcc6 1px;
+	content: "Proxomitron Webfilter";
+}
+h1#e1 {
+	color: #4465A2;
+	font-size: 1.22em;
+	font-weight: normal;
+	padding-top: 22px;
+	padding-bottom: 1.22em;
+	margin-bottom: 1.22em;
+	margin-top: 0;
+	border-bottom: solid #b6bcc6 1px;
+}
+div#e3 {
+	color: #ff0000;
+	overflow: auto;
+}
+div#erklaer {
+	margin-top: 1.5em;
+}
+h2 {
+	font-size: 1em;
+	font-weight: normal;
+	margin-top: 1.5em;
+	margin-bottom: 0.5em;
+}
+ul {
+	margin: 0;
+	padding-left: 3em;
+}
+li {
+	margin: 0;
+	padding: 0;
+}
+div#block2 form#buttonset {
+	margin-top: 1em;
+}
+form#buttonset input + input {
+	margin-left: 0.5em;
+}
+div#d1, div#d2, div#d3, div#d4, div#d5 {
+	display: none;
+}
+body > div#d1 {
+	display: block;
+	position: fixed;
+	background-image: url(ErrBG.png);
+	background-repeat: no-repeat;
+	width: 350px;
+	height: 315px;
+	right: 0;
+	bottom: 0;
+}

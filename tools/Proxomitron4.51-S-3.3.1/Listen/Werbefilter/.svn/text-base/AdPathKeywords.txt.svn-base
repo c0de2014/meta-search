@@ -1,0 +1,555 @@
+# AdPathKeywords
+#
+# Diese Liste ist Teil der modularen Blocklisten, mit deren Hilfe
+# Proxomitron unerwünschte Werbung und andere Objekte erkennt und
+# filtert.
+#
+# Die Einträge dieser Liste werden nur berücksichtigt, wenn sie als
+# Ordner- oder Dateiname in der Pfad-Komponente des überprüften URLs vorkommen.
+#
+# Als Pfad gilt in diesem Zusammenhang der URL-Teil, der den Dateipfad
+# in der vom Webserver nach außen hin präsentierten Verzeichnisstruktur angibt.
+# 
+# Der Vergleich erfolgt zum Ende hin offen.
+# Ein Listeneintrag gilt dann als zutreffend, wenn er bis zu seinem Ende mit einem
+# Abschnitt des verarbeiteten URLs übereinstimmt. Ob und wie der URL danach
+# noch weitergeht, hat keinen Einfluss auf das Ergebnis.
+#
+# Die einzelnen Listeneinträge werden nach jedem Schrägstrich mit dem
+# überprüften URL verglichen.
+#
+#
+#
+#
+# ## Beispiel 1:
+# 
+# Eintrag:    filtermich
+# 
+# Erfasst:    www.domain.tld/filtermich/
+#             www.domain.tld/filtermich/Datei.jpg
+#             www.domain.tld/filtermich.jpg
+#             www.domain.tld/Ordner/filtermich.php?var1=wert1&var2=wert2
+#             www.domain.tld/filtermichebenfalls/Datei.jpg
+#
+# Aber nicht: www.filtermich.tld
+#             filtermich.domain.tld
+#             www.domain.tld/Ordner/Datei.php?var1=filtermich&var2=wert2
+#
+#
+#
+#
+# ## Beispiel 2:
+# 
+# Eintrag:    filtermich/
+# 
+# Erfasst:    www.domain.tld/filtermich/
+#             www.domain.tld/filtermich/Datei.jpg
+#
+# Aber nicht: www.domain.tld/filtermich.jpg
+#             www.domain.tld/Ordner/filtermich.php?var1=wert1&var2=wert2
+#             www.domain.tld/Ordner/Datei.php?var1=filtermich&var2=wert2
+#
+#
+#
+#
+# ## Beispiel 3:
+# 
+# Eintrag:    filtermich.php
+# 
+# Erfasst:    www.domain.tld/filtermich.php
+#             www.domain.tld/Ordner/filtermich.php?var1=wert1&var2=wert2
+#
+# Aber nicht: www.domain.tld/filtermich/
+#             www.domain.tld/filtermich.jpg
+#             www.domain.tld/filtermich/Datei.jpg
+#             www.domain.tld/Ordner/Datei.php?var1=filtermich&var2=wert2
+#
+#
+#
+#
+#
+# Es ist auch möglich, Einträge zu formulieren, die mehrere Ordnernamen
+# oder den Dateinamen mit einschließen.
+#
+#
+#
+#
+# ## Beispiel 4:
+# 
+# Eintrag:    filtermich/genauer
+# 
+# Erfasst:    www.domain.tld/filtermich/genauer.jpg
+#             www.domain.tld/filtermich/genauer/
+#             www.domain.tld/filtermich/genauer/Datei.jpg
+#
+# Aber nicht: www.domain.tld/losfiltermich/genauer/
+#             www.domain.tld/filtermich/genauergesagt
+#             www.domain.tld/Skript.php?var1=filtermich/genauer.php
+#
+#
+#
+#
+# ## Beispiel 5:
+# 
+# Eintrag:    filtermich/genauer.php
+# 
+# Erfasst:    www.domain.tld/filtermich/genauer.php
+#             www.domain.tld/filtermich/genauer.php?var1=wert1&var2=wert2
+#             www.domain.tld/filtermich/genauer.php/Datei.jpg  <-- (Hierauf bitte achten!)
+#
+# Aber nicht: www.domain.tld/filtermich/genauer/
+#             www.domain.tld/filtermich/genauer.jpg
+#             www.domain.tld/losfiltermich/genauer.php
+#             www.domain.tld/Skript.php?var1=filtermich/genauer.php
+#
+#
+#
+# 
+# 
+# Stand: 21.02.2010
+# 
+# Michael Bürschgens
+# http://www.buerschgens.de/Prox/
+
+
+
+
+## Coremetrics:
+cm_dma.js
+cm_urs.js
+cm_misc.js
+cm_recreation.js
+cm_health.js
+cm_travel.js
+cm_driving.js
+cm_homeandgarden.js
+cm_events.js
+cm_undcld.js
+cm_urs.js
+cm_misc.js
+cm_undcld.js
+
+## Besonderes:
+ad.doubleclick.net(^/adj/imdb.consumer.video/screenplay)
+ads/zx0Y\?
+
+## Lightbox-Klone:
+perfectlightbox/
+
+## Sonstige::
+zpopup.$SET(AdCType=js)
+zanox/
+zag.js
+yalst.js.php$SET(AdCType=js)
+y3_ofentuere_bc.php$SET(AdCType=js)
+xtcore.js
+wstat.pl
+wss/\w.js
+werbung/rotation/
+werbung/rotation.php
+werbung.htm
+werbebanner.php\?
+webtrekk.js
+WebTracker.js
+wb/blind_default_links.htm
+viewbanner.php3
+viewads.
+viewad\?
+viewad/
+viewad.
+tradedoubler/
+tracking_engine/
+tracking.php\?
+tracking.js\?$SET(AdCType=js)
+tracking.js
+tracking.asp\?
+trackerjs.php\?$SET(AdCType=js)
+tracker.cgi
+topsites.cgi
+topbucks/
+topbucks.html
+topban.js
+timed_exits/
+tfsbanner.js
+template_ads.asp
+te_js_init.js
+targetlink.js
+tacoda/
+sub_popup.js
+stats.php
+stat.php
+smartad.js
+slidebanner.js
+skyscrapers.js
+skyscraper_espxml.inc.php\?
+skyscraper.js.php$SET(AdCType=js)
+skyscraper.
+site-tracker.js
+sitestats.gif
+sitecatalyst/$SET(AdCType=js)
+SiteAnalyzer/
+siteads/
+ServeHTML.aspx\?
+ServeAd.aspx
+scriptinject.asp$SET(AdCType=js)
+s_code_remote2.js
+s_code_remote_site_catalyst.js
+s_code_remote.js
+s_code_H9.js
+s_code.js
+rotator/
+rotation/
+rotads.php
+richmediaads/
+rich.asp$SET(AdCType=js)
+reflog.cgi
+realmedia/ads/$SET(AdCType=gif)
+rawpop.js
+publicidad.js
+ptnrContent.aspx\?$SET(AdCType=js)
+proxyCache.do\?dest=http%3A%2F%2Fadserver.betandwin.de%2F[a-z0-9.%]++js$SET(AdCType=js)
+promotions/[a-z0-9\-_]++.js
+pphlogger.php
+powerstat.exe
+popwin.js
+popupPartner.js
+popupadclick.pl
+popup1.php
+popup/newpage.js
+popup/
+popunder.php\?
+popjs/
+pop.swf
+placeSiteMetrix.js
+php-stats.php
+phpadsnew[/.]
+peel.js
+pc_showad.php
+partnerbanner.cgi
+pagepeel_banner/
+pagepeel/$SET(AdCType=js)
+pagepeel.js
+page_parts/hm_ad.php
+overture_hotspot_id.html
+overture/
+overlay.js
+option,com_banners/
+onlineads/
+omtr_tc.js
+omniture_somtr_code.js
+omniture_s_code.js
+omniture/\w.js
+omniture/
+omniture.js
+omniture.asp
+oasisi.php
+oasisc.php
+oas_logic.js
+noscript.gif$SET(AdCType=gif)
+ng_pagedot.js
+newsletter_popup.js
+mystat.asp$SET(AdCType=js)
+mosaic_omniture.js
+module_wb/
+module_banner/
+microsites/
+metrics.js
+MetaAdServer/
+mbox.js
+marketing/images/
+m24up.php\?
+lookatme.js
+logger.cgi
+log.jphp\?$SET(AdCType=js)
+layerads[a-z0-9\-_]++.js
+layerads.js
+layer_white.js
+layer_[0-9]+.js
+layer.php\?
+layer.js
+l10hc_counter.php
+klipmart/
+jsinc-marketbanner.asp
+jsbanner.php\?$SET(AdCType=js)
+js.ng/$SET(AdCType=js)
+jcorner.php$SET(AdCType=js)
+jcorner.js.php$SET(AdCType=js)
+jcorner.js
+interstitial.js
+intellitxt/
+intellisrv.js
+inc_banners_details.cfm
+inajs.php$SET(AdCType=js)
+images/ads/
+image_tracker.php
+IframeAds/
+iframe.ng/
+idevaffiliate.php\?
+IdealAdServer.aspx
+html.ng/
+hphdas2/
+hitbox_footer.js
+hitbox/
+hitadverts.pl
+hbx_page_code.js
+hbx.js
+hbe.js
+hb.lycos.com/
+google-analytics-for-wordpress[0-9.]+/
+googleanalytics.js
+Google_AdSense.gif
+getTopAdsJS.php\?$SET(AdCType=js)
+getTopAdsJS.php$SET(AdCType=js)
+getban.php
+fuseads/
+fuseads.cfm
+flookie.swf
+flookie.js
+floater.swf
+flashbanner.php
+fastclick_popunder.js
+fastclick_intersticial.js
+fastclick.js
+exitpop.html
+event.ng/
+eshopoffer.aspx
+ebay_results.php\?
+dropcontrol.js
+dm_client.js
+direct_ads.js\?
+dhtmlpopup_adfloat.js
+delivery/fl.js
+delivery/ajs.php\?$SET(AdCType=js)
+deliver_multi.jphp\?$SET(AdCType=js)
+databox/data.aspx\?\w\&js=1$SET(AdCType=js)
+dartCall.js
+cxo_adfunctions.js
+cpc/
+counter.pl
+counter.phtml
+counter.jsp
+counter.cgi
+count.py
+count.dll
+count.cgi
+coremetrics/
+contentpusher.js
+connect.cgi
+clickthru.aspx
+clickheat.js
+click_nx.ads
+classifieds/
+checkexit.php3
+cgi-bin/ivw/
+centralad/
+cashlinkcash/
+behave.js
+beaconimg.php$SET(AdCType=gif)
+banref.js
+bannertype/
+banners.pl
+banners.php
+banners.js
+banner-rotator.php
+banner_rotation/
+banner_rotate.js
+banner_redirect.php
+banner_redirect.asp
+banner_[a-z0-9_]++.swf
+banner[0-9].php
+banner/bin/\w.swf
+banner.swf
+banner.php
+banner.js
+banner.asp\?
+banmanpro/$SET(AdCType=js)
+banmanpro/
+banman.asp\?$SET(AdCType=js)
+banman.asp
+awstats_misc_tracker.js
+aspbanner/
+analytics/\w.js(^$URL(https://www.google.com:443/analytics/))
+analyse.gif\?$SET(AdCType=gif)
+AmDataAgent.html
+AllAds/
+ajrotator/
+agof_swf.js
+aftrack.asp
+affiliates/products/
+affiliates/buttons/
+affiliates/banners/
+affiliateformat.js
+affiliate_show_banner.php$SET(AdCType=gif)
+affiliate/script.php$SET(AdCType=js)
+adzone.php\?$SET(AdCType=js)
+adx.js
+adwiz/
+adwiz.js
+advlist.js
+advinutz.pl
+adview.php
+advertpro/
+advertisingLinks.js
+advertising/
+advertisers/marketing/
+advertisers/
+advertisement/
+advertisement.gif
+advertise/
+advert.php
+adv.php
+adtract/tag_javascript.php4\?$SET(AdCType=js)
+adtags.js
+adsWrapper.js
+adSwap.js
+adstream_nx.cgi
+adstream_jx.ads
+adsPopup2.js
+adshow.fcgi
+adservice.asp
+AdServerM.aspx$SET(AdCType=gif)
+adserver[/.](^$URL(http://www.lastfm.de/))
+adserver.exe
+adserver.asp
+adserv/
+adserv.php\?ACT=js$SET(AdCType=js)
+adserf/
+adsense.php\?
+adsense.js
+ad-scripte/$SET(AdCType=js)
+ADSAdClient31.dll\?GetAd\=
+ads/Tacoda_AMS_DDC_Header.js
+ads/new/
+ads/dc.js
+ads/All_Ads/
+ads.php
+ads.asp
+adrotator/
+adrotate.js
+adrevolver/
+adrevolver.php
+AdRedirector.aspx
+adpopup.php
+adpeeps.php\?$SET(AdCType=js)
+admentor/
+adman/
+adman.php
+adman.cgi
+adman.asp
+adlogger_tracker.php
+adlog.pl
+adlog.php
+adlog.cgi
+adlog.asp
+adlinks.js
+adlayer.php$SET(AdCType=js)
+adjs_opl.php$SET(AdCType=js)
+adjs.php$SET(AdCType=js)
+adimps.html\?$SET(AdCType=js)
+adimage.php
+adframe.php
+AdFinder.jsp\?
+add_ocx.asp
+adcycle.exe
+adctrl_[a-z]+.js
+adcount.fcgi
+adcodes/
+adcodes.php
+adcodes.asp
+adclick/
+adclick.php
+adclick.cgi
+adcast/
+adcast.php\?
+adbanner.js
+ad_top.php
+ad_sky.php
+ad_parse.php\?
+ad_open.php
+ad_frame.php
+ad_frame.htm
+ad_content.php
+ad_[a-z]+_[0-9]+x[0-9]+_[a-z0-9]+.swf
+ad_[a-z]+_[0-9]+x[0-9]+.swf
+ad[0-9]+.js
+ad/scriptinject.asp$SET(AdCType=js)
+ad/init.php
+ad.serve.cgi\?[a-z0-9_=]++\&typ=4$SET(AdCType=js)
+ad.serve.cgi\?[a-z0-9_=]++\&typ=1$SET(AdCType=gif)
+ad.serve.cgi\?
+ad.channel/
+ad.ashx\?zoneid\=
+activeTrak.js
+404.js
+180solutions/
+_adserv/
+_ads/
+__utm.js
+__utm.gif
+[a-z0-9_]++onvista.swf
+[0-9]+.html\?tpl=write_layer$SET(AdCType=js)
+[0-9]+.html\?tpl=pos_layer_test$SET(AdCType=js)
+[0-9]+.html\?tpl=pos_layer_new$SET(AdCType=js)
+
+
+
+
+
+
+####################################################################################
+# Ausnahmen #
+#############
+~AdServer/redirect/
+~popup/[a-z\-_]++.htm
+~popup/\w.jpg
+~popup/teaserScreen.cfm\?videoid
+
+
+
+
+####################################################################################
+# Sonstige, generisch #
+#######################
+werbepartner[/.]
+werbemittel[/.]
+skyscraper[/.]
+rotateads[/.]
+randomads[/.]
+popuprotator[/.]
+popupads[/.]
+popupad[/.]
+popunder[/.]
+plainads[/.]
+paypopup[/.]
+ivw-bin[/.]
+htmlads[/.]
+bannerserve[/.]
+partnerbanner/
+bottombanner[0-9]/
+adverts[/.]
+adserveredirect
+adserve[/.]
+adserv[/.]
+adscript
+bannerfarm[/.]
+clickad[/.]
+adpopup[/.]
+adlaunch[/.]
+adimages[/.]
+adheader[/.]
+adframe[/.]
+adnet/
+banner_top.
+adstream[/.]
+adbanner/
+adbanner.(^css)
+
+
+
+
+
+####################################################################################
+## Benutzerdefinierte Einträge #
+################################
+
+

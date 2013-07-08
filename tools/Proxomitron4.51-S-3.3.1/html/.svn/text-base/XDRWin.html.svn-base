@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+
+<script type="text/javascript">
+
+function start() {
+	try {
+		var test = window.opener.document.domain;
+	}
+	catch (e) {
+		setDom();
+	}
+}
+
+function setDom() {
+	var arWinMsg = window.name.split("__");
+	if (arWinMsg && arWinMsg[2]) {
+		var docDom = arWinMsg[1].replace(/_/g,".");
+	}
+	if (docDom) {
+		document.domain = docDom;
+	}
+}
+
+if (window.addEventListener) {
+	window.addEventListener("load",start,false);
+}
+else if (window.attachEvent) {
+	window.attachEvent("onload",start);
+}
+
+</script>
+
+
+</head>
+<body>
+
+
+
+</body>
+</html>

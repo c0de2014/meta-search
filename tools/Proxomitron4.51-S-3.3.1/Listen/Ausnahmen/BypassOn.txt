@@ -1,0 +1,302 @@
+# BypassOn
+#
+# Diese Ausnahmeliste enthält die URLs von Seiten bzw. Objekten, die
+# überhaupt nicht von Proxomitron verändert werden sollen.
+#
+# Denke daran, dass nur die Objekte von der Filterung ausgeschlossen
+# werden, auf deren URL der jeweilige Eintrag zutrifft. Wenn du also
+# eine Seite aufnimmst, dann können die darin enthaltenen Bilder trotzdem
+# noch gefiltert werden, wenn sie z.B. von einem anderen Server kommen.
+#
+#
+# Die Einträge dieser Liste sind vom Aufbau her vollständige URLs, ohne
+# Protokollangabe. Platzhalter und die üblichen Metazeichen sind auch erlaubt
+# und ermöglichen die Umschreibung veränderlicher URL-Bestandteile.
+#
+# Die URLs werden als "zum Ende hin offen" betrachtet. Wenn der Listeneintrag also
+# "www.buerschgens.de/Prox/" lautet, dann erfasst er alle URLs, die mit dieser
+# Zeichenfolge beginnen. Beispielsweise "www.buerschgens.de/Prox/Seiten/Datei.html".
+# Wenn dieses Verhalten nicht gewünscht ist, muss der Ausdruck mit "(^?)"
+# abgeschlossen werden.
+#
+# Wenn SSL-verschlüsselte Seiten gefiltert werden und die URLs mit "https://" beginnen,
+# dann muss im Listeneintrag zusätzlich die SSL-Portnummer "443" angegeben werden.
+# Wenn also der URL "https://www.buerschgens.de/Prox/" erfasst werden soll, dann muss
+# in der Liste "www.buerschgens.de:443/Prox/" stehen.
+#
+#
+#
+# Stand: 21.02.2010
+#
+# Michael Bürschgens
+# http://www.buerschgens.de/Prox/
+
+
+
+## Bypass für lokale Filterskripten:
+local.ptron/
+
+## Kein Bypass für lokale Dateien, die von Filtern bearbeitet werden sollen:
+~local.ptron/killed-pro.html
+~local.ptron/*.(jpg|png|gif|js|css)
+~local.ptron/.update/PVer.txt
+
+## Bypass für die Programmhilfe und Updatesuche
+www.buerschgens.de/Prox/PHilfe/
+buerschgens.de/Prox/PHilfe/
+
+## Tippfehlerkorrektur
+~local.ptron/.pinfo/(^urls|lists)?$JUMP(http://local.ptron/.pinfo/)
+
+## Andere lokale Hilfsdateien
+local.ptron/XDRWin.html
+
+
+
+
+
+####################################################################################
+# Programme, die automatisch über Proxomitron kommunizieren, #
+# von den Filtern aber gestört werden                        #
+##############################################################
+
+## Yahoo-Messenger:
+[^/]++edit.yahoo.com/
+[^/]++pager.yahoo.com/
+[^/]++csb.yahoo.com/
+[^/]++csc.yahoo.com/
+
+## MSN-Messenger:
+crl.microsoft.com/
+loginnet.passport.com/
+sqm.msn.com/
+
+## QNext:
+server.qnext.com/
+
+## Speedbit:
+ad5.speedbit.com/cgi-bin/ads9.dll
+redir.speedbit.com/redir.asp
+redir.speedbit.com/GamesTab_realarcade.asp 
+redir.speedbit.com/GoogleScript120X600.html
+
+## Java-Update:
+jdl.sun.com/
+javadl-esd.sun.com/
+sdlc-esd.sun.com/
+sjremetrics.java.com:443/
+sdlc2i.sun.com/
+sdlc4h.sun.com/
+sdlc6g.sun.com/
+
+## Mozilla Thunderbird:
+aus2.mozilla.org:443/
+
+## Google-Earth:
+kh.google.com/
+earth.google.com/
+
+## MS Office 2007:
+office.microsoft.com/_Services/Ont/
+~office.microsoft.com/_Services/Ont/wt.js
+office.microsoft.com/client/helppreview.aspx
+office.microsoft.com/search/clvupd.aspx
+office.microsoft.com/search/toc.aspx
+office.microsoft.com/client/helphome.aspx
+office.microsoft.com/client/helpcategory.aspx
+office.microsoft.com/de-de/axinstall.aspx
+office.microsoft.com/home/video.aspx
+
+## ZoneAlarm:
+a1085.g.akamai.net/
+72.246.48.18/
+72.246.48.25/
+ps2.zonelabs.com/
+ps2.zonelabs.com.edgesuite.net/
+a1981.g.akamai.net/
+72.246.48.33/
+72.246.48.32/
+pa2.zonelabs.com/
+pa2.zonelabs.com.edgesuite.net/
+cm.zonelabs.com/
+cm1.zonelabs.com:443/
+cm2.zonelabs.com:443/
+208.185.174.65:443/
+cm3.zonelabs.com/
+hs1.zonelabs.com/
+hs2.zonelabs.com/
+208.185.174.66/
+ls2.zonelabs.com/
+208.185.174.67/
+register.zonelabs.com/
+208.185.174.51/
+update.zonelabs.com/
+208.185.174.52/
+
+## ClipInc-Player:
+community.clipinc.com/
+sub2.tobit.com/
+club.tobit.com:443/
+
+## Opera:
+dragonfly.opera.com:443/
+link-server.opera.com:443/
+sitecheck2.opera.com/
+help.opera.com/
+xml.opera.com/
+#autoupdate.opera.com
+
+
+personal.avira-update.com/
+
+
+
+
+####################################################################################
+# Hardware -- Router, Kameras usw. #
+####################################
+
+fritz.box/
+[^/]+/hcti_
+[^/]+/mjpg/video.mjpg
+
+
+
+
+####################################################################################
+# Verbreitete problematische Skripten #
+#######################################
+
+## Typo3:
+[^/]+/typo3/
+[^/]+/typo3temp/
+[^/]+/t3lib/
+[^/]+/typo3conf/(^ext)
+
+## "Web Wiz Forums":
+*/RTE_textbox.asp\?
+
+## Skripten und Flash-Objekte, die als text/html deklarierte Daten nachladen:
+*/xandra.cgi\?
+
+
+
+
+####################################################################################
+# Problematische Webseiten #
+############################
+
+## Windows-Update, Microsoft-Update, Microsoft-Downloads:
+update.microsoft.com/
+update.microsoft.com:443/
+download.windowsupdate.com/
+download.windowsupdate.com:443/
+www.update.microsoft.com/
+www.update.microsoft.com:443/ 
+windowsupdate.microsoft.com/
+wpa.one.microsoft.com:443/
+wpa.one.microsoft.com/
+www.microsoft.com/products/ee/transform.aspx
+
+## Hotmail/Passport/Live-ID:
+login.live.com:443/
+login.live.com/
+login.passport.com/
+om2.one.microsoft.com:443/
+
+#### eBay:
+secureinclude.ebaystatic.com:443/js/e[0-9]+/de/
+secureinclude.ebaystatic.com:443/v4js/de_DE/
+~secureinclude.ebaystatic.com:443/js/e[0-9]+/de/ebaysup_e[0-9]+de.js
+include.ebaystatic.com/js/e[0-9]+/de/
+include.ebaystatic.com/v4js/de_DE/
+include.ebaystatic.com/categoryjs/
+~include.ebaystatic.com/js/e[0-9]+/de/ebaysup_e[0-9]+de.js
+~include.ebaystatic.com/js/e[0-9]+/de/iframefooter_tracking_e[0-9]+de.js
+~include.ebaystatic.com/js/e[0-9]+/de/exitpages/sign_out_body_e[0-9]+de.js
+~include.ebaystatic.com/js/e[0-9]+/de/features/exitpages/sign_out_body_e[0-9]+de.js
+~include.ebaystatic.com/js/e[0-9]+/de/features/rtm/rtm_e[0-9]+de.js
+~include.ebaystatic.com/js/e[0-9]+/de/features/search/dcpbody_e[0-9]+de.js
+~include.ebaystatic.com/js/e[0-9]+/de/features/my_ebay/my_ebay_summary_body_e[0-9]+de.js
+~include.ebaystatic.com/js/e[0-9]+/de/features/rtm/rtm_show_e[0-9]+de.js
+include.ebaystatic.com/aw/pics/js/help/
+include.ebaystatic.com/aw/pics/js/xslpromo/myebay_summary_alert.js
+include.ebaystatic.com/aw/pics/js/launcher.js
+include.ebaystatic.com/js/v/de/ebayfooter.js
+include.ebaystatic.com/js/v/de/ebaybase.js
+include.ebaystatic.com/js/v/de/features/help/contextual.js
+~include.ebaystatic.com/js/e[0-9]+/de/ebaybase_v4_e[0-9]+de.js
+~secureinclude.ebaystatic.com:443/js/e[0-9]+/de/features/signin/signin_body_e[0-9]+de.js
+srx.de.ebayrtm.com/
+~srx.de.ebayrtm.com/rtm\?RtmCmd\&a=json\wcb=vjo.dsf.assembly.VjClientAssembler._callback0
+pics.ebaystatic.com/
+
+## Overlays
+([^.]+.|)shop.ebay.de/\w\&_dlg\=
+([^.]+.|)shop.ebay.de/\wLHQ5fTitleDescZ1QQ
+([^.]+.|)shop.ebay.de/V4Ajax\?
+([^.]+.|)shop.ebay.de/\w\&LH_TitleDesc\=
+my.ebay.de/ws/eBayISAPI.dll\?\w\&container=
+
+
+
+#### Sonstige:
+groups.msn.com/
+[^.]+.gmx.net/de/cgi/filestore
+gmail.google.com(:443|)/
+mail.google.com(:443|)/
+([^/]++.|)kaspersky-labs.com/
+([^/]++.|)avp-de.com/
+www.promise.com/
+www.janaserver.de/
+[^.]+.creative.com/
+www.narva-bel.de/
+www.stadtplan.net/
+premium.tecchannel.de/styles/mmlayer_prem.js
+www.tecchannel.de/styles/mmlayer.js
+bscw.gmd.de/
+kxproject.lugosoft.com/\w.gif
+msdn.microsoft.com/library/shared/deeptree/asp/toolbar.asp\?tbcfg=/library/toolbarconfig.xml
+msdn2.microsoft.com/library/Js.aspx
+www.zyxel.com/track.php
+www.viamichelin.com/viamichelin/gbr/dyn/controller/
+www.etracker.de/rdirect.php
+([^/]++.|)sitestat.com:443
+www.cherry.de/[a-z/\-]++/popup/
+www.virustotal.com/
+www.adobe.com/js/jsopenwindow.js
+shortnews.stern.de/misc/ajax/functions.cfm\?null.getFeedback
+webapp.bosch.de:443/
+[^.]+.knuddels.de/
+bundesliga.de/livebox3/modules/frontend/ajax/load_tab.php
+i.cdn.turner.com/cnn/.element/js/
+phpmyadmin.strato.de/
+www.huffingtonpost.com/assets/js.php
+www.codeproject.com/script/Ann/ServeImg.aspx\?
+www.codeproject.com/script/Adm/ServeImg.aspx\?
+www.flv-media-player.com/page_load.php
+downloadcenter.intel.com
+video.google.com/related
+stream2.dus.chefkoch.de/video_streaming_light_new.php
+
+
+
+####################################################################################
+# Geschwindigkeitsoptimierung für reine Downloadserver #
+########################################################
+
+[^.]+.rapidshare.com/files/
+[^.]+.depositfiles.com/auth-
+[^.]+.googleapis.com:443/
+
+
+
+
+####################################################################################
+# Benutzerdefinierte Einträge #
+###############################
+
+
+
+
+

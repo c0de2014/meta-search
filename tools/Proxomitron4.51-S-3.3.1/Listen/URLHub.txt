@@ -1,0 +1,50 @@
+# URLHub (NoAddURL)
+#
+# Diese Liste wird vom Header-Filter
+# ".Prox: (Out) 01 [# WICHTIG! #] Prox: Ausnahmen, lokale URLs und Variablen verarbeiten [MB]"
+# benutzt.
+# 
+#
+# Stand: 16.08.2009
+# 
+# Michael Bürschgens
+# http://www.buerschgens.de/Prox/
+
+
+#### Icons und andere Grafiken, die von Filtern benutzt werden:
+
+local.ptron/ProxIcon16.png&($TST(HdrUAgent=(*msie\s[56]&(^*opera))*)$RDIR(http://local.ptron/Grafiken/Icon-Prox-16x16x8t.png)|$RDIR(http://local.ptron/Grafiken/Icon-Prox-16x16x32.png))
+local.ptron/ProxIcon24.png&($TST(HdrUAgent=(*msie\s[56]&(^*opera))*)$RDIR(http://local.ptron/Grafiken/Icon-Prox-24x24x8t.png)|$RDIR(http://local.ptron/Grafiken/Icon-Prox-24x24x32.png))
+local.ptron/ProxIcon32.png&($TST(HdrUAgent=(*msie\s[56]&(^*opera))*)$RDIR(http://local.ptron/Grafiken/Icon-Prox-32x32x8t.png)|$RDIR(http://local.ptron/Grafiken/Icon-Prox-32x32x32.png))
+local.ptron/ProxIcon48.png&($TST(HdrUAgent=(*msie\s[56]&(^*opera))*)$RDIR(http://local.ptron/Grafiken/Icon-Prox-48x48x8t.png)|$RDIR(http://local.ptron/Grafiken/Icon-Prox-48x48x32.png))
+local.ptron/ProxIcon64.png&($TST(HdrUAgent=(*msie\s[56]&(^*opera))*)$RDIR(http://local.ptron/Grafiken/Icon-Prox-64x64x8t.png)|$RDIR(http://local.ptron/Grafiken/Icon-Prox-64x64x32.png))
+local.ptron/Icon-Flash1-16.png&($TST(HdrUAgent=(*msie\s[56]&(^*opera))*)$RDIR(http://local.ptron/Grafiken/Icon-Flash1-16x16x8t.png)|$RDIR(http://local.ptron/Grafiken/Icon-Flash1-16x16x32.png))
+local.ptron/Icon-Flash1-32.png&($TST(HdrUAgent=(*msie\s[56]&(^*opera))*)$RDIR(http://local.ptron/Grafiken/Icon-Flash1-32x32x8t.png)|$RDIR(http://local.ptron/Grafiken/Icon-Flash1-32x32x32.png))
+local.ptron/Icon-Flash1-48.png&($TST(HdrUAgent=(*msie\s[56]&(^*opera))*)$RDIR(http://local.ptron/Grafiken/Icon-Flash1-48x48x8t.png)|$RDIR(http://local.ptron/Grafiken/Icon-Flash1-48x48x32.png))
+local.ptron/Icon-Flash2-32.png&($TST(HdrUAgent=(*msie\s[56]&(^*opera))*)$RDIR(http://local.ptron/Grafiken/Icon-Flash2-32x32x8t.png)|$RDIR(http://local.ptron/Grafiken/Icon-Flash2-32x32x32.png))
+local.ptron/Icon-Flash2-48.png&($TST(HdrUAgent=(*msie\s[56]&(^*opera))*)$RDIR(http://local.ptron/Grafiken/Icon-Flash2-48x48x8t.png)|$RDIR(http://local.ptron/Grafiken/Icon-Flash2-48x48x32.png))
+local.ptron/Symb-ChkGn1-16.png$RDIR(http://local.ptron/Grafiken/Symb-ChkGn1-16x16x8t.png)
+local.ptron/klar-8t.png$RDIR(http://local.ptron/Grafiken/Farbe-klar-16x16x8t.png)
+local.ptron/klar-32.png$RDIR(http://local.ptron/Grafiken/Farbe-klar-16x16x32.png)
+local.ptron/808080a050.png&($TST(HdrUAgent=(*msie\s[56]&(^*opera))*)$RDIR(http://local.ptron/Grafiken/Farbe-808080a050-40x40x8t.png)|$RDIR(http://local.ptron/Grafiken/Farbe-808080a050-40x40x32.png))
+local.ptron/Symb-SwfBlk1-100.png$RDIR(http://local.ptron/Grafiken/Symb-FlaBlk1-100x37x24.png)
+local.ptron/Symb-SwfBlk1-200.png$RDIR(http://local.ptron/Grafiken/Symb-FlaBlk1-200x75x24.png)
+local.ptron/Symb-SwfBlk1-300.png$RDIR(http://local.ptron/Grafiken/Symb-FlaBlk1-300x112x24.png)
+local.ptron/Symb-Busy-Input.gif$RDIR(http://local.ptron/Grafiken/Symb-Busy1-1-18x15x8.gif)
+
+
+
+
+#### Virtuelle Namensräume für Fehlermeldungen, Hilfeseiten usw...
+
+local.ptron/ErrLogo.png&$TST(HdrUAgent=(*msie\s[56]&(^*opera))*)$RDIR(http://local.ptron/ErrLogo-IE.png)
+local.ptron/ErrSymb.png&$TST(HdrUAgent=(*msie\s[56]&(^*opera))*)$RDIR(http://local.ptron/ErrSymb-IE.png)
+local.ptron/.update/PVer.txt$RDIR(http://local.ptron/PVer.txt)
+subspace.ptron/.update/index.html$FILTER(false)$RDIR(http://local.ptron/Update.html)
+subspace.ptron/.update/PVer.txt$RDIR(http://local.ptron/PVer.txt)
+subspace.ptron/Info.css$RDIR(http://local.ptron/Info.css)
+subspace.ptron/.update/server/PVer.php(\??+(^?))\1$FILTER(false)$RDIR(http://buerschgens.de/Prox/PHilfe/PVer.php\1)
+
+
+
+

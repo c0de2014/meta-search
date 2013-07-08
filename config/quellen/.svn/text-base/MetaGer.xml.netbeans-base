@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="passwordfeldattribut"/>
+<entry key="maxanzahl">2000</entry>
+<entry key="resulttag"/>
+<entry key="linktiefe">0</entry>
+<entry key="host">http://meta.rrzn.uni-hannover.de/</entry>
+<entry key="url">http://meta.rrzn.uni-hannover.de/</entry>
+<entry key="suchbuttontag"/>
+<entry key="suchbuttonwert"/>
+<entry key="useProxy">false</entry>
+<entry key="suchfeldattribut"/>
+<entry key="suchfeldwert"/>
+<entry key="loginbuttonxpath"/>
+<entry key="titlexpath">//</entry>
+<entry key="maxSpeed">0</entry>
+<entry key="proxyPort">4001</entry>
+<entry key="usedocumentxpath">false</entry>
+<entry key="loginbuttonwert"/>
+<entry key="addType">true</entry>
+<entry key="nextpageattribut"/>
+<entry key="loginbuttontag"/>
+<entry key="useIt">true</entry>
+<entry key="suchfeldtag"/>
+<entry key="pdfCrawlerDelay">5</entry>
+<entry key="password"/>
+<entry key="passwordfeldwert"/>
+<entry key="username"/>
+<entry key="nextpagexpath">//input[@value='Weitersuchen']</entry>
+<entry key="nextpagetag"/>
+<entry key="suchfeldxpath">//input[@name='eingabe']</entry>
+<entry key="passwordfeldxpath"/>
+<entry key="resultwert"/>
+<entry key="suchbuttonxpath">//input[@value='MetaGer-Suche']</entry>
+<entry key="quellenname">MetaGer</entry>
+<entry key="resultattribut"/>
+<entry key="nextpagetext"/>
+<entry key="usernamefeldattribut"/>
+<entry key="zusatz"/>
+<entry key="loginbuttonattribut"/>
+<entry key="usernamefeldxpath"/>
+<entry key="generateFilename">false</entry>
+<entry key="suchbuttonattribut"/>
+<entry key="documentxpath"/>
+<entry key="useCookies">false</entry>
+<entry key="usernamefeldtag"/>
+<entry key="crawlerDelay">5000</entry>
+<entry key="nextpagewert"/>
+<entry key="javascript">false</entry>
+<entry key="passwordfeldtag"/>
+<entry key="proxyIp">127.0.0.1</entry>
+<entry key="usernamefeldwert"/>
+<entry key="resultxpath">//hit/a</entry>
+</properties>

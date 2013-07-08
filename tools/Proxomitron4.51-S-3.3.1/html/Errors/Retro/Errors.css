@@ -1,0 +1,43 @@
+
+/* Stylesheet für Proxomitron-Fehlermeldungen */
+
+/* Design: Retro (Nachbildung des alten Proxomitron-Designs) */
+
+
+body { 
+	background-image: url(ErrGrad.gif);
+	background-color: #330044;
+	color: #00ff00;
+}
+div#block1 {
+	background-color: black;
+	color: #00ff00;
+	min-height: 165px;
+	height: 165px;
+}
+img#i1 {
+	float: left;
+	margin-right: 6px;
+}
+div#block2 {
+	background-color: black;
+	color: #00ff00;
+	padding: 8px;
+}
+h1#e1 {
+	font-size: 18pt;
+	font-weight: bold;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+div#e2 {
+	padding-top: 16pt;
+}
+div#e3 {
+	font-size: 14pt;
+	color: #ffff00;
+	overflow: auto;
+}
+div#d1, div#d2, div#d3, div#d4, div#d5 {
+	display: none;
+}

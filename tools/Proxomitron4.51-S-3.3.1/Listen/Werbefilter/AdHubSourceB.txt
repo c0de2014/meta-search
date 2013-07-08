@@ -1,0 +1,113 @@
+# AdHubSourceB (NoAddURL NoHash)
+#
+# Diese Liste ist Teil der modularen Blocklisten, mit deren Hilfe
+# Proxomitron unerwünschte Werbung und andere Objekte erkennt und
+# filtert.
+#
+# Hier stehen weder Schlüsselworte noch URLs.
+# Diese Liste dient ausschließlich als Verteiler für die anderen Listen.
+#
+# Die meisten Filter, die auf die Blocklisten zurückgreifen, rufen eine
+# der Verteilerlisten "AdHubHeader", "AdHubSourceA" und "AdHubSourceB" auf.
+# Aus diesen Listen heraus werden dann die verschiedenen Unterlisten
+# aufgerufen und auf die einzelnen URL-Bestandteile angewandt.
+# 
+# 
+# Stand: 25.01.2009
+# 
+# Michael Bürschgens
+# http://www.buerschgens.de/Prox/
+
+
+
+
+
+# Um die Filterung von CWS-Domains zu aktivieren, müssen in dieser Liste folgende Änderungen vorgenommen werden:
+# 
+# 1. Der folgende Abschnitt muss auskommentiert werden:
+
+(http://|https://|ftp://|//)
+    (
+        $LST(AdURLs)
+        |
+        ([a-z0-9\-.]+&&
+            $LST(AdHosts)
+            |
+            (*.|)
+            (
+                $LST(DialerDomains)
+                |
+                $LST(AdDomains)
+                |
+                $LST(AdHostKeywords).*
+            )
+        )([/:?&"'\\]|(^?))
+    )
+
+# 
+# 2. Statt dessen muss folgender Bereich aktiviert werden:
+# 
+
+#(http://|https://|ftp://|//)
+#    (
+#        $LST(AdURLs)
+#        |
+#        ([a-z0-9\-.]+&&
+#            $LST(AdHosts)
+#            |
+#            $LST(CWSHosts)
+#            |
+#            (*.|)
+#            (
+#                $LST(CWSDomains)
+#                |
+#                $LST(DialerDomains)
+#                |
+#                $LST(AdDomains)
+#                |
+#                $LST(AdHostKeywords).*
+#            )
+#        )([/:?&"'\\]|(^?))
+#    )
+
+# 
+# Ähnliche Änderungen müssen auch in den Listen "AdHubHeader" und "AdHubSourceA" vorgenommen werden.
+# 
+# Außerdem müssen folgende Zeilen in die Konfigurationsdatei, in den Abschnitt "[Blocklists]" eingefügt werden:
+# 
+# ----------------------------------
+# List.CWSDomains = "..\Listen\Werbefilter\CWSDomains.txt"
+# List.CWSHosts = "..\Listen\Werbefilter\CWSHosts.txt"
+# ----------------------------------
+#
+# Fertig.
+#
+
+
+
+
+(http://|https://|ftp://|//)[a-z0-9\-./\:_]++/$LST(AdPathKeywords)
+
+/(^/)$LST(AdPathKeywords)
+/(^/)[a-z0-9\-./_]++/$LST(AdPathKeywords)
+
+../$LST(AdPathKeywords)
+../[a-z0-9\-./_]++/$LST(AdPathKeywords)
+
+(^/|.)$LST(AdPathKeywords)
+(^/|.)[a-z0-9\-./_]++/$LST(AdPathKeywords)
+
+
+
+~(http://|https://|ftp://|//)$LST(NoAdURLs)
+
+
+
+
+## Sonderlösung:
+http://partners.webmasterplan.com/
+
+
+
+
+

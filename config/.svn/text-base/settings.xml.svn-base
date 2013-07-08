@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="mindownloadspeed">512</entry>
+<entry key="proxyIp">127.0.0.1</entry>
+<entry key="useProxy">false</entry>
+<entry key="saveLimit">1</entry>
+<entry key="downloadtimeout">10000</entry>
+<entry key="maxretry">5</entry>
+<entry key="proxyPort">4001</entry>
+</properties>

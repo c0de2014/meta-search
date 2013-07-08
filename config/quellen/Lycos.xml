@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="passwordfeldattribut"/>
+<entry key="maxanzahl">2000</entry>
+<entry key="resulttag"/>
+<entry key="linktiefe">0</entry>
+<entry key="host">http://www.lycos.de</entry>
+<entry key="url">http://www.lycos.de</entry>
+<entry key="suchbuttontag"/>
+<entry key="suchbuttonwert"/>
+<entry key="useProxy">false</entry>
+<entry key="suchfeldattribut"/>
+<entry key="suchfeldwert"/>
+<entry key="loginbuttonxpath"/>
+<entry key="titlexpath">//</entry>
+<entry key="maxSpeed">0</entry>
+<entry key="proxyPort">4001</entry>
+<entry key="usedocumentxpath">false</entry>
+<entry key="loginbuttonwert"/>
+<entry key="addType">true</entry>
+<entry key="nextpageattribut"/>
+<entry key="loginbuttontag"/>
+<entry key="useIt">false</entry>
+<entry key="suchfeldtag"/>
+<entry key="pdfCrawlerDelay">5</entry>
+<entry key="password"/>
+<entry key="passwordfeldwert"/>
+<entry key="username"/>
+<entry key="nextpagexpath">//a[contains(text(),'Vorw')]</entry>
+<entry key="nextpagetag"/>
+<entry key="suchfeldxpath">//input[@id='query']</entry>
+<entry key="passwordfeldxpath"/>
+<entry key="resultwert"/>
+<entry key="suchbuttonxpath">//input[@id='submit']</entry>
+<entry key="quellenname">Lycos</entry>
+<entry key="resultattribut"/>
+<entry key="nextpagetext"/>
+<entry key="usernamefeldattribut"/>
+<entry key="zusatz"/>
+<entry key="loginbuttonattribut"/>
+<entry key="usernamefeldxpath"/>
+<entry key="generateFilename">false</entry>
+<entry key="suchbuttonattribut"/>
+<entry key="documentxpath"/>
+<entry key="useCookies">false</entry>
+<entry key="usernamefeldtag"/>
+<entry key="crawlerDelay">1000</entry>
+<entry key="nextpagewert"/>
+<entry key="javascript">false</entry>
+<entry key="passwordfeldtag"/>
+<entry key="proxyIp">127.0.0.1</entry>
+<entry key="usernamefeldwert"/>
+<entry key="resultxpath">//ol/li/a</entry>
+</properties>

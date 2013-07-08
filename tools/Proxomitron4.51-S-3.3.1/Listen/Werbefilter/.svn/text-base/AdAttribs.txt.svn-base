@@ -1,0 +1,340 @@
+# AdAttribs (NoAddURL)
+# 
+# Diese Liste enthält ID- und Class-Attribut-Werte, anhand derer die Filter
+# "Werbung: Container-Elemente (allgemein, XHTML) [Qw,MB]" und
+# "Werbung: Container-Elemente (allgemein, HTML) [Qw,MB]" zu entfernende
+# Abschnitte und Tabellen erkennt.
+# 
+# 
+# ## Beispiel:
+# 
+# Ein Listeneintrag "bannerad" würde dazu führen, dass der Filter folgende
+# Elemente entfernt:
+#  -----------------------------------------------------------------
+#   <div class="bannerad"> ... </div>
+#   <div id="bannerad"> ...... </div>
+#   <table class="bannerad">...</table>
+#   <table id="bannerad"> .... </table>
+#  -----------------------------------------------------------------
+# 
+# 
+# Da ID- und Klassennamen auf verschiedenen Websites völlig unterschiedliche
+# Bedeutungen haben können, sollten in diese Liste nur solche Namen eingetragen
+# werden, bei denen Verwechslungen unwahrscheinlich sind.
+# Dazu gehören z.B. feste Class-Namen von Werbenetzwerken oder beliebten
+# Werbeskripten.
+# 
+# 
+# 
+# 
+# Stand: 16.08.2009
+# 
+# Michael Bürschgens
+# http://www.buerschgens.de/Prox/
+
+
+
+
+####################################################################################
+# IDs #
+#######
+
+## Heise.de:
+bannerzone
+
+## Sonstige:
+lea_120x600
+lea_728x90
+lookatme
+beacon_\w
+trackingPixel
+superbanner
+
+
+
+
+####################################################################################
+# Classes #
+###########
+
+## Heise.de:
+leaderboard
+adbottom
+contentbanner
+
+## Sonstige:
+hiddenAdDiv
+
+
+
+
+
+####################################################################################
+# Unsortiert #
+##############
+
+## www.stayfriends-nw.de/   <div id="googleAdSense">
+googleAdSense
+
+## glaukom-klinik.de und andere SEO-Spamdomains
+Layerbanner
+
+## Sonstige:
+topbanner
+topads$URL(^http://www.powermetal.de/)
+sponsoraddiv
+sponsor$URL(^http://msdn.microsoft.com/)
+splashlayer
+refad
+redsheriff
+popdiv
+leaderboard_ad
+lea_intrusive
+lea_728x90_x
+lea_468x60_x
+Layerbanner
+ivwpixel
+ivwdiv
+googleAdSense
+gonamic
+dropin
+bannerskyscraper
+bannerhead
+bannercontentrectangle
+bannerbox2
+bannerbox
+bannerads
+bannerad
+advertisement
+advert
+adsworld
+adstrip
+adcontainer
+adcaption
+
+
+
+
+
+####################################################################################
+# Alt, Unsortiert #
+###################
+
+burst_banner
+burst_box
+burst_lower_banner
+burst_skyscraper
+
+SponsoredLinksBox
+yschsec
+ynw-rt-ov
+ygrp-sponsored-links
+yfnclrec
+yfnccftr
+yahoo_personals2
+yad-mrec
+x27
+x24
+werbung
+VerticalMenu1_ad1Table
+vads
+upSell
+trudead
+tmen_hidden
+tibanner
+thema_footer
+textSmallGrey \w
+textlinkads
+textads
+tea_spezial
+tblinks
+swads
+subad
+story-cip
+story-advertisement
+storyAd
+sticker
+statischeLinkblks
+spPartnerBar
+sponsorshipcontent
+sponsorLinks
+sponsorbox
+sponseredlinks
+SPONnoprint
+sponad
+spacedesc_mpu_iframe
+spacedesc_mpu_div
+sl-label
+skyAd
+sky
+singleAd
+sectionSponsor
+sectionPromo
+searchSponsor
+rotatingpuff
+rightsponsors
+resizetableBANNER
+rahmen\sp3
+quack
+promospot_r
+PopAd
+placeolli
+place9
+place5
+place2
+place_a7
+place_a5
+ovtbg
+ovt
+overturetextads
+ov_frame
+ov_data_\w
+ostgnavbar
+nwad
+northbanner
+navsoquero
+navrailadbox
+NavAd
+mztBox
+msbanner
+mpPT
+mojowrapper
+mntl
+MidArticleAd
+MicroKBranding
+metatags
+market2
+market1
+mainpage_subdisplay_adpanel
+lrec
+logiprint
+loader_container
+LeftIframeDiv
+left-container
+leftad
+lea_\w_x
+LabelAd
+jobsbox
+ivwimg
+ivw
+IslandAds
+islandad
+inline250
+hide_subs
+googleAd
+globalwidebanner
+frame_content
+footerads
+FooterAd_\w
+FooPos
+feature_sponsor
+eshopStory
+eSext
+emsskyscraper
+dyntrack
+dwindowcontent
+dwindow
+dms_*_IDS_
+dimasoTeaser
+demodiv
+dcv_EchangeLay
+cubeadbox
+contentadhtml
+contentAd
+ConPos
+columnad
+CoAd
+cnnNavAd
+ClassifiedLink
+cache_ad_rechts
+cache_ad
+buttons\sad
+boxad
+box_xs
+box\ssponsors
+bottomIslandAd
+bottom-ad
+boadcontainer
+bigbox\sad
+BDTX
+bannerTmp
+banner-img
+bannerButton
+banner_src
+artInlineAdBox
+article_body_bottomAd
+aoltextad
+Anzeige
+anzbox
+affban
+adxToolSponsor
+adxMiddle
+adxLeaderboard
+adxCircBottom
+adxBigAd
+advertiserLinkImg
+advertiserLink
+ad-vertical
+advert\schunk
+ad-vert
+adv_classified_int
+adtop
+adtitle
+adtag
+adsworld
+adSpot-textBox
+adside
+ADS_Right
+adright
+adrailbox
+admantle
+adlrec
+adli
+adleft
+adlayer
+adHeadline
+adheader
+adHead
+adfullbanner
+adeast
+adbottom_itmarkt
+adbottom
+adbot
+ad_top
+ad_content
+ad_bucket_lnb
+ad_border
+ad\sbutton
+
+
+
+
+####################################################################################
+# Bekannte False-Positives #
+############################
+
+# adbox
+# ^^^ Filme auf apple.com
+# mastertable
+# ^^^ Seiteninhalt auf javascriptkit.com
+# werbeblock
+# ^^^ Nicht abgeschlossener Bereich auf http://www.mysnip.de/forum-archiv/
+# topLogo
+# ^^^ Logo von www.nwzonline.de wird gefiltert
+# mp
+# ^^^ Probleme auf video.msn.com
+
+
+
+
+
+####################################################################################
+# Benutzerdefinierte Einträge #
+###############################
+
+
+
+
+
+
+

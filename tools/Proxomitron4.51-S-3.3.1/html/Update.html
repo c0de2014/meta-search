@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Proxomitron - Updateprüfung</title>
+<style type="text/css">
+body {
+	margin: 0;
+	padding: 0.5em;
+	font-family: Arial;
+	background-color: white;
+	color: #000000;
+}
+h2 {
+	margin: 0;
+	padding: 3px;
+	margin-bottom: 1em;
+	font-size: 1.25em;
+	font-weight: bold;
+	background-color: #88ff88;
+	border: solid 1px #000000;
+}
+table.vp {
+	margin-bottom: 1em;
+}
+div#verKommentar {
+	margin-bottom: 3em;
+}
+div > p:first-child {
+	margin-top: 0;
+}
+hr {
+	margin-bottom: 1em;
+}
+
+a:link {color: green}
+a:active {color: #00ff00}
+a:visited {color: #88aa88}
+</style>
+
+</head>
+<body>
+
+
+<script type='text/javascript'>
+
+function createXMLHttpRequest() {
+	var xhr = false;
+	if (window.XMLHttpRequest) {
+		try {
+			xhr = new XMLHttpRequest(); // Moderne Browser, IE7
+		}
+		catch (e) { }
+	}
+	else if (window.ActiveXObject) {
+		try {
+			xhr = new ActiveXObject('Microsoft.XMLHTTP'); // IE6, IE5
+		}
+		catch(e) { }
+	}
+	return xhr;
+}
+
+function doHttpGet(url,callback) {
+	if (!url) { return false; }
+	var obXhr = createXMLHttpRequest();
+	if (!obXhr) {
+		callback(-3,"");
+		return false;
+	}
+	var timeout = setTimeout(function() {
+		obXhr.abort();
+		callback(-1,"");
+	}, 10000);
+	obXhr.open("GET", url, true);
+	callback(-2);
+	obXhr.onreadystatechange = function() {
+		if(obXhr.readyState == 4) {
+			clearTimeout(timeout);
+			if (obXhr.status == 200) {
+				callback(obXhr.status,obXhr.responseText);
+			}
+			else {
+				callback(obXhr.status,obXhr.statusText);
+			}
+		}
+	};
+	obXhr.send(null);
+	return true;
+}
+
+function handleLocalVer(status,daten) {
+	var stAusgabe = "";
+	if (status == -3) {
+		stAusgabe = "Fehler: XMLHttpRequest nicht verfügbar";
+		document.getElementById("verKommentar").innerHTML = "Die Versionsdaten konnten leider nicht ermittelt werden, da die für diese Funktion notwendige API nicht zur Verfügung steht.";
+	}
+	else if (status == -2) {
+		stAusgabe = "Daten werden geladen...";
+	}
+	else if (status == 200) {
+		var arDaten = daten.split(";");
+		stAusgabe = arDaten[0] + "-Edition, Version " + arDaten[1];
+		doHttpGet("/.update/server/PVer.php?ucver=1&ed=" + arDaten[0] + "&ver=" + arDaten[1], handleServerVer);
+	}
+	else if (status == -1) {
+		stAusgabe = "Fehler: Timeout";
+	}
+	else {
+		stAusgabe = "Fehler: " + status + " " + daten;
+	}
+	var dhZielElem = document.getElementById("verVorhanden");
+	dhZielElem.innerHTML = stAusgabe;
+}
+
+function handleServerVer(status,daten) {
+	var stAusgabe = "";
+	if (status == -3) {
+		stAusgabe = "Fehler: XMLHttpRequest nicht verfügbar";
+		document.getElementById("verKommentar").innerHTML = "Die Versionsdaten konnten leider nicht ermittelt werden, da die für diese Funktion notwendige API nicht zur Verfügung steht.";
+	}
+	if (status == -2) {
+		stAusgabe = "Daten werden geladen...";
+	}
+	else if (status == 200) {
+		var arDaten = daten.split(";");
+		if (arDaten[0] == "200") {
+			if (arDaten[1] && arDaten[2]) {
+				stAusgabe = arDaten[1] + "-Edition, Version " + arDaten[2];
+			}
+			else {
+				stAusgabe = "unbekannt";
+			}
+			if (arDaten[4]) {
+				document.getElementById("verKommentar").innerHTML = arDaten[4];
+			}
+		}
+		else {
+			stAusgabe = "Fehler";
+		}
+	}
+	else if (status == -1) {
+		stAusgabe = "Fehler: Timeout";
+		document.getElementById("verKommentar").innerHTML = "Die aktuelle Version konnte nicht vom Server erfragt werden. Wenn der Fehler zum ersten mal auftritt, versuchen Sie, die Seite neu laden. Wenn der Fehler weiterhin auftritt, liegt wahrscheinlich ein dauerhaftes Problem vor.";
+	}
+	else {
+		stAusgabe = "Fehler: " + status + " " + daten;
+		document.getElementById("verKommentar").innerHTML = "Bei der Versionsabfrage ist ein Fehler aufgetreten.";
+	}
+	var dhZielElem = document.getElementById("verVerfuegbar");
+	dhZielElem.innerHTML = stAusgabe;
+}
+
+function laden() {
+	doHttpGet('/.update/PVer.txt', handleLocalVer);
+}
+
+if (window.location.href == "http://subspace.ptron/.update/index.html") {
+	if (window.addEventListener) { window.addEventListener("load",laden,false); }
+	else if (window.attachEvent) { window.attachEvent("onload",laden); }
+}
+
+</script>
+
+
+
+<h2>Proxomitron : Suche nach Updates</h2>
+
+
+<table class="vp" id="verTabelle">
+<tr>
+	<td><strong>Installiert ist folgende Version:</strong></td>
+	<td id="verVorhanden"></td>
+</tr>
+<tr>
+	<td><strong>Die neuste Version ist:</strong></td>
+	<td id="verVerfuegbar"></td>
+</tr>
+</table>
+
+<div id="verKommentar"></div>
+
+<hr>
+
+<div id="dllinks">
+<p>Neue Versionen können <a href="http://www.buerschgens.de/Prox/" target="_blank">hier</a> heruntergeladen werden.</p>
+<p>Für Fragen und Probleme ist das <a href="http://www.buerschgens.de/Prox/Forum/" target="_blank">Supportforum</a> gedacht.</p>
+</div>
+
+
+
+
+
+</body>
+</html>

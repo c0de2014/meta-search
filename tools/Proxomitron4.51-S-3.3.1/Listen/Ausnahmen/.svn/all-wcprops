@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/metasearchproto/!svn/ver/36/tools/Proxomitron4.51-S-3.3.1/Listen/Ausnahmen
+END
+AllowBannersOn.txt
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnroot/metasearchproto/!svn/ver/36/tools/Proxomitron4.51-S-3.3.1/Listen/Ausnahmen/AllowBannersOn.txt
+END
+AllowCookiesOn.txt
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnroot/metasearchproto/!svn/ver/36/tools/Proxomitron4.51-S-3.3.1/Listen/Ausnahmen/AllowCookiesOn.txt
+END
+AllowAnimGIFs.txt
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svnroot/metasearchproto/!svn/ver/36/tools/Proxomitron4.51-S-3.3.1/Listen/Ausnahmen/AllowAnimGIFs.txt
+END
+Ausnahmeregeln.txt
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnroot/metasearchproto/!svn/ver/36/tools/Proxomitron4.51-S-3.3.1/Listen/Ausnahmen/Ausnahmeregeln.txt
+END
+BypassOn.txt
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/metasearchproto/!svn/ver/36/tools/Proxomitron4.51-S-3.3.1/Listen/Ausnahmen/BypassOn.txt
+END
+NoExternalProxyOn.txt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svnroot/metasearchproto/!svn/ver/36/tools/Proxomitron4.51-S-3.3.1/Listen/Ausnahmen/NoExternalProxyOn.txt
+END

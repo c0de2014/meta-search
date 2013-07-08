@@ -1,0 +1,8 @@
+OLED
+ETL
+HTL
+Poly P-phenylenvinylen
+Polyvinylcarbazol
+Triplett-Emitter
+Isonitril-Metallkomplex
+Elektron-Loch-Paarbildung

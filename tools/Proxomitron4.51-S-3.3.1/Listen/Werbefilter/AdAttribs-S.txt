@@ -1,0 +1,286 @@
+# AdAttribs-S (NoAddURL)
+# 
+# Diese Liste enthält URL-bezogene Listen von Attribut-Werten, anhand derer
+# zu entfernende Elemente erkannt werden sollen.
+# 
+# 
+# 
+# == Aufbau der Listeneinträge: ========================================================
+#    
+#    Jeder Listeneintrag beginnt mit einer URL-Angabe. Dahinter folgen einer
+#    oder mehrere $SET-Aufrufe, mit denen Variablen Daten zugewiesen werden.
+#    
+#    
+#    ## Muster:
+#    --------------------------------------------------------------------------------
+#     <URL> $SET(<Variable>=,<Attribut-Wert>,[<Attribut-Wert>,]...) [$SET(<Variable>=,<Attribut-Wert>,[<Attribut-Wert>,]...)]
+#    --------------------------------------------------------------------------------
+#    (Achtung: Sowohl am Anfang, als auch am Ende der zugewiesenen Daten, muss ein Komma stehen!)
+#    
+#    ## Bestandteile:
+#    --------------------------------------------------------------------------------
+#    <URL> ist der URL oder der Anfang der URLs, auf die der jeweilige Listeneintrag
+#          zutreffen soll.
+#          Wie bei allen URL-Listen, wird auch hier das Protokoll nicht mit genannt.
+#          Ein Eintrag, der auf "http://www.buerschgens.de/" zutreffen soll, muss also
+#          "www.buerschgens.de/" lauten.
+#          
+#          Die URLs werden als "zum Ende hin offen" betrachtet.
+#          Wenn <URL> also "www.buerschgens.de/Prox/" lautet, dann erfasst der Eintrag
+#          alle URLs, die mit dieser Zeichenfolge beginnen.
+#          Beispielsweise "www.buerschgens.de/Prox/Seiten/Datei.html".
+#          
+#          Wenn SSL-verschlüsselte Seiten gefiltert werden und die URLs mit "https://"
+#          beginnen, dann muss im Listeneintrag zusätzlich die SSL-Portnummer "443"
+#          angegeben werden.
+#          Wenn also der URL "https://www.buerschgens.de/Prox/" erfasst werden soll,
+#          dann muss <URL> "www.buerschgens.de:443/Prox/" lauten.
+#          
+#          Platzhalter und die üblichen Metazeichen sind auch erlaubt und ermöglichen
+#          z.B. die Umschreibung veränderlicher Sub-Domains.
+#          
+#          
+#          +++ WICHTIG +++++++++++++++++
+#          
+#          Da in URL-Listen immer nur *einer* von mehreren zutreffenden Einträgen
+#          berücksichtigt wird, ist es unbedingt notwendig, die Einträge in dieser Liste
+#          hier so zu formulieren, dass es keine Überschneidungen bei den durch sie
+#          erfassten URLs geben kann.
+#          
+#          So etwas...
+#          -----------------------------------------------------------------------------
+#           www.chip.de/bildergalerie/   $SET(ScfAdID=,divFOOTERAD,divBANNER,)
+#           www.chip.de/                 $SET(ScfAdID=,resizetableBANNER,)
+#          -----------------------------------------------------------------------------
+#          ... würde zwangsläufig zu Fehlern führen, weil die allgemeiner formulierte
+#          zweite Zeile auch auf das zutreffen kann, was genauer formulierte erste
+#          Zeile erfassen soll.
+#          
+#          Aufgrund der Hash-Algorithmen, mit denen Proxomitron die meisten Listen zur
+#          schnelleren Verarbeitung aufbereitet, werden die Listeneinträge auch nicht
+#          unbedingt in der Reihenfolge verarbeitet, in der sie in der Datei stehen.
+#          Das Ergebnis wäre also schlecht vorhersagbar.
+#          
+#          Damit die Listeneinträge immer zuverlässig funktionieren, kann man sie z.B.
+#          so schreiben:
+#          -----------------------------------------------------------------------------
+#           www.chip.de/bildergalerie/     $SET(ScfAdID=,divFOOTERAD,divBANNER,resizetableBANNER,)
+#           www.chip.de/(^bildergalerie/)  $SET(ScfAdID=,resizetableBANNER,)
+#          -----------------------------------------------------------------------------
+#          So kann die allgemeiner formulierte Zeile der genauer formulierten Zeile auf
+#          keinen Fall ihren Spezialfall wegschnappen. Egal, in welcher Reihenfolge die
+#          Zeilen verarbeitet werden.
+#    
+#          +++++++++++++++++++++++++++++
+#    
+#    
+#    <Variable> ist der Name einer Variablen, in der die URL-bezogenen Daten gespeichert
+#          werden sollen.
+#          
+#          Prinzipiell können in jedem Listeneintrag beliebig viele $SET-Aufrufe
+#          hintereinander stehen und dadurch beliebig viele Variablen URL-abhängig mit
+#          Werten bestückt werden.
+#          
+#          Momentan werden in dieser Liste 4 Variablen benutzt:
+#          "ScfAdID", "ScfAdClass", "ScfAdName" und "ScfAdStyle".
+#          Jede davon steht für ein bestimmtes Attribut.
+#          -------------------------------------
+#           ScfAdID      -->   <div id="">
+#           ScfAdClass   -->   <div class="">
+#           ScfAdStyle   -->   <div style="">
+#           ScfAdName    -->   <div name="">
+#          -------------------------------------
+#          
+#          Die Werte, die den 4 Variablen zugewiesen werden können, haben alle das gleiche Format:
+#          --------------------------------------------------------------------------------
+#          $SET(<Variable>=,<Attribut-Wert>,<Attribut-Wert>,<Attribut-Wert>,)
+#          --------------------------------------------------------------------------------
+#          ACHTUNG: Die Kommata am Anfang und am Ende der Stichwortlisten dürfen nicht
+#                   vergessen werden. Der Filter, der die Variablen auswertet, betrachtet
+#                   nämlich immer den Bereich zwischen zwei Kommata als einzelnen Attribut-Wert.
+#          
+#          
+#    --------------------------------------------------------------------------------
+# 
+# 
+# 
+# 
+# 
+# Stand: 21.02.2010
+# 
+# Michael Bürschgens
+# http://www.buerschgens.de/Prox/
+
+
+
+# $SET(ScfAdID=,,)
+# $SET(ScfAdClass=,,)
+# $SET(ScfAdStyle=,,)
+# $SET(ScfAdName=,,)
+
+
+
+
+[^.]+.ign.com/     $SET(ScfAdID=,NavAd,)
+blogcritics.org/   $SET(ScfAdID=,ad3,ad6,)
+derstandard.at/    $SET(ScfAdID=,mztBox,ivw,skyleft,)$SET(ScfAdClass=,thema_footer,)
+forum.golem.de/    $SET(ScfAdStyle=,margin-bottom: 20px;,,margin-bottom: 20px; width: 468px; height: 60px;,)
+www.ariva.de/      $SET(ScfAdID=,tmen_hidden,BANNER_DIV_BIG,BANNER_DIV_SKY,PseudoAd,)
+www.dolby.com/     $SET(ScfAdID=,footerDiv,)
+www.dolby.de/      $SET(ScfAdID=,footerDiv,)
+www.dooyoo.de/     $SET(ScfAdID=,doobanner,)$SET(ScfAdClass=,mpPT,mpPTright,)
+www.faz.net/       $SET(ScfAdID=,ivw,)
+www.ftd.de/        $SET(ScfAdID=,ADS_Right1,ivwimg,ADS_Top,)
+www.gamestar.de/   $SET(ScfAdID=,ad_100x60,ad_120x60,ad_468x60,ad_anzeige_icon_vertikal,ad_sponsoring_rechts,)$SET(ScfAdClass=,ad_120neu,)
+www.golem.de/      $SET(ScfAdClass=,vertAd,)
+www.heise.de/      $SET(ScfAdClass=,cadv ISI_IGNORE,bcadv ISI_IGNORE,ISI_IGNORE,heiseadvert,sky,bottom-ad,logiprint,bcadv,)$SET(ScfAdID=,bannerzone,)
+www.lycos.de/      $SET(ScfAdClass=,sponsored,)
+www.n-tv.de/       $SET(ScfAdClass=,content_block index white_white_white,)$SET(ScfAdID=,medrect,banner,banner_spacer,)
+www.pcwelt.de/     $SET(ScfAdID=,block_right_advertising,)
+www.simtel.net/    $SET(ScfAdClass=,hotspotsMenu,hotspotsMenuItems,highlightsMenu,highlightsMenuItems,adMenu,adMenuItems,)
+www.smh.com.au/    $SET(ScfAdID=,adSpot-navsearch,adSpotIsland,adSpot-wideadvertorial,adSpotBanner-Leader,adSpot-textBox2,adSpot-textBox,adSpotIsland,)$SET(ScfAdClass=,adSpot-content-textAd,adSpot-textBox,)
+www.stern.de/      $SET(ScfAdID=,bannerTmp,contentAd,promoTmp,)$SET(ScfAdClass=,promo,)
+www.taz.de/        $SET(ScfAdClass=,werbung,anzbox,anzbox120,)
+www.welt.de/       $SET(ScfAdID=,mainColumnAds,adfullbanner,skyscraperBannerLeft,skyscraper,trudeaddetail,trudead,siteCatalystSink,ad1,ad2,)$SET(ScfAdClass=,ad_6466,hd_6466,titleazg,expandingBanner,rectangleBanner,form,bannerHead,naviBanner,anzeigenBanner floatLeft,dms_ad_IDS_6836,videoCompanionBanner,)
+www.zeit.de/       $SET(ScfAdID=,footerads,)$SET(ScfAdClass=,ad,)
+www.alibaba.com/   $SET(ScfAdID=,ads,)
+www.alltheweb.com/ $SET(ScfAdID=,sponsorLinks,)
+www.anandtech.com/ $SET(ScfAdID=,topmarq,)
+www.computerra.ru/ $SET(ScfAdID=,tophban,banbox,skyright,)
+www.de.map24.com/  $SET(ScfAdID=,m24up,)
+www.download.com/  $SET(ScfAdClass=,srch-adlist,ad leaderboard,bidWarContainer,adsProdHighlight_wrap,bidwar,squareButtonWrapper,)$SET(ScfAdID=,sidedoor,)
+www.flickr.com/    $SET(ScfAdID=,beacon,AdBlock,)$SET(ScfAdClass=,adspot,)
+www.geizkragen.de/ $SET(ScfAdID=,bannerwerbung_coupling_media_Skyscraper,ad_right,)
+www.metacafe.com/  $SET(ScfAdID=,underitemBanner,insideCommentsBanner,underPaginationBanner,)
+www.n24.de/        $SET(ScfAdID=,xxlbanner,rectangle180,71i_rectangle_div,) $SET(ScfAdClass=,ateaser,ad_block ad_3x161,)
+www.snapfiles.com/ $SET(ScfAdID=,bannerbar,topborderad,googleads,sfadcode,)
+www.tecchannel.de/ $SET(ScfAdID=,SkyBox,Skyscraper,right_advertising,anzeige_ad,)
+www.pcmag.com/     $SET(ScfAdClass=,AdModule_Content,sponsors_container,storybox,)
+www.devsource.com/ $SET(ScfAdStyle=,float:left; width:336px; margin-right:16px; margin-bottom:5px,)
+reisen.ciao.de/    $SET(ScfAdClass=,topprod,)
+www.msnbc.msn.com/ $SET(ScfAdClass=,adbar,)$SET(ScfAdID=,banbot,AdOverThePageDiv,)
+www.freenet.de/    $SET(ScfAdID=,frnAdSky,frnBanner,frnBannerAd,)
+slashdot.org/      $SET(ScfAdID=,links-ad,)
+[^.]+.youtube.com/ $SET(ScfAdID=,search-pva,watch-channel-brand-div,)$SET(ScfAdClass=,searchView list-view,)
+www.zdnet.de/      $SET(ScfAdID=,top-wallpaper,right-wallpaper,)
+www.nickles.de/    $SET(ScfAdID=,pcreportad,)
+www.neowin.net/    $SET(ScfAdClass=,menuads,menurec,)
+de.gizmodo.com/    $SET(ScfAdID=,leaderboard,)$SET(ScfAdClass=,mpuimg,)
+online.wsj.com/    $SET(ScfAdClass=,boldGreyNine,adWrapper,adSummary msnlinks,ad_artBottomCircMarketing,adSummary advertisement,adSummary ad_728,)$SET(ScfAdStyle=,padding:3px 0px 9px 0px;text-align:center;,border:1px solid #cfc7b7;margin-bottom:5px;,)
+www.winamp.com/    $SET(ScfAdID=,omnitureCode,)
+sourceforge.net/   $SET(ScfAdID=,adbatch,fad1p,)
+portal.1und1.de/   $SET(ScfAdID=,adv,)
+www.teltarif.de/   $SET(ScfAdStyle=,clear: both; color: #CCCCCC; margin: 9px 13px; border-bottom: #CCCCCC 1px solid;,margin: 0 0 8px 0;,)
+xlice.net/         $SET(ScfAdID=,skycraper,)
+www.nzz.ch/        $SET(ScfAdID=,advXertXoriXals,AxDxVxExRxTxIxSxIxNxG-right,AxDxVxExRxTxIxSxIxNxG-top-printOnly)
+geemag.tv/         $SET(ScfAdID=,selSideBarBanner,)
+www.focus.de/      $SET(ScfAdID=,contentaddiv,bdvadbox,__ligatus_placeholder__,)$SET(ScfAdClass=,dms_ad_IDS_210,)
+www.studivz.net/   $SET(ScfAdClass=,advertisingBlock,)$SET(ScfAdID=,news_staticContent,leftSideBox,)
+www.sport1.de/     $SET(ScfAdClass=,fullbanner,fullbannerAd,)$SET(CfgRepVerb=$GET(CfgRepVerb)AdBannerErsOb=0,)
+[^.]+.wetter.com/  $SET(ScfAdID=,box_mod_googleadsense,box-b_ad0-bleft,box-b_ad1-bleft,box-openad-by,box-googlelinkblock,box-googleskyscraper,box-openad-5,spox_box,box-n24,RT1_BOX_PARENT,RT2_BOX_PARENT,box-ligatus,box-openad-2,box-openad-cali,box-openad-3,SC1_BOX_PARENT,PX3_BOX_PARENT,ads-bot,)
+www.newsweek.com/  $SET(ScfAdID=,headerAd,BotAds,slug_leaderboard_2,,)$SET(ScfAdClass=,adcall,adLeaderboard,,)
+www.pdfzone.com/   $SET(ScfAdStyle=,float:left; width:336px; margin-right:16px; margin-bottom:5px,)
+www.guenstiger.de/ $SET(ScfAdID=,popup,)
+search.live.com/   $SET(ScfAdClass=,sb_adsN,sb_adsW,)
+www.nwzonline.de/  $SET(ScfAdID=,BottomAd,)
+www.xbitlabs.com/  $SET(ScfAdClass=,advert notop,banner496x63,banner160x600,)
+[^.]+.t-online.de/ $SET(ScfAdID=,vmsb,vmsky,tsrwh,)
+forum.chip.de/     $SET(ScfAdID=,adsd_skyscraper,adsd_banner_top,)
+www.techcrunch.com/$SET(ScfAdClass=,post_unit,)
+www.bing.com/      $SET(ScfAdClass=,adB,sb_adsN,sb_adsW,sb_adsW2,)
+[^.]+.gmx.net/     $SET(ScfAdID=,adv,adv-sky,)$SET(ScfAdStyle=,position: absolute; top: -10em;,)
+[^.]+.web.de/      $SET(ScfAdID=,adv,adv-sky,)$SET(ScfAdStyle=,position: absolute; top: -10em;,)
+www.dict.cc/       $SET(ScfAdID=,adxtop2,adrig,adxtop,)
+
+
+creativeproxy.uimserv.net/   $SET(ScfAdID=,adv,advRectangle,)$SET(ScfAdPair=,unit x4/advCount,)
+[^.]+.tomshardware.com/      $SET(ScfAdID=,newEgg,)$SET(ScfAdClass=,topAd,)$SET(ScfAdStyle=,width: 170; table-layout: fixed,)
+news.digitaltrends.com/      $SET(ScfAdID=,ad_leaderboard,)$SET(ScfAdStyle=,float: right; margin: 0px 2px 9px 9px;,)
+software.newsforge.com/      $SET(ScfAdClass=,sponad,)
+support.microsoft.com/kb/    $SET(ScfAdClass=,disclaimer mt,)
+www.areamobile.de/news/      $SET(ScfAdClass=,line,)
+www.berlinonline.de/         $SET(ScfAdClass=,boadcontainer,skyscraper,)
+www.call-magazin.de/         $SET(ScfAdID=,box_xs_content_add,)
+www.computerbase.de/         $SET(ScfAdID=,topbanner,)
+www.findarticles.com/        $SET(ScfAdClass=,leaderboardBox,popunderBox,wide_skyscraperBox,artInlineAdBox,leaderboard,)
+www.globalsecurity.org/      $SET(ScfAdID=,adtop,adleft,)$SET(ScfAdClass=,boxad,)
+www.guardian.co.uk/          $SET(ScfAdID=,OvertureStandaloneDivHolder,overtureIFrame,)
+www.inside-handy.de/         $SET(ScfAdID=,neben_site,)
+www.motorradonline.de/       $SET(ScfAdID=,metatags,emsskyscraper,)$SET(ScfAdClass=,skyscraper,)
+www.pcworld.idg.com.au/      $SET(ScfAdClass=,artboombox,footer_ad careerone_search,footer_ad footer_book_ad pcworld_offer,)$SET(ScfAdID=,headeradbox,right_ad_div,pcwdhtmlsubmenu,tracking,)
+www.preisvergleich.de/       $SET(ScfAdClass=,google_adsense_anzeigen_bigsize,)$SET(ScfAdID=,clicktrackframe,clicktrackframe_search,)
+www.smarthouse.com.au/       $SET(ScfAdClass=,FrameBox,)
+www.symbiangear.com/         $SET(ScfAdStyle=,position:absolute; top=3; left:958px;,visibility:visible;position:relative;top:3px;left:175;height: 115px;,)
+www.theregister.co.uk/       $SET(ScfAdClass=,ad,)
+www.tomsnetworking.com/      $SET(ScfAdClass=,ad,topAd,)$SET(ScfAdStyle=,width: 170; table-layout: fixed,)
+www.washingtonpost.com/      $SET(ScfAdClass=,wp_ad,sponsorship,)
+[^.]+.techrepublic.com.com/  $SET(ScfAdClass=,window,)$SET(ScfAdID=,powerPromo,)
+www.innovationsreport.de/    $SET(ScfAdID=,Ads_CAD,)
+www.inside-handy.de/         $SET(ScfAdClass=,news,)
+fileforum.betanews.com/      $SET(ScfAdID=,ad,bottomad,)
+hardware.thgweb.de/          $SET(ScfAdClass=,middlead,)
+www.technorati.com/blogs/    $SET(ScfAdClass=,doubleclick banner,)$SET(ScfAdID=,ad,adsense-text,)
+www.tagesspiegel.de/         $SET(ScfAdClass=,anzeige_81_bottom_border_home,anzeige_7x_top_border,anzeige_top_border,anzeige_top_double_border,)$SET(ScfAdID=,leaderboard_ads,)
+www.mobile2day.de/           $SET(ScfAdStyle=,margin-bottom:10px;,float: left; margin-right: 5px; margin-bottom: 5px; display: inline;,)
+www.buchhandel.de/           $SET(ScfAdID=,m_divBanner,)$SET(ScfAdClass=,spaceSkyscraper,)
+[^.]+.sueddeutsche.de/       $SET(ScfAdClass=,BannerBug,bannerSky,trackingBox,bannerSuperBanner,)
+www.autoscout24.de/          $SET(ScfAdClass=,advert-head,advert-top-head,advert-sky-right,)
+www.vanityfair.com/          $SET(ScfAdClass=,hiddenDAU,)
+www.shopbetreiber-blog.de/   $SET(ScfAdClass=,ad,)
+[^.]+.softonic.de/           $SET(ScfAdID=,ad_iframe,ad_dart_small_rectangle,ad_dart_wide_skyscrapper,ad_dart_sponsor,show_banner_popunder hidden,)$SET(ScfAdClass=,topbanner_categories show_banner_leaderboard,ad_skyscrapper show_banner_wide_skyscrapper,)
+[^.]+.webhostlist.de/        $SET(ScfAdID=,topad,)
+www.dasoertliche.de/         $SET(ScfAdClass=,ad_super_fullsize,sticky_bottom_spacer,sticky_bottom,)$SET(ScfAdID=,banner-zone,)
+search.yahoo.com/            $SET(ScfAdClass=,spns,bbox,ads horiz ,ads horiz bot,)$SET(ScfAdID=,east,)
+de.search.yahoo.com/         $SET(ScfAdClass=,spns,bbox,ads horiz ,ads horiz bot,)$SET(ScfAdID=,east,)
+answers.yahoo.com/           $SET(ScfAdID=,ks-ypn-ads,)
+themes.belchfire.net/        $SET(ScfAdID=,mainbannerapplied,)
+askville.amazon.com/         $SET(ScfAdClass=,ad_sidebar_header,ad_sidebar,ad_body,ad_title,)$SET(ScfAdID=,ad_topic_side,ad_container,)
+www.netzwelt.de/forum/       $SET(ScfAdStyle=,margin-top:6px;,)
+forums.somethingawful.com/   $SET(ScfAdID=,unregskyscraper,)$SET(ScfAdClass=,ad_banner_oma,)
+wissen.spiegel.de/           $SET(ScfAdID=,wiWallpaperAd,wiTop140,)$SET(ScfAdClass=,wiTrackingPixel,wiCommercial\swiTop90,)
+search-desc.ebay.de/         $SET(ScfAdID=,topAdTable,)
+[^.]++.shop.ebay.de/         $SET(ScfAdClass=,topBannerAd,)
+www.wer-kennt-wen.de/        $SET(ScfAdClass=,alignRight lowerBanner,)$SET(ScfAdID=,topad,ads,)
+sharepoint.namics.com/       $SET(ScfAdID=,flickr,)
+www.c-sharpcorner.com/       $SET(ScfAdClass=,AdLeftbarBorderStyle,)
+www.pricerunner.de/          $SET(ScfAdClass=,top-ad,)$SET(ScfAdID=,googleAds,)
+windowsclient.net/           $SET(ScfAdClass=,ad_item first,ad_text_blocks,)
+bundesliga.de/               $SET(ScfAdClass=,ad_tag_top,Banner640x800,)$SET(ScfAdID=,extra_banner_8_dest,)
+www.com-magazin.de/          $SET(ScfAdClass=,banner-content,s2teaserboxes-typ-6,banner-title)
+de.biz.yahoo.com/            $SET(ScfAdStyle=,color:#000000;font-size:10px;font-family:Verdana,arial,sans-serif;text-align:center,)
+www.smashingmagazine.com/    $SET(ScfAdClass=,gsense,)
+dotnet-snippets.de/          $SET(ScfAdClass=,box,)
+
+www.myvideo.de/online/page.php\?       $SET(ScfAdID=,ADbanner_full1,)
+www.spiegel.de/\w/[0-9,]+druck-        $SET(ScfAdName=,spon_vdz_countframe,)
+www.berlinonline.de/berliner-zeitung/  $SET(ScfAdClass=,banner,teaser t_special,)
+www.cnn.com/video/player/              $SET(ScfAdID=,cnnUpsellAdPlacement,)
+[^.]+.cnn.com/(^video/player/)         $SET(ScfAdID=,moneySponsorBox,adBannerTable,cnnLeftColAd,cnnPipelineSponsoredBy,cnnContextualLinks,cnnRRad,csiIframe,contextualLinks,)$SET(ScfAdClass=,aoltextad,CNN_homeAdBox,aoltextad,cnnCeilAd,cnnSCRightColAd,cnnSCRightColBorderBox,cnnScRightColAdHeader,)$SET(ScfAdStyle=,padding: 0; margin: 0; border: 0;,)
+www.chip.de/bildergalerie/             $SET(ScfAdID=,resizetableBANNER,divFOOTERAD,divBANNER,divCONTENTAD,tableCONTENTAD,tableBANNER,tableFOOTERAD,resizetableCONTENTAD,)$SET(ScfAdClass=,werbetextlinks,)$SET(ScfAdStyle=,height: 100px; border-style: none;,)
+www.chip.de/(^bildergalerie/)          $SET(ScfAdID=,trippleTipp,top_angebote,adsd_skyscraper,resizetableBANNER,divFOOTERAD,divBANNER,divCONTENTAD,tableCONTENTAD,tableBANNER,tableFOOTERAD,resizetableCONTENTAD,)$SET(ScfAdClass=,bullet-sponsored-links,werbetextlinks,)
+www.wincustomize.com/skins.aspx\?      $SET(ScfAdClass=,GalleryDescription_DescPos,Gallery_Top_AdRegion,)$SET(ScfAdID=,ctl00__ContentArea__ColumnAd__AdCounter,)
+
+www.tchibo.de/is-bin/INTERSHOP.enfinity/eCS/Store/  $SET(ScfAdClass=,mitchLayer,)
+
+
+
+
+
+# $SET(ScfAdID=,,)
+# $SET(ScfAdClass=,,)
+# $SET(ScfAdStyle=,,)
+# $SET(ScfAdName=,,)
+
+
+
+
+####################################################################################
+# Benutzerdefinierte Einträge #
+###############################
+
+
+
+
+
+
+

@@ -1,0 +1,738 @@
+# AdComments (NoAddURL)
+#
+# Diese Liste wird vom Filter
+# "Werbung: Durch Kommentare gekennzeichnete Bereiche [MB,Qw]" benutzt.
+#
+# Sie enthält Paare von HTML-Kommentaren, die zusammen mit dem durch diese
+# Kommentar-Paare eingegrenzten Quelltext entfernt werden sollen.
+#
+#
+#
+# ## Beispiel:
+#
+# Eintrag:   Start Bannercode -->*<!-- Ende Bannercode -->
+#
+# Erfasst:
+#
+# --------------------------------------
+#
+# <!-- Start Bannercode -->
+#
+# [...]
+#
+# <!-- Ende Bannercode -->
+#
+# --------------------------------------
+#
+# Der Beginn des Start-Kommentars "<!--" wird durch den Filter erfasst und
+# kommt deshalb im Listeneintrag nicht vor.
+#
+#
+#
+#
+#
+# Stand: 21.02.2010
+#
+# Michael Bürschgens
+# http://www.buerschgens.de/Prox/
+#
+
+
+
+ZEDO PopUnder Code [^>]++ ---->*<!-- end ZEDO PopUnder Code --->
+XXXXXXX  LEFT 120X600 XXXXXX  -->*<!-- XXXXXXX  END OF LEFT LEIF  120X600 XXXXX -->
+XXXXXX TOP BANNER  XXXXXX-->*<!-- XXXXXX END OF TOP  XXXXXXX-->
+XXXXX GREEN CARD XXXX -->*<!-- XXXXXXX END OF GREEN CARD XXXXXX -->
+X-Stat.de Code START - [^>]++ -->*<!-- X-STAT.de Code ENDE - [^>]++ -->
+X-->*<!--X-->
+Whatcounter Code START -->*<!-- Whatcounter Code END -->
+Werbung Zwei NEU! --------->*<!------------- Ende ------------->
+Werbung Start -->*<!-- Werbung Ende -->
+WERBUNG START -->*<!-- WERBUNG END -->
+WERBUNG SCHMAL -->*<!-- WERBUNG SCHMAL -->
+Werbung QuarterMedia -->*<!-- Ende Werbung QuarterMedia -->
+WERBUNG -->*<!-- WERBUNG ENDE -->
+werbung -->*<!-- /werbung -->
+Webtrekk [^>]++ www.webtrekk.de -->*(<!-- /Webtrekk -->|</script>)
+WEBSIDESTORY CODE HBX1.0 \(Universal\)-->*<!--END WEBSIDESTORY CODE-->
+WEBSIDESTORY CODE [^>]++ -->*<!--END WEBSIDESTORY CODE-->
+WEBSEITEN-ANALYSE.DE: Start -->*<!------ WEBSEITEN-ANALYSE.DE: Ende -->
+webmoney attestation label[^>]++ begin -->*<!-- webmoney attestation label[^>]++ end -->
+WEBBOT bot\="Script" startspan PREVIEW\="Site Meter" -->*<!--WEBBOT bot="Script" Endspan \w -->
+webbot bot\="Include" u-include\="top_index.htm" tag\="BODY" startspan -->*<!--webbot bot="Include" \w endspan -->
+webbot bot\="Include" u-include\="top.htm" tag\="BODY" startspan -->*<!--webbot bot="Include" \w endspan -->
+webbot bot\="Include" u-include\="bottom_index.htm" tag\="BODY" startspan -->*<!--webbot bot="Include" \w endspan -->
+Web Counter code start -->*<!-- Web Counter code end -->
+WarLog -->*<!-- End WarLog -->
+VIDEO IMU AD -->*<!-- END VIDEO IMU AD -->
+VC active -->*<!-- vc active -->
+VALUECLICK.COM POP-UNDER CODE v[0-9.]++ for [^>]+><!-- /VALUECLICK.COM POP-UNDER CODE v[0-9.]++ for [^>]+>
+VALUECLICK.COM INTERSTITIAL HEAD CODE [^>]+>*<!-- /VALUECLICK.COM INTERSTITIAL HEAD CODE [^>]+>
+VALUECLICK.COM 120x600 and 160x600 SkyScraper CODE for [^>]+>*<!-- /VALUECLICK.COM 120x600 and 160x600 SkyScraper CODE for [^>]+>
+ValueClick Media POP-UNDER CODE [^>]++ -->*<!-- ValueClick Media POP-UNDER CODE [^>]++ -->
+Users Online Counter by WebsiteReady.Net -->*<!-- End Users Online Counter by WebsiteReady.Net -->
+Urchin -->*<!-- Urchin -->
+UP Mestkom code BEGIN -->*<!-- Mestkom code END -->
+up advertisements column -->*<!-- up advertisements column ends -->
+unicast pixel call -->*<!-- end unicast -->
+TrafficRank Code START -->*<!-- TrafficRank Code END -->
+trafficmaxx ControlCenter :: V [0-9.]+ -->*<!-- // trafficmaxx ControlCenter -->
+trafficmasterz.net - traffic exchange programme - code start -->*<!-- trafficmasterz.net - traffic exchange programme - code end -->
+trafficmasterz.net - code start - do not modify! -->*<!-- trafficmasterz.net - code end - do not modify! -->
+tracking pageview \w = \w -->*</script>
+tracking begin -->*<!--tracking end -->
+topnetru -->*<!-- /topnetru -->
+TOPCTO logo begin-->*<!--TOPCTO logo end-->
+TOPCTO counter begin-->*<!--TOPCTO counter end-->
+Top-Bannerleiste -->*<!-- Ende Top-Bannerleiste -->
+Topbanner Start -->*<!-- Topbanner Ende -->
+Top_Ad -->*<!-- /Top_Ad -->
+TOP BANNER -->*<!-- END OF TOP -->
+TOP AD-->*<!--END TOP AD-->
+Top Ad Leaderboard -->*<!-- End of Top Ad Leaderboard -->
+TM COUNTER START -->*<!-- TM COUNTER END -->
+This is for upload progress Bottom leader board ad -->*<!-- Bottom Leaderboard -->
+ThinkGeek A46G3.8 -->*<!-- END/46 -->
+TheDrop [^>]++ -->*<!-- TheDrop -->
+THAWTE CAMPAIGNS -->*<!-- END OF THAWTE CAMPAIGNS -->
+TFS-Top-Banner - START //-->*<!-- TFS-Top-Banner - ENDE //-->
+TFS-CONTENTBANNER START -->*<!-- TFS-CONTENTBANNER ENDE //-->
+TFS-BANNER START //-->*<!-- TFS-BANNER ENDE //-->
+tf phpads code -->*<!-- einde tf phpads code -->
+TF 728x90 JScript VAR code -->*<!-- TF 728x90 JScript VAR code -->
+TF 728x90 IFrame VAR code -->*<!-- TF 728x90 IFrame VAR code -->
+TF 468x60 JScript NoPop code -->*<!-- TF 468x60 JScript NoPop code -->
+TF 468x60 JScript HORIZ NoPop code -->*<!-- TF 468x60 JScript HORIZ NoPop code -->
+TF 468x60 JScript HORIZ NoAD NoPop code -->*<!-- TF 468x60 JScript HORIZ NoAD NoPop code -->
+TF 468x60 JScript code -->*<!-- TF 468x60 JScript code -->
+TF 336x280 JScript VAR NoAD code -->*<!-- TF 336x280 JScript VAR NoAD code -->
+TF 336x280 JScript VAR code -->*<!-- TF 336x280 JScript VAR code -->
+TF 300x250 JScript VAR NoAD code -->*<!-- TF 300x250 JScript VAR NoAD code -->
+TF 300x250 JScript NoAD code -->*<!-- TF 300x250 JScript NoAD code -->
+TF 300x250 JScript code -->*<!-- TF 300x250 JScript code -->
+TF 160x600 JScript VAR code -->*<!-- TF 160x600 JScript VAR code -->
+TF 120x600 JScript NoAD code -->*<!-- TF 120x600 JScript NoAD code -->
+TF 120x600 JScript code -->*<!-- TF 120x600 JScript code -->
+TEASER -->*<!-- TEASER ENDE -->
+Tag for size popunder only for site Target Point Direct: 4 - DO NOT MODIFY -->*<!-- End of tag -->
+TAG contextad \w START -->*<!-- TAG contextad \w ENDE -->
+SZMFRABO VERSION [^>]++-->*<!-- /SZMFRABO -->(^$URL(http://www.de.map24.com/))
+SuperStats code [^>]++ -->*<!-- end SuperStats code -->
+superbanner #2 -->*<!-- / superbanner #2 -->
+SUPER BANNER OUTPUT GOES HERE-->*<!--END OF SUPER BANNER-->
+story level branding -->*<!-- end story level branding -->
+STATS4ALL_START-->*<!--STATS4ALL_END-->
+stat.4u.pl NiE KaSoWaC -->*<!-- stat.4u.pl KoNiEc -->
+START-BANNER-TABLE -->*<!-- END-BANNER-TABLE -->
+Start: Scraper -->*<!-- End: Scraper -->
+start: related resources -->*<!-- end: related resources -->
+start: overture -->*<!-- end: overture -->
+START: OMS BANNERTAG -->*<!-- ENDE: OMS BANNERTAG -->
+START: netpoint media banner -->*<!-- ENDE: netpoint media banner -->
+START: Catman header -->*<!-- END: Catman header -->
+START: Catman Footer -->*<!-- END: Catman Footer -->
+Start: Bottom Ad -->*<!-- End: Bottom Ad -->
+START: BANNER SYSTEM -->*<!-- END: BANNER SYSTEM -->
+Start Zaebb.biz Code -->*<!-- End Zaebb.biz Code -->
+START WARP2SEARCH.COM [^>]++ -->*<!-- END WARP2SEARCH.COM [^>]++ -->
+start Vibrant Media IntelliTXT Tooltip style sheet -->*<!-- end Vibrant Media IntelliTXT style sheet -->
+start Vibrant Media IntelliTXT script section -->*<!-- (ende|end|ending) Vibrant Media IntelliTXT script section -->
+start Vibrant Media IntelliTxt script section -->*<!-- (end|ending) Vibrant Media IntelliTxt script section -->
+start tower ad code -->*<!-- end tower ad code -->
+Start Top100 counter code -->*<!-- End Top100 counter code -->
+START TOP AD -->*<!-- END TOP AD -->
+Start to Cut Here-->*<!--End Cutting Here-->
+Start Theme Detail Banner -->*<!-- End Detail Banner -->
+Start SuperStats code -->*<!-- End SuperStats code [^>]++ -->
+START SOI DE fullbanner2 Tag -->*<!-- END SOI DE fullbanner2 Tag -->
+Start Skyscraper Code -->*<!-- End Skyscraper Code -->
+start side by side Ad module -->*<!-- end side by side Ad module -->
+Start RR-Werbung -->*<!-- End RR-Werbung -->
+Start Right Banner -->*<!-- End Right Banner -->
+START REVENUE SCIENCE PIXELLING CODE -->*<!-- END REVENUE SCIENCE PIXELLING CODE -->
+start reklama --->*<!--- end reklama --->
+START RedSheriff Measurement \w -->*<!-- END RedSheriff Measurement \w -->
+START RedSheriff Customer Intelligence [^>]++ -->*<!-- END RedSheriff Customer Intelligence [^>]++ -->
+START RedMeasure V4 - [^>]++ -->*<!-- END RedMeasure V4 -->
+Start PornDLD.com Code -->*<!-- End PornDLD.com Code -->
+START POPUP AD SCRIPT*END POPUP AD SCRIPT-->
+Start Pop Under Code -->*<!-- End Pop Under Code -->
+START OF WEBTRENDS LIVE TAG -->*<!-- END OF WEBTRENDS LIVE TAG -->
+Start of TheCounter.com Code -->*<!-- End of TheCounter.com Code -->
+Start of StatCounter Code -->*<!-- End of StatCounter Code -->
+START OF SmartSource Data Collector TAG -->*<!-- END OF SmartSource Data Collector  TAG -->
+START OF SmartSource Data Collector TAG -->*<!-- END OF SmartSource Data Collector  TAG -->
+START OF SDC Advanced Tracking Code -->*<!-- END OF SDC Advanced Tracking Code -->
+Start of moniter Code -->*<!-- End of moniter Code -->
+Start of Google analytics-->*<!-- End of Google analytics -->
+Start of Flickr Badge -->*<!-- End of Flickr Badge -->
+Start of eWebCounter Code -->*<!-- End of eWebCounter Code -->
+Start of e-dynamics Heatmap TAG -->*<!-- End of Heatmap TAG -->
+Start of DoubleClick Spotlight Tag: Please do not remove-->*<!-- End of DoubleClick Spotlight Tag: Please do not remove-->
+Start of DeepMetrix \(.NET\) StatScript -->*<!-- End of DeepMetrix \(.NET\) StatScript -->
+Start of Counted! [^>]++ -->*<!-- End of Counted! [^>]++ -->
+Start of Banner [^>]++ -->*<!-- (End|Done) of Banner [^>]++ -->
+Start of Analytics -->*<!-- End of Analytics -->
+Start of AdLINK ADJ [^>]++ -->*<!-- End of Ad\'LINK ADJ [^>]++ -->
+Start of Ad\'LINK ADJ [^>]++ -->*<!--+ End of Ad\'LINK ADJ [^>]++ -->
+Start of [^>]++ DoubleClick [^>]++ ------>*<!------- End of DoubleClick [^>]++ ------>
+START NORTH BANNER -->*<!-- END NORTH BANNER -->
+START module MOD_DIGIT_COUNTER by MicroCi -->*<!-- STOP module -->
+Start Medium Rectangle Code -->*<!-- End Medium Rectangle Code -->
+start Link.Ru -->*<!-- end Link.Ru -->
+start lik-sang.com product link code v[0-9.]++ -->*<!-- end lik-sang.com product link code -->
+START LAYER ADVERTISMENT [^>]++ -->*<!--  / END START LAYER ADVERTISMENT [^>]++ -->
+START INCLUDE Overture linkspots //-->*<!-- ENDE INCLUDE Overture linkspots //-->
+START HOME FREE \w CODE -->*<!-- END HOME FREE \w CODE -->
+start hittracker -->*<!--end hittracker -->
+Start Head Ad Space-->*<!--Stop Head Ad Space-->
+START google-analytics -->*<!-- END google-analytics -->
+start googleads -->*<!-- end googleads -->
+Start Google Ad Slice -->*<!-- End Google Ad Slice -->
+Start Global 1x1 -->*<!-- End Global 1x1 -->
+START FOOTER -->*<!-- END FOOTER -->
+Start FastWebCounter.com  -->*<!-- End FastWebCounter.com  -->
+Start FastOnlineUsers.com -->*<!-- End FastOnlineUsers.com -->
+Start eXTReMe Non Public Tracker Code [^>]++ -->*<!-- End eXTReMe Non Public Tracker Code -->
+Start Etology Code----->*<!------End Etology Code------>
+Start DI Tracking Code for HEAD section-->*<!-- End DI Tracking Code -->
+start default banner link -->*<!-- end default banner link -->
+Start DDLShark.com Code -->*<!-- End DDLShark.com Code -->
+Start Counter -->*<!-- End Counter -->
+Start Center column ads -->*<!-- Ends Center column ads -->
+START BOXER.INC.PHP: box4r.php -->*<!-- ENDE BOXER.INC.PHP: box4r.php -->
+START BOXER.INC.PHP: box3r.php -->*<!-- ENDE BOXER.INC.PHP: box3r.php -->
+START BOXER.INC.PHP: box2r.php -->*<!-- ENDE BOXER.INC.PHP: box2r.php -->
+START BOXER.INC.PHP: box1r.php -->*<!-- ENDE BOXER.INC.PHP: box1r.php -->
+Start Banner [^>]++ -->*<!-- END Banner [^>]++ -->
+Start Advertising -->*<!-- End Advertising -->
+Start Ad-Tag 468x60 --->*<!--- End Ad-Tag 468x60 --->
+Start Ad-Tag [^>]++ -->*<!-- End Ad-Tag [^>]++ -->
+START ADS -->*<!-- END ADS -->
+START AdPeeps.com Code -->*<!-- END AdPeeps.com Code -->
+START ADENGAGE.COM CODE [0-9.]++ -->*<!-- END ADENGAGE.COM CODE [0-9.]++ -->
+START AD -->*<!-- END AD -->
+start 125\*125 banner2 -->*<!-- end 125\*125 banner2 -->
+start 125\*125 banner1 -->*<!-- end 125\*125 banner1 -->
+start 120\*600 banner -->*<!-- end 120\*600 banner -->
+start \w promo-->*<!--end \w promo-->
+START [^>]++ BANNER CODE -->*<!-- END [^>]++ BANNER CODE -->
+START - Tabelle mit Werbung \*UNTEN\* -->*<!-- ENDE - Tabelle mit Werbung \*UNTEN\* -->
+START - Tabelle mit Werbung \*OBEN\* -->*<!-- ENDE - Tabelle mit Werbung \*OBEN\* -->
+spylog -->*<!-- / spylog-->
+SpyLOG [^>]++ -->*<!-- SpyLOG -->
+spotlight boxes -->*<!-- /spotlight boxes -->
+sponsorship spot begins -->*<!-- sponsorship spot ends -->
+SPONSORED PRODUCTS -->*<!-- SPONSORED PRODUCTS -->
+sponsored links -->*<!-- /sponsored links -->
+sponsor ad -->*<!-- end sponsor ad -->
+Special-Ad -->*<!-- /Special-Ad -->
+Sonderwerbeform -->*<!-- / Sonderwerbeform -->
+SOI_Skyscraper START -->*<!--  SOI_Skyscraper ENDE -->
+SOI_Rectangle START -->*<!-- SOI_Rectangle ENDE -->
+SOI_Popup START -->*<!-- SOI_Popup ENDE -->
+SOI_Fullbanner_oben START -->*<!-- SOI_Fullbanner_oben ENDE -->
+small_ad_right -->*<!-- end small_ad_right -->
+small_ad -->*<!-- end small_ad -->
+slinks -->*<!-- /slinks -->
+Skyscraper-->*<!--/Skyscraper-->
+skyscraper sternzeit Anfang -->*<!-- skyscraper sternzeit Ende -->
+skyscraper start -->*<!-- skyscraper ende -->
+SkyHost.ru Banner -->*<!-- End SkyHost.ru Banner -->
+SkyCraper Banner Begin //-->*<!-- SkyCraper Banner End //-->
+SiteCatalyst code version: [^>]++ -->( <script[^>]++ ></script>|*<!-- End SiteCatalyst code version: [^>]++ -->)
+Site Meter XHTML Strict [0-9.]++ -->*<!-- Copyright \(c\)[0-9]+ Site Meter -->
+Site Meter -->*<!-- Copyright \(c\)2006 Site Meter -->
+Site Census -->*<!-- Ende Site Census -->
+shortnews.de \w Start -->*<!-- shortnews.de \w End -->
+SG Ad 728x90 top -->*<!-- end SG Ad 728x90 top -->
+SG Ad 468x60 below fold -->*<!-- end SG Ad 468x60 below fold -->
+SG Ad 125x125 -->*<!-- end SG Ad 125x125 -->
+RLE code START -->*<!-- RLE code END -->
+right[0-9]_Ad -->*<!-- /right[0-9]_Ad -->
+Right Media 120 x 600 tag for [^>]++ -->*<!-- End of Right Media tag -->
+right advertisements column -->*<!-- right advertisements column ends-->
+Rich Media Ad [^>]++ -->*<!-- /Rich Media Ad Tag -->
+Revenue Science static javascript -->*<!-- Revenue Science static javascript end -->
+Revenue Science required functions start -->*<!-- Revenue Science required functions end -->
+Revenue Science call pixel server start -->*<!-- Revenue Science call pixel server end -->
+Revenue Science build segs array start  -->*<!-- Revenue Science build segs array end  -->
+Resize ADSLIDE - START //-->*<!-- Resize ADSLIDE - ENDE  //-->
+Reklama.Ru -->*<!-- end Reklama.Ru -->
+reklama Referenti 1 -->*<!-- End reklama Referenti 1 -->
+reklama Liavo -->*<!-- End reklama Liavo -->
+reklama Dolu -->*<!-- End reklama Dolu -->
+reklama Diasno -->*<!-- End reklama Diasno -->
+reklama Center -->*<!-- End reklama Center -->
+Reklama -->*<!-- /Reklama -->
+RedTram N4P -->*<!-- end RedTram N4P -->
+RBC beginn -->*<!--RBC end -->
+RAX counter-->*<!--/RAX-->
+Rating@Mail.ru LOGO-->*<!--/LOGO-->
+Rating@Mail.ru COUNTER-->*<!--/Rating@Mail.ru COUNTER-->
+quigo adsonar content ads begin-->*<!-- quigo adsonar content ads end-->
+quigo ads-->*<!-- end quigo ad -->
+PULL QUOTE BEGINS HERE -->*<!--  PULL QUOTE ENDS HERE  -->
+prospero.ru code start-->*<!--prospero.ru code end-->
+promo_d2d -->*<!-- end promo_d2d -->
+promo marketing header -->*<!-- End promo marketing header -->
+promo box -->*<!-- // promo box -->
+PROext: Top 1000 Begin -->*<!-- PROext: Top 1000 End -->
+PreMsgHTML-->*<!--/PreMsgHTML-->
+PRE, NEWSLETTER AND IFRAME AD -->*// PRE, NEWSLETTER AND IFRAME AD -->
+PowerPhlogger Code START -->*<!-- PowerPhlogger Code END -->
+Powered by LedAds v[0-9.]+ - http://www.ledscripts.com -->*<!-- End LedAds v[0-9.]+ Ad Code -->
+POT -->*<!-- /POT -->
+PostMsgHTML-->*<!--/PostMsgHTML-->
+popupus-script -->*<!-- End PopUp-Script -->
+Popups Start -->*<!-- Popups End -->
+Popups Start -->*<!-- Popups End -->
+PopupProfit.com Tag Start -->*<!-- PopupProfit.com Tag End -->
+popup start -->*<!-- popup end -->
+POPUNDER -->*<!-- END OF POP -->
+populariX code starts here -->*<!-- populariX code ends here -->
+pop code -->*<!-- end pop code -->
+PersianStat -->*<!-- /PersianStat -->
+peel away coding -->*<!-- end peel away coding -->
+Paypopup.com Rich Media Banner Advertising Code Begin -->*<!-- Paypopup.com Rich Media Banner Advertising Code End -->
+PayPopup.com Advertising Code Begin -->*<!-- PayPopup.com Advertising Code End -->
+PayPopup.com Advertising Code Begin -->*<!-- PayPopup.com Advertising Code End -->
+PARTNERS-->*<!--/PARTNERS-->
+Partnercash Bannercode Start -->*<!--Partnercash Bannercode Ende-->
+Partner Logo Start-->*<!--Partner Logo End -->
+partner code beginn-->*<!--partner code ende-->
+partner -->*<!-- /partner -->
+Overture Widget -->*<!-- End Overture Widget -->
+OVERTURE SPONSORED LINKS BEGIN -->*<!-- OVERTURE SPONSORED LINKS END -->
+overture links-->*<!-- end overture links-->
+OPENTRACKER HTML START -->*<!-- OPENTRACKER HTML END -->
+onvista adtag -->*<!-- //onvista adtag -->
+onLog counter begin -->*<!-- onLog counter end -->
+ONLINECHANGE -->*<!-- /ONLINECHANGE -->
+ONESTAT SCRIPTCODE START-->*<!--ONESTAT SCRIPTCODE END-->
+Omniture START -->*<!-- Omniture ENDE -->
+Omniture SiteCatalyst -->*<!-- /Omniture SiteCatalyst -->
+OEWA VERSION\="[0-9.]++" -->*<!-- /OEWA -->
+ob a8 common adtag js begin -->*<!-- ob a8 common adtag js end -->
+OAS AD\="Top"--> <script*</script>
+OAS ad tag start -->*<!-- OAS ad tag end -->
+OAS \w Ad Tag-->*<!--End Ad Tag-->
+OAS [^>]++ begin ------>*<!------ OAS [^>]++ end ------>
+NGZ Banneraktion -->*<!-- END: NGZ Banneraktion -->
+NEXT BANNER -->*(<!-- END OF NEXT BANNER -->|</script>)
+NEW AD FORMATS -->*<!-- END new ad formats -->
+netUpadter LIVE Begin // -->*<!-- netUpadter LIVE Ende // -->
+NAVRCHOLU.cz -->*<!-- NAVRCHOLU.cz - konec --> 
+MyCounter -->*<!-- End MyCounter code -->
+MVTracker Site Tracking Code Version [0-9.]+ -->*<!-- MVTracker Site Tracking Code End -->
+mpu tag start -->*<!-- mpu tag ende -->
+mj...banner # 2 : 100 / 268 / 999 -->*<!-- / mj..banner#2 -->
+mini ads up-->*<!--mini ads up-->
+Mestkom code BEGIN -->*<!-- Mestkom code END -->
+Mestkom 468x60 BEGIN -->*<!-- Mestkom 468x60 END -->
+Mestkom 120x600 BEGIN -->*<!-- Mestkom 120x600 END -->
+Mestkom 100x100_right BEGIN -->*<!-- Mestkom 100x100_right END -->
+Mestkom 100x100_left BEGIN -->*<!-- Mestkom 100x100_left END -->
+Menü-Sponsoring-->*<!--/Menü-Sponsoring-->
+Megabanner Start -->*<!-- Megabanner Ende -->
+marqueur spywords.com -->*<!-- fin du marqueur -->
+MARKETING MODULE STARTS HERE -->*<!-- MARKETING MODULE END HERE -->
+Mambospan Google Ads [0-9.]++ \(http://mambo.medspan.info\) -->*<!-- End of Mambospan Google Ads [0-9.]++-->
+MAIN POPUP -->*<!-- END OF POPUP -->
+MAIN POPUP -->*<!-- END OF POP -->
+MAIN POPUP -->*<!-- END OF MAIN POPUP -->
+lookatme Werbelayer [^>]++ Anfang-->*<!-- / Werbelayer [^>]++ Ende-->
+Load Banner Module - Begin -->*<!-- Load Banner Module - End -->
+LiveInternet logo-->*<!--/LiveInternet-->
+LiveInternet counter-->*<!--/LiveInternet-->
+LiveInternet counter-->*<!--/LiveInternet-->
+LiveInternet -->*<!-- /LiveInternet -->
+Linq.RU small banner #1 -->*<!--end Linq.RU small banner #1 -->
+left[0-9]_Ad -->*<!-- /left[0-9]_Ad -->
+Left ads -->*<!-- /Left ads -->
+LEFT 2 -->*<!-- END OF LEFT 2 -->
+LEFT 120X600 -->*<!-- END OF LEFT 120X600 -->
+Lead Tracking Anfang -->*<!-- Lead Tracking Ende -->
+LayerID AdServer -->*<!--LayerID AdServer End -->
+Layer --->*<!--- Layer ende --->
+Kopfzeile / Logo Start -->*<!-- // Navi Anfang // -->
+Kontera ContentLink™  -->*<!-- Kontera ContentLink™  -->
+Kontera ContentLink\(TM\);-->*<!-- Kontera ContentLink\(TM\) -->
+KOMTRACKPIXEL START -->*<!-- KOMTRACKPIXEL END -->
+KMiNDEX BLUE -->*<!-- KMiNDEX united v[0-9.]+ -->
+kmIndex BEGIN -->*<!-- kmIndex END -->
+JavaScript Tag // Tag for network 288: TripleDoubleU Gmbh // *<!-- End of JavaScript Tag -->
+ivwpixel -->*<!-- ivwpixel ende -->
+IVW-Aufruf -->*<!-- /IVW-Aufruf -->
+IVW-->*<!--Ende IVW-->
+IVW VERSION\="1.[0-9]" -->*<!-- /IVW -->(^$URL(http://www.kalaydo.de/))
+IVW VERSION\="[0-9.]+" -->*<!-- / IVW 1.[0-9] -->
+IVW Keyword Tag -->*<!-- / IVW Keyword Tag -->
+IsraLog -->*<!-- /IsraLog -->
+IR_LOOP START \[Billboard\] -->*<!-- IR_LOOP END \[Billboard\] -->
+ipz -->*<!-- /ipz -->
+IP log -->*<!--  IP log  end -->
+internet.commerce table -->*<!-- End internet.commerce table -->
+intellitxt aufruf -->*<!-- /intellitxt aufruf -->
+INCLUDE TRACKER START -->*<!-- INCLUDE TRACKER END -->
+Include Ads-->*<!--Include Ads end-->
+idg_admanager_2 - SKYSCRAPER -->*<!-- /idg_admanager_2 - SKYSCRAPER -->
+idg_admanager_2 - RECTANGLE -->*<!-- AD RECTANGLE: \w -->
+idg_admanager_2 - BANNERSKY -->*<!-- idg_admanager_2 - BANNERSKY -->
+idg_admanager_2 - BANNERHEAD -->*<!-- idg_admanager_2 - BANNERHEAD -->
+http://www.LiveZilla.net Tracking Code -->*<!-- http://www.LiveZilla.net Tracking Code -->
+HotLog -->*<!-- /HotLog -->
+HOME.RO Banners v[0-9.]++ -->*<!-- END HOME.RO Banners -->
+hitbox_start-->*<!--hitbox_end-->
+hitbox_normal Chrome Object --> * <!-- /hitbox_normal Chrome Object -->
+hbx noscript tags -->*<!-- hbx noscript tags -->
+HBX -->*<!-- /HBX -->
+GZ Sky Jscript code with Google Default -->*<!-- GZ Sky Jscript code with Google Default -->
+GZ Pop-under Jscript code No Default -->*<!-- GZ Pop-under Jscript code NO Default -->
+GZ 468\&728 Jscript code with Tribal Fusion Default -->*<!-- GZ 468\&728 Jscript code with Tribal Fusion Default -->
+Google Skyscraper Ad -->*<!-- End Google Skyscraper Ad -->
+GOOGLE BANNER -->*<!-- GOOGLE BANNER -->
+google Anfang-->*<!--google Ende-->
+Google analytics start -->*<!-- Google analytics end -->
+Google Analytics begin -->*<!-- Google Analytics end --> 
+google analytics -->*<!-- /google analytics -->
+google adsense content ads begin -->*<!-- google adsense content ads end -->
+Google AdSense \w -->*<!-- Ende Google -->
+Google AdSense - start -->*<!-- Google AdSense - end -->
+google adlinks-->*<!-- end -->
+GOOGLE AD CODE-->*<!--/GOOGLE AD CODE-->
+Google ad -->*<!-- Google ad -->
+Google Ad [^>]++ -->*<!-- End Google Ad -->
+Goo T-->*<!-- /Goo T-->
+Globo Clicks [0-9.]++ -->*<!-- Globo Clicks [0-9.]++ -->
+GBS http://gbs.germany.ru - Germany.ru Banner System - BannerCodeStart -->*<!-- GBS http://gbs.germany.ru - Germany.ru Banner System - BannerCodeEnd -->
+G Bottom Start -->*<!-- G  Bottom End -->
+Funktion MakeAD für Bannerinsertion Version [0-9.]+ -->*<!-- Funktion MakeAD für Bannerinsertion Version [0-9.]+ -->
+full page ad coding -->*<!-- end full page ad coding -->
+FTP promo new beginn-->*<!--FTP promo new end -->
+flash adcall -->*<!-- /flash adcall -->
+FLASH AD BEGINS -->*<!-- FLASH AD ENDS -->
+Fireclick Web Analytics - COPYRIGHT 1999-2006 - Please do not modify this code-->*<!-- Fireclick Web Analytics - COPYRIGHT 1999-2006 - Please do not modify this code-->
+Fireclick Netflame Web Analytics [^>]++ -->*<!-- Fireclick Netflame Web Analytics [^>]++ -->
+FILEPOST.RU banner code BEGIN /-->*<!-- FILEPOST.RU banner code END /-->
+FD News/Promo strip, [^>]++ -->*<!-- /FD News/Promo strip -->
+FC HP BN1 START -->*<!-- FC HP BN1 END -->
+FASTCLICK.COM REFERRAL BUTTON [^>]++ -->*<!-- FASTCLICK.COM REFERRAL BUTTON [^>]++ -->
+FASTCLICK.COM POP-UNDER CODE [^>]++ -->*<!-- FASTCLICK.COM POP-UNDER CODE [^>]++ -->
+FASTCLICK.COM InVue CODE [^>]++ -->*<!-- FASTCLICK.COM InVue CODE [^>]++ -->
+FASTCLICK.COM INTERSTITIAL HEAD CODE [^>]++ -->*<!-- FASTCLICK.COM INTERSTITIAL HEAD CODE [^>]++ -->
+FASTCLICK.COM 468x60 Banner CODE [^>]++ -->*<!-- FASTCLICK.COM 468x60 Banner CODE [^>]++ -->
+FASTCLICK.COM 468x60 and 728x90 Banner CODE for [^>]++ -->*<!-- FASTCLICK.COM 468x60 and 728x90 Banner CODE for [^>]++ -->
+FASTCLICK.COM 300x250 Medium Rectangle CODE for [^>]++ -->*<!-- FASTCLICK.COM 300x250 Medium Rectangle CODE for [^>]++ -->
+FASTCLICK.COM 180x150 Rectangle CODE for [^>]++ -->*<!-- FASTCLICK.COM 180x150 Rectangle CODE for [^>]++ -->
+FASTCLICK.COM 120x600 and 160x600 SkyScraper CODE for [^>]++ -->*<!-- FASTCLICK.COM 120x600 and 160x600 SkyScraper CODE for [^>]++ -->
+extreme tracking code -->*<!-- end extreme tracking code -->
+extreme tracking -->*<!-- end of extreme tracking -->
+expanding ad script"-->*</script>
+ExAccess code BEGIN -->*<!-- ExAccess code END -->
+etracker URL PARAMETER [0-9.]+ -->*<!-- etracker URL PARAMETER [0-9.]+ END -->
+etracker TARGET PARAMETER [0-9.]++ -->*<!-- etracker TARGET PARAMETER END -->
+etracker sedo CODE [^>]++ -->*<!-- etracker sedo CODE END -->
+etracker PARAMETER [^>]++ -->*<!-- etracker PARAMETER END -->
+etracker OVERLAY [0-9.]+ -->*<!-- etracker OVERLAY END -->
+etracker CODE [^>]++ -->*<!-- etracker CODE END -->
+etracker CAMPAIGN PARAMETER [0-9.]++ -->*<!-- etracker CAMPAIGN PARAMETER END -->
+eStat -->*<!-- /eStat -->
+ELU -->*<!-- /ELU -->
+EDIT SENTENCE ONE -->*<!-- END SENTENCE ONE -->
+eBay RelevanceAd -->*<!-- /eBay RelevanceAd -->
+DynamiContext AdLinks  -->*<!-- DynamiContext AdLinks  -->
+DoubleClick Random Number -->*<!-- End DoubleClick Random Number -->
+DoubleClick Ad Tag -->*<!-- End DoubleClick Ad Tag -->
+Doubleclick Ad -->*<!-- End Doubleclick Ad -->
+domain check -->*<!-- /domain check -->
+DEBUT HIT PARADE-->*<!--FIN HIT PARADE-->
+DART AD START -->*<!-- DART AD END -->
+DART AD \w begin -->*<!-- DART AD \w end -->
+dart - werbung -->*<!-- / dart - werbung -->
+D2D Promo -->*<!-- end D2D Promo -->
+Creative [^>]++ -->*<!-- End Creative -->
+CQ Counter code start -->*<!-- CQ Counter code end -->
+COUNTERS BEGIN -->*<!--COUNTERS END-->
+Counter4all.de Code -->*<!-- Counter4all.de Code -->
+Counter -->*<!-- /Counter -->
+Content-Banner - START //-->*<!-- Content-Banner - ENDE  //-->
+content-ad -->*<!-- /content-ad -->
+Content Ad -->*<!-- Content Ad Ende -->
+commercial adverts -->*<!-- commercial adverts end -->
+COMBO-->*<!--//COMBO-->
+CODE_START -->*<!-- CODE_END -->
+Code for Weblist banner-->*<!-- End of Weblist code -->
+Cobrand Hats -->*<!-- /Cobrand Hats -->
+ClickTrax web tools statistics hit counter code -->*<!-- End ClickTrax statistics web tools hit counter code -->
+CLICK-TRACKER DELAY CODE -->*<!-- CLICK-TRACKER DELAY CODE -->
+Clicksor.com Advertising Code Begin -->*<!-- Clicksor.com Advertising Code End -->
+Clicksor.COM -->*<!-- Clicksor.COM -->
+Click-Click Start -->*<!-- Click-Click End -->
+Click4Click Banner Code -->*<!-- End Click4Click Banner Code -->
+Casale Media 200? \(C\) -->*<!-- Casale Media 200? \(C\) -->
+BT -->*<!-- /BT -->
+BRAVENET INJECTION -->*<!-- BRAVENET INJECTION -->
+BOTTOM BANNER -->*<!-- END OF BOTTOM BANNER -->
+bottom advertisements column -->*<!-- bottom advertisements column ends -->
+bottom ad -->*<!-- end bottom ad -->
+bof RedTram N4P -->*<!-- eof RedTram N4P -->
+bo espotting -->*<!-- eo espotting -->
+bo chunnel -->*<!-- eo chunnel -->
+bigsize start -->*<!-- bigsize end -->
+bigmir\)net TOP 100 GIF 1x1 -->*<!-- bigmir\)net TOP 100 -->
+bigmir\)net TOP 100 -->*<!-- bigmir\)net TOP 100 -->
+BIG BIG BIG AD UNIT -->*<!-- /BIG AD UNIT -->
+Beginn Vibrant Media IntelliTXT -->*<!-- Ende Vibrant Media IntelliTXT -->
+Beginn Popup -->*<!-- Ende Popup -->
+Beginn Partnerprogramm-->*<!--Ende Partnerprogramm-->
+Beginn MaxiButton-->*<!--ENDE MaxiButton-->
+beginn marktplatz -->*<!-- ende marktplatz -->
+BEGINN des zanox-affiliate HTML-Code -->*<!-- ENDE des zanox-affiliate HTML-Code -->
+BEGINN Counterwelt Tracking -->*<!--ENDE Counterwelt Tracking-->
+Beginn Counterwelt Online-Counter # [0-9]+ #-->*<!--Ende Counterwelt Online-Counter # [0-9]+ #-->
+Beginn counter-->*<!--Ende counter-->
+BEGINN Cash4Banner.de - QUELLCODE-->*<!--ENDE Cash4Banner.de - QUELLCODE-->
+Beginn AdNetwork-Bannercode -->*<!-- Ende AdNetwork-Bannercode -->
+BEGINN \w TRACKING-CODE-->*<!--ENDE \w TRACKING-CODE-->
+Begin: MarketBanker -->*<!-- End: MarketBanker -->
+BEGIN: big ad -->*<!-- END: big ad -->
+BEGIN: AdSolution-Website-Tag [^>]++ -->*<!-- END:(AdSolution-Tag| AdSolution-Website-Tag) [^>]++ -->
+BEGIN: AdSolution-Tag 4.1: Global-Code [^>]++ -->*<!-- END: AdSolution-Tag 4.1: Global-Code [^>]++ -->
+BEGIN: AdSolution-Tag ([^>]++:)\1: AdSpot-Code [^>]++ -->*<!-- END: AdSolution-Tag $TST(\1): AdSpot-Code -->
+BEGIN: AdSolution-Tag ([^>]++:)\1 Global-Code\s*<!-- END: AdSolution-Tag $TST(\1) Global-Code -->
+BEGIN: AdSolution-Redirect-Tag [^>]++ -->*<!-- END:AdSolution-Tag [^>]++ -->
+Begin: AdBrite Premium -->*<!-- End: AdBrite Premium-->
+Begin: AdBrite Interstitials only -->*<!-- End: AdBrite -->
+Begin: AdBrite -->*<!-- End: AdBrite -->
+Begin webstats4U code -->*<!-- End webstats4U code -->
+BEGIN WebSTAT Activation Code -->*<!-- END WebSTAT Activation Code -->
+begin websidestory code [^>]++ -->*<!-- end websidestory code -->
+BEGIN WEBOSCOPE [^>]++ -->*<!-- END WEBOSCOPE [^>]++ -->
+Begin WebGozar.com Counter code -->*<!-- End WebGozar.com Counter code -->
+begin Underpoint code -->*<!-- end Underpoint code -->
+Begin Ultimate Counter code-->*<!--End Ultimate Counter code-->
+Begin Tribal Fusion Text Links -->*<!-- _End_ Tribal Fusion Text Links -->
+Begin TEASER ANZEIGE -->*<!-- End TEASER ANZEIGE -->
+begin Targetpoint targeting tracking code -->*<!-- end Targetpoint targeting tracking code -->
+BEGIN STANDARD TAG - popup or popunder - ROS: Run-of-site - DO NOT MODIFY -->*<!-- END TAG -->
+BEGIN STANDARD TAG - popup or popunder - Direct: Run-of-site - DO NOT MODIFY -->*<!-- END TAG -->
+BEGIN STANDARD TAG - popup only - ROS: Run-of-site - DO NOT MODIFY -->*<!-- END TAG -->
+BEGIN STANDARD TAG - popunder only - TargetPoint - oxyshare - Direct: Run-of-site - DO NOT MODIFY -->*<!-- END TAG -->
+BEGIN STANDARD TAG - popunder only - ROS: Run-of-site - DO NOT MODIFY -->*<!-- END TAG -->
+BEGIN STANDARD TAG - 728 x 90 - \w: Run-of-site - DO NOT MODIFY -->*<!-- END TAG -->
+BEGIN STANDARD TAG - 468x60/728x90 - imageshack: 728x90 Leaderboard - DO NOT MODIFY -->*<!-- END TAG -->
+BEGIN STANDARD TAG - 468 x 60 - \w: Run-of-site - DO NOT MODIFY -->*<!-- END TAG -->
+BEGIN STANDARD TAG - 300 x 250 - imageshack: New Landing - EX Adsense - DO NOT MODIFY -->*<!-- END TAG -->
+BEGIN STANDARD TAG - 300 x 250 - imageshack: Medium Rectangle - DO NOT MODIFY -->*<!-- END TAG -->
+BEGIN STANDARD TAG - 300 x 250 - \w: Run-of-site - DO NOT MODIFY -->*<!-- END TAG -->
+BEGIN STANDARD TAG - 120 x 600 - \w: Run-of-site - DO NOT MODIFY -->*<!-- END TAG -->
+begin sponsored text -->*<!-- end sponsored text -->
+Begin Sponsor Links -->*<!-- End Sponsor Links -->
+Begin Sponsor Links -->*<!-- End Sponsor Links -->
+Begin Skyscraper -->*<!-- End Skyscraper -->
+Begin Sitestat4 code -->*<!-- End Sitestat4 code -->
+Begin Sitestat4 code -->*<!-- End Sitestat4 code -->
+BEGIN SEXTRACKER CODE - ALTERATION WILL RESULT IN ACCOUNT CANCELLATION -->*<!-- END SEXTRACKER CODE -->
+Begin Sexcounter -->*<!-- End Sexcounter -->
+begin rightadvertorial.asp -->*<!--end right advertorial-->
+Begin Right advertisements -+>*<!-+ End Right advertisements -+>
+BEGIN RICH-MEDIA NETWORK CODE -->*<!-- END BURST CODE -->
+BEGIN RICH-MEDIA BURST! CODE*<!-- END BURST CODE -->
+BEGIN RICH MEDIA AD-->*<!-- END RICH MEDIA AD-->
+Begin Revenue Science Code -->*<!-- End Revenue Science Code -->
+Begin RealTracker [^>]++ -->*<!-- End RealTracker -->
+BEGIN RAW TAG - 468x60/728x90 - \w: Run-of-site - DO NOT MODIFY -->*<!-- END TAG -->
+BEGIN RAW TAG - 300 x 250 - \w: Run-of-site - DO NOT MODIFY -->*<!-- END TAG -->
+BEGIN QUARTER MEDIA CODE BLOCK -->*<!-- END QUARTER MEDIA CODE BLOCK -->
+Begin Project Wonderful ad code: -->*<!-- End Project Wonderful ad code. -->
+begin prestitial ad tag \(tile\=[0-9]+\) -->*<!-- End ad tag -->
+begin peel ad tag \(tile\=[0-9]+\) -->*<!-- End ad tag -->
+Begin PayCounter [^>]++ Code -->*<!-- End PayCounter [^>]++ Code -->
+Begin Partnerprogram [^>]++ --><!-- End Partnerprogram [^>]++ -->
+Begin Partnerbox -->*<!-- End Partnerbox -->
+BEGIN PARTNER PROGRAM - DO NOT CHANGE THE PARAMETERS OF THE HYPERLINK -->*<!-- END PARTNER PROGRAM -->
+BEGIN PARTNER PROGRAM - [^>]++ -->*<!-- END PARTNER PROGRAM - [^>]++ -->
+BEGIN OMNITURE TRACKING-->*<!-- END OMNITURE TRACKING-->
+begin of TopShop counter-->*<!--end of TopShop counter-->
+begin of Top100-->*<!--end of Top100 code-->
+begin of Top100 logo-->*<!--end of Top100 logo -->
+begin of Smart-Click.Ru code -->*<!--end of Smart-Click.Ru code-->
+begin of Rambler\'s Top100 code -->*<!--end of Top100 code-->
+BEGIN OF MyTOP FREE CODE v[0-9.]++ -->*<!-- END OF MyTOP FREE CODE v[0-9.]++ -->
+BEGIN OF [^>]++ POPUP -->*<!-- END OF [^>]++  POPUP -->
+Begin OAS [^>]++ -->*<!--+ End OAS [^>]++ -->
+BEGIN NetShelter Ad Tag for [^>]+>*<!-- END AD TAG -->
+Begin Nedstat Basic code -->*<!-- End Nedstat Basic code -->
+Begin METRICS Javascript -->*<!-- End METRICS Javascript -->
+Begin MarketPlace Ad -+>*<!-+ Begin MarketPlace Ad -+>
+BEGIN LAYER -->*<!-- END LAYER -->
+BEGIN Insight XE -->*<!-- END Insight XE -->
+BEGIN INLIVE CODE -- Inlive need of AddFreestats button code! WWW.ADDFREESTATS.com-->*<!-- END inlive CODE -->
+Begin Inet-Traffic.Com PopUnder Code -->*<!-- End Inet-Traffic.Com PopUnder Code -->
+BEGIN IDG TRACKING PIXEL-->*<!--END IDG TRACKING PIXEL-->
+BEGIN I/PRO PAGE TAG - COPYRIGHT 2006 I/PRO Corporation ALL RIGHTS RESERVED. -->*<!-- END I/PRO PAGE TAG -->
+BEGIN full size banner -->*<!-- END full size banner -->
+Begin Forumprop [^>]++ -->*<!-- End Forumprop [^>]++ -->
+BEGIN FLOATING LAYER CODE //-->*<!-- END FLOATING LAYER CODE //-->
+BEGIN FASTCOUNTER CODE -->*<!-- END FASTCOUNTER CODE -->
+begin ezblaster ad tag [^>]++ -->*<!-- End ezblaster ad tag -->
+begin eyeblaster ad tag-->*<!-- end eyeblaster ad tag-->
+Begin extremetracking.com code -->*<!-- End extremetracking.com code -->
+BEGIN DOUBLECLICK SKYSCRAPER AD-->*<!--END DOUBLECLICK SKYSCRAPER AD-->
+begin DoubleClick ad tag-->*<!-- End DoubleClick ad tag -->
+Begin DisplayAds Media Placement Code -->*<!-- End DisplayAds Media Code -->
+Begin did-it.com [^>]++ -->*<!-- End did-it.com [^>]++ -->
+Begin CounterCentral hit counter code -->*<!-- End CounterCentral hit counter code -->
+BEGIN CODE WWWomen.ru V[0-9.]++ -->*<!-- END CODE WWWomen.ru  -->
+Begin Code ranking-counter.de -->*<!--End Code ranking-counter.de -->
+begin Clear dot tracking -->*<!-- End clear dot tracking -->
+begin chCounter2 additional statistics -->*<!-- end chCounter2 additional statistics -->
+BEGIN chCounter [0-9.]++ additional statistics -->*<!-- END chCounter [0-9.]++ additional statistics -->
+BEGIN BURST! CODE -->*<!-- END BURST! CODE -->
+Begin BidVertiser code -->*<!-- End BidVertiser code -->
+BEGIN BANNER BOX FOR ZONE ([0-9]+)\1 -->*<!-- END BANNERCODE FOR ZONE $TST(\1) -->
+Begin Banner ([^>]++)\1 -->*<!-- END Banner $TST(\1) -->
+Begin Ban Man Pro Banner Code -  Zone: 336x280: Square Windows/Mobile -->*<!-- End Ban Man Pro Banner Code -  Zone: 336x280: Square Windows/Mobile -->
+Begin AOL Ad Table Top-->*<!--End AOL Ad Table Top-->
+BEGIN ADVERTPRO ADVANCED CODE BLOCK -->*<!-- END ADVERTPRO ADVANCED CODE BLOCK -->
+BEGIN ADVERTISING CODE-->*<!-- END ADVERTISING CODE-->
+BEGIN ADS -->*<!-- END ADS -->
+Begin Adify tag for [^>]++ -->*<!-- End Adify tag for [^>]++ -->
+Begin AddWeb SiteStats Code-->*<!--End AddWeb SiteStats Code-->
+begin AdBrite conversion tracking code -->*<!-- end AdBrite conversion tracking code -->
+begin ad tag -->*<!-- end ad tag -->
+begin ad tag \(tile\=?\) -->*<!-- End ad tag -->
+begin ad tag \(\w 728x90 - \w \) -->*<!-- End ad tag -->
+begin ad tag \(\w 468x250 - \w \) -->*<!-- End ad tag -->
+begin ad tag \(\w 160x600 - \w \) -->*<!-- End ad tag -->
+begin ad tag  \(728x90\) --><!-- End ad tag -->
+begin ad tag  \(336x280\) -->*<!-- End ad tag -->
+Begin Ad area -->* <!--End 468 Ad area-->
+BEGIN AD -->*<!-- END AD -->
+begin ad [^>]++ //-->*<!-- end generated ad //-->
+Begin 468X60 Ad Code \(750X100 max\) -->*<!-- End 468X60 Ad Code \(750X100 max\) -->
+Begin 125X125 Ad Code -->*<!-- End 125X125 Ad Code -->
+BEGIN \w MEDIA CODE BLOCK -->*<!-- END \w MEDIA CODE BLOCK -->
+Begin \w Ad BOX Div -->*<!-- end \w Ad BOX Div -->
+BEGIN \w Ad -->*<!-- END \w Ad -->
+Begin - Site: The Daily WTF Zone: Leaderboard -->*<!-- End - Site: The Daily WTF Zone: Leaderboard -->
+Begin -  Site: The Daily WTF Zone: Sidebar -->*<!-- End -  Site: The Daily WTF Zone: Sidebar -->
+Beg Indie Sponsor -->*<!-- End Indie Sponsor -->
+Bannertag oben-->*<!--Bannertag oben Ende-->
+BANNERSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS -->*<!-- BANNERSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS close -->
+BANNER HOERBUCH.CC -->*<!-- END BANNER HOERBUCH.CC -->
+BANNER HEAD \+ IVW-->*<!--BANNER HEAD Ende-->
+Banner foto-m.ru -->*<!-- Banner foto-m.ru-->
+banner for passion-4 site -->*<!-- banner for passion-4 site  ended-->
+banner area -->*<!-- ende banner area -->
+Banner Anfang -->*<!-- Banner Ende -->
+banner ads PROF-ID assignment begin -->*<!-- banner ads PROF-ID assignment end -->
+banner ads error page begin -->*<!-- banner ads error page end -->
+Banner -->*<!-- Ende Banner -->
+Banner -->*<!-- Banner end -->
+banner -->*<!-- banner (ende|ends) -->
+BANNER --> * <!-- /BANNER -->
+BANNER [^>]++ START -->*<!-- BANNER [^>]++ END -->
+Background ([^>]++)\1 header-->*<!--Background $TST(\1) header end-->
+bacalhau-->*<!--final do bacalhau-->
+Auto Banner Insertion Begin -->*<!-- Auto Banner Insertion Complete THANK YOU -->
+AP call to \w ---->*<!--- AP end call to \w --->
+AP Advertising [^>]++ -->*<!-- /AP AdSpace -->
+Anzeige -->*<!-- (/Anzeige|AnzeigeEnd) -->
+ANFANG Contentbanner -->*<!-- ENDE Contentbanner -->
+ANFANG BANNERCODE VITRADO PERFORMANCE-NACHFOLGENDEN CODE NICHT VERAENDERN! -->*<!-- ENDE BANNERCODE VITRADO PERFORMANCE -->
+Analytics Start -->*<!-- Analytics End-->
+ALPHA-counter TOP100 -->*<!-- ALPHA-counter TOP100 -->
+ad-view home -->*<!-- /ad-view home -->
+Advertising Banner Start --->*<!--- Advertising Banner End --->
+advert section starts here -->*<!--advert section ends here -->
+adv -->*<!-- end of adv -->
+ADTAG Skyscraper Start //-->*<!-- ADTAG Skyscraper Ende //-->
+ADTAG Popup Start //-->*<!-- ADTAG Banner Ende //-->
+AdSpot -->*<!-- /AdSpot -->
+Adserving start -->*<!-- Adserving end -->
+Adserver-Standardbanner: Start -->*<!-- Adserver-Standardbanner: Ende -->
+Adserver-Skyscraper: Start -->*<!-- Adserver-Skyscraper: Ende -->
+Adserver-Popup: Start -->*<!-- Adserver-Popup: Ende -->
+Adserver-Miniteaser_Links_Position_[0-9]: START -->*<!-- Adserver-Miniteaser_Links_Position_[0-9]: ENDE -->
+ads start [^>]++ -->*<!-- ads end-->
+ads begin -->*<!-- ads end -->
+AdRiver code START Type: javascript Site: [^>]++ -->*<!-- AdRiver code END -->
+AdRiver code START Type: 240x400 Site: [^>]++ -->*<!-- AdRiver code END -->
+AdRiver code START Type: 240x120 Site: [^>]++ -->*<!-- AdRiver code END -->
+AdRiver code START Type: 120x600 Site: [^>]++ -->*<!-- AdRiver code END -->
+AdRevolver code begin -->*<!-- AdRevolver code end -->
+ADONSPOT CAMPAIGN -->*<!-- END OF ADONSPOT CAMPAIGN -->
+AdMedia TopLine code START -->*<!-- AdMedia TopLine code END -->
+AdMedia Pop-under, Rich-media code START -->*<!-- AdMedia Pop-under, Rich-media code END -->
+AdMedia Netvideo, TopLine code START -->*<!-- AdMedia Netvideo, TopLine code END -->
+AdMedia code START -->*<!-- AdMedia code END -->
+ADDFREESTATS.COM REALCODE V[0-9.]+ -->*<!-- ENDADDFREESTATS.COM REALCODE V[0-9.]+  -->
+Add-Ad Start -->*<!-- Add Ad End -->
+ADCODE BEGIN -->*<!-- ADCODE END -->
+ad.channel pro // javascript rich media tag // ad.id: (\w)\1 // start*<!-- ad.channel pro // javascript rich media tag // ad.id: $TST(\1) // stop -->
+ad start -->*<!-- ad end -->
+ad start [^>]++ -->*<!-- ad end-->
+AD SPACE -+>*<!--- END AD SPACE -+>
+Ad positions -->*<!-- End ad positions -->
+ad MPU -->*<!-- /ad MPU -->
+Ad Link Anfang -->*<!--- Ad Link Ende -->
+Ad Image-->*<!--Ad Image-->
+AD GOES HERE-->*<!--AD ENDS HERE-->
+ad code: [^>]++ -->*<!-- [^>]++ end ad code -->
+Ad by funpic.de -->*<!-- End Ad by funpic.de -->
+Ad by Funpic.de -->*<!-- /Ad by Funpic.de -->
+ad box -->*<!-- // ad box -->
+Ad banner section BEGIN -->*<!-- ZD Ad-banner END -->
+ad banner or leaderboard -->*<!-- /ad banner or leaderboard -->
+AD Banner - begin -->*<!--  AD Banner - end -->
+AD -->*<!-- END AD -->
+ad --->*<!--- end ad --->
+ad -->*<!-- /ad -->
+AD ([0-9]+) START -->*<!-- AD $TST(\1) END -->
+AB IF="Story_Ads"-->*<!--AB ENDIF="Story_Ads"-->
+a8 banner ads sac js begin -->*<!-- a8 banner ads sac js end -->
+71I Skyscraper START -->*<!-- 71I Skyscraper ENDE -->
+71I Rectangle[0-9] START -->*<!-- 71I Rectangle[0-9] ENDE -->
+71I Popup START -->*<!-- 71I Popup ENDE -->
+71I Fullbanner[0-9] START -->*<!-- 71I Fullbanner[0-9] ENDE -->
+468 ad start-->*<!-- 468 ad end-->
+336 ad -->*<!-- 336 ad -->
+2nd ad -->*<!-- // ad box -->
+103bees.com \'bee\' code v[0-9.]+ - please do not make any changes! -->*<!-- 103bees.com \'bee\' code -->
+<xps:\w>-->*<!--</xps:\w>-->
+\w partner -->*<!-- /\w partner -->
+\w COUNTER-->*<!--/COUNTER-->
+\=\=\=\=\=\=_werbung_======--> * <!--======_/werbung_======-->
+\=\=\=\=\=\=_ivw_version_1.2_======-->*<!--======_/ivw_version_1.2_======-->
+\=\=\=\=\=\=\=\=\=\= ANFANG Google-Ad ========== -->*<!-- ==========ENDE Google-Ad ========== -->
+\=\=\=\=\=\=\=\=\=\= ANFANG Freies HTML / Billboard ========== -->*<!-- ========== ENDE Freies HTML / Billboard ========== -->
+\=\=\=\= TFS-Top-Banner - START ==== -->*<!-- ==== TFS-Top-Banner - ENDE  ==== -->
+\=\=\=\= Content-Banner - START ==== -->*<!-- ==== Content-Banner - ENDE ==== -->
+\=\=\=\= AD CALL \| SPEC SEARCH \| FREE SUBSCRIPTION ====-->*<!--==== END AD CALL \| SPEC SEARCH \| FREE SUBSCRIPTION ====-->
+\*\*\*\*\*\*\*\*\*\*\*\*\*\* IVW begin \*\*\*\*\*\*\*\*\*\*\*\*\*\* -->*<!-- \*\*\*\*\*\*\*\*\*\*\*\*\*\* IVW end \*\*\*\*\*\*\*\*\*\*\*\*\*\* -->
+\* START TRIPOD AD CODE [^>]++ -->*<!-- \* END TRIPOD AD CODE [^>]++ -->
+\* START ANGELFIRE AD CODE - PLEASE REMOVE WHEN EDITING PAGE \* -->*<!-- \* END ANGELFIRE AD CODE - PLEASE REMOVE WHEN EDITING PAGE \* -->
+[^>]++ flash 468x60 banner BEGIN -->*<!-- [^>]++ flash 468x60 banner END -->
+/\*Start stitial ad here\*/-->*<!--/\*End stitial ad here\*/-->
+/\*Start atax js here\*/-->*<!--/\*End atax js here\*/-->
+(#)+ START OMNITURE CODE HERE (#)+ -->*<!-- (#)+ END OMNITURE CODE HERE (#)+ -->
+(#)########### BANNER START ###############-->*<!--############# BANNER END ###############-->
+(#)######## ONLINECOUNTER ######## -->*<!-- ######### ONLINECOUNTER-ENDE ######## -->
+(#)### SONDERWERBUNG #### -->*<!--ENDE SONDERWERBUNG-->
+(#)## 4stats Tracker Code // begin ### -->*<!-- ### 4stats Tracker Code // end ### -->
+(#) OASSetup - Auslieferung: MJX/NX - Belegung: homepage/center -->*<!-- /OASSetup -->
+----- Anfang IVW-Aufruf ----- -->*<!-- ----- Ende IVW-Aufruf ----- -->
+---------- Advertising.com Banner Code -------------- -->*<!-- ----------Copyright 2000, Advertising.com---------- -->
+
+
+
+
+
+####################################################################################
+# Benutzerdefinierte Einträge #
+###############################
+
+
+

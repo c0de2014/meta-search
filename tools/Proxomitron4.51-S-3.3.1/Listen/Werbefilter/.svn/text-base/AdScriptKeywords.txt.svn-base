@@ -1,0 +1,408 @@
+# AdScriptKeywords (NoAddURL)
+# 
+# Diese Liste ist Teil der modularen Blocklisten, mit deren Hilfe
+# Proxomitron unerwünschte Werbung und andere Objekte erkennt und
+# filtert.
+# 
+# 
+# Stand: 21.02.2010
+# 
+# Michael Bürschgens
+# http://www.buerschgens.de/Prox/
+
+
+
+
+####################################################################################
+# Variablen #
+#############
+
+## Google PageAds:
+google_ad_[a-z]+{2,10}&(^$URL(http://www.theonion.com/))
+google_color_[a-z]+{2,7}
+google_ad_request_done
+GA_googleAddSlot&(^$URL(http://www.theonion.com/))
+GA_googleFetchAds
+GA_googleFillSlot
+
+## Omniture:
+s_code(^$URL(http://(www.local6.com/slideshow/|static.ak.studivz.net/js/|static.pe.studivz.net/js/|edition.cnn.com/video/|www.lastfm.de/listen|www.focus.de/)))
+s_265.channel
+orig_s_pageName
+
+## Sonstige:
+s_trackDownloadLinks
+s_trackExternalLinks
+s_trackInlineStats
+OAS_sitepage
+OAS_url
+OAS_version
+OEWA
+ad_right_holder
+ad_tag(^$URL(http://www.youtube.com/))
+cxo_tracking
+
+ad_spec
+adBanner1
+
+
+
+####################################################################################
+# Objekte #
+###########
+
+## Computerbase.de:
+cads
+
+## Microsoft:
+dapMgr
+
+
+## Sonstige:
+gaJsHost
+objAdMgr
+wssEvent(^(^ \= {))
+window.hbx
+hbx(^.|pagename)$SET(JSAdKill=true)
+hbx.[a-z0-9]+
+ad_spec
+
+
+
+
+####################################################################################
+# Funktionen #
+##############
+
+### eBay:
+writeSearchAd
+writeListingAd
+ebWriteRTMPlacement
+ebWriteRTMInlinePlacement
+
+## www.faz.net/
+AdInit
+DynAdTag
+PopAdTag
+PopAdShow
+CoAdShow
+TopAdTag 
+TopAdOpen 
+TopAdClose 
+SkyAdTag 
+SkyAdOpen 
+SkyAdClose 
+FocAdTag 
+FocAdOpen 
+FocAdClose 
+ConAdTag 
+ConAdOpen 
+ConAdClose 
+FooAdTag 
+FooAdOpen 
+FooAdClose 
+ReRAdTag 
+ReRAdOpen 
+ReRAdClose
+
+## Google-Tracker:
+urchinTracker(^$URL(http://(earth.google.de/|www.youtube.com/|www.google.com/)))
+
+## microsoft.de:
+dcsFPC
+dcsTag
+dcsXTSearch
+dcsAdv
+
+## gmx.de:
+homepageMovein
+
+## www.bbc.co.uk:
+BBC.adverts.init
+BBC.adverts.write
+BBC.adverts.show
+
+## forums.somethingawful.com/
+adloader
+pal.make_frame
+
+## Amazon.de
+n2RunThisWhen
+
+## Omniture:
+omtr.tc.init
+omtr.tc.optimize
+SetOmni(^$URL(http://(www.focus.de/)))
+omniAddPVEvent
+dcsBind
+
+
+## Sonstige:
+writeReferer
+writeMsnAd
+ttoads.initLayer
+ttoads.initInfo
+ttoads.initAdbar
+tm_tracker
+thedrop_DoFSCommand
+Tacoda_AMS_DDC_addPair
+soi_Tagwriter
+SmartAdServer
+showLayerAd
+setDropVariables
+setDomainForAds
+setadid
+setAdGroup
+setAdCookies
+sendLinkEvent
+sendAnalyticsEvent
+RenderGoogleAd
+placeSiteMetrix
+placeAd
+picadService
+OAS_RICH
+OAS_ADSC
+OAS_AD
+mmm_write_ad
+mm_az_adjs
+mm_ab_adjs
+linktracker_init
+interstitialBox.initialize
+installClickTrackers
+initCB
+iab_show
+GS_googleAddAdSenseService
+getAdElement
+get_country_banner
+GA_googleFillSlot
+FBSiteTracker.initialize
+endBodyAdCode
+enableAdCookie
+edTrackLink
+cnnad_registerAd
+check_espotting
+CbImageGallery.prototype.reloadIvwPixel
+BuildGoogleFBUrl
+BuildDartAd
+BuildAd
+bookmarkit
+az_adjs
+angelfireShowPopup
+ads_gettag
+adCall
+/\*<!\[CDATA\[\*/fradSection
+
+
+
+
+####################################################################################
+# Stichworte aus Kommentaren #
+##############################
+
+DHTML popup(^ menu)$SET(JSAdKill=true)
+Copyright Ferant.com
+Falk AdSolution$SET(JSAdKill=true)
+pop-under window ad$SET(JSAdKill=true)
+popunder window features$SET(JSAdKill=true)
+behavioural targeted ad$SET(JSAdKill=true)
+using NetSyndic$SET(JSAdKill=true)
+Insert click tracking URL
+PagePeel
+PopUpMaster
+WEBSIDESTORY,INC.$SET(JSAdKill=true)
+Urchin Tracking Module$SET(JSAdKill=true)
+####SiteCatalyst code version:$SET(JSAdKill=true)
+copyright by unik agents$SET(JSAdKill=true)
+SiteCatalyst code Release$SET(JSAdKill=true)
+document.writeln\("<!-- Copyright \(c\) 2003 Accipiter Solutions, Inc. All rights reserved. -->"\);$SET(JSAdKill=true)
+SPSS Version$SET(JSAdKill=true)
+\(C\)opyright Instadia$SET(JSAdKill=true)
+GA urchin.trackLinks$SET(JSAdKill=true)
+copyright by house of ads$SET(JSAdKill=true)
+Netratings SiteCensus$SET(JSAdKill=true)
+Omniture Optimization Suite$SET(JSAdKill=true)
+
+
+
+
+
+####################################################################################
+# alte Einträge, unsortiert #
+#############################
+
+## Qwalle:
+adsonar_
+qas_writeAdIFrame
+sponsorsbyids
+DisplayAds
+func_fpi_swap
+ivw_cl_site
+ad_server
+#right_click.js
+DisplayAds
+adScroll
+
+## T-Mobile-Webseiten:
+checkWindowSize
+
+## Yahoo/Overture
+ctxt_ad_partner
+ctxt_ad_interface_default$SET(JSAdKill=true)
+
+## Coremetrics:
+OAS_spoof
+CM_page_id
+cmCreateProductviewTag
+cmCreatePageviewTag
+CM_tag
+flookie$SET(JSAdKill=true)
+cmtag_ids$SET(JSAdKill=true)
+
+
+## Sonstige:
+
+Xt_r
+Xt_param
+Xt_i
+Xt_h
+xhit_onunload_handler
+wbds_writeTag
+wbds_waitserver
+wbds_testserver
+wbds_counttags
+ValueVersion
+ValueShowAd
+ValueLoaded
+ValueID
+ValueHost
+ValueBannerType
+szmfunc_requestQS
+SPONSOR_BANNER_DISPLAY_CODE_1
+SPONSOR_BANNER
+ShowWin_[0-9]+{2,*}
+show_sky
+show_doubleclick_ad
+show_banner
+setadvframe
+s_server
+s_eVarCFG
+s_channel
+s_campaign
+rotate_banner
+renderSnoBox
+popupMain
+popunder(^$URL(http://([^.]+.imageshack.us/|sj.wsj.net/djscript/j_global_slim)))
+pop-under
+popframe
+Popdown
+phpads_deliverActiveX
+pcw_AdInit
+PAGE_AD
+oNMlive
+nedstatbasic
+makeAD
+lubid_string
+lubid
+loadAds
+LEADER_BOARD_DISPLAY_CODE_1
+layerclose$SET(JSAdKill=true)
+JSwriteLSAdLayer
+JSwriteLSAdBanner
+JSwriteADInfo
+JSwriteAdBanner
+isXPSP2
+ipz_r
+ipz_js
+ibhtml1
+htmlAdWH
+hotlog_
+getAdCode
+fuckhim$SET(JSAdKill=true)
+foundadframe
+flashpopv
+fixHistory
+FerantDHTMLWindow
+FCAdTagTarget
+fastclick
+EXw
+EXjv
+exitconsole
+EXb
+eban_text 
+eban_img 
+eban_href
+displayPopUnder
+DisplayFCAdButtons
+DisplayFCAdBanner
+dc_AdLinkColor
+CPW_window([0-9]|)_[a-z_]+
+contentad
+clicksor_[a-z_]+
+checkContentRectangle
+checkAdTagsRectangle
+chanceAd
+casale
+cache-busting
+banner_ref
+banner_init
+AFS_Tracker
+AFS_Server
+AFS_Account
+adTime(^$URL(http://www.local6.com/slideshow/))
+adtegrity
+adSetTarget
+adsense
+adsc_[a-z]+{2,20}
+Ads_yp
+Ads_yl
+Ads_xwid
+Ads_xp
+Ads_xl
+Ads_xiid
+Ads_wrd
+Ads_ViewCode
+Ads_Timestamp
+Ads_sec
+Ads_prf
+Ads_par
+Ads_opt
+Ads_MultiUrl
+Ads_LinkUrl
+Ads_kid
+Ads_iid
+ads_gettag(^$URL(http://de.sevenload.com/))
+Ads_dur
+Ads_CountUrl_ne
+Ads_cnturl
+Ads_ClickUrl
+Ads_channels
+Ads_bw
+Ads_bid
+adexist
+adCount
+ad_frame
+aadlink
+_sv(^[a-z])
+_rs[a-z]+{2}
+__prepTrackingString
+__pr(^[a-z])
+__CA(^[a-z])
+\"pagebuster
+
+
+
+
+
+
+####################################################################################
+# Benutzerdefinierte Einträge #
+###############################
+
+
+
+
+
+
+
+
+

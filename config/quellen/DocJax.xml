@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="passwordfeldattribut"/>
+<entry key="maxanzahl">2000</entry>
+<entry key="resulttag">a</entry>
+<entry key="linktiefe">0</entry>
+<entry key="host">http://www.docjax.com</entry>
+<entry key="url">http://www.docjax.com</entry>
+<entry key="suchbuttontag">input</entry>
+<entry key="suchbuttonwert">btnG</entry>
+<entry key="useProxy">false</entry>
+<entry key="suchfeldattribut">name</entry>
+<entry key="suchfeldwert">q</entry>
+<entry key="loginbuttonxpath"/>
+<entry key="titlexpath">//a[@class='resulttittle']</entry>
+<entry key="maxSpeed">0</entry>
+<entry key="proxyPort">4001</entry>
+<entry key="usedocumentxpath">false</entry>
+<entry key="loginbuttonwert"/>
+<entry key="addType">false</entry>
+<entry key="nextpageattribut">href</entry>
+<entry key="loginbuttontag"/>
+<entry key="useIt">false</entry>
+<entry key="suchfeldtag">input</entry>
+<entry key="pdfCrawlerDelay">5</entry>
+<entry key="password"/>
+<entry key="passwordfeldwert"/>
+<entry key="username"/>
+<entry key="nextpagexpath">//a[contains(text(),'Next')]</entry>
+<entry key="nextpagetag">a</entry>
+<entry key="suchfeldxpath">//input[@id='inputField']</entry>
+<entry key="passwordfeldxpath"/>
+<entry key="resultwert">l</entry>
+<entry key="suchbuttonxpath">//input[@type='image']</entry>
+<entry key="quellenname">DocJax</entry>
+<entry key="resultattribut">class</entry>
+<entry key="nextpagetext">Vorwärts</entry>
+<entry key="usernamefeldattribut"/>
+<entry key="zusatz"/>
+<entry key="loginbuttonattribut"/>
+<entry key="usernamefeldxpath"/>
+<entry key="generateFilename">false</entry>
+<entry key="suchbuttonattribut">name</entry>
+<entry key="documentxpath"/>
+<entry key="useCookies">false</entry>
+<entry key="usernamefeldtag"/>
+<entry key="crawlerDelay">2000</entry>
+<entry key="nextpagewert">*</entry>
+<entry key="javascript">false</entry>
+<entry key="passwordfeldtag"/>
+<entry key="proxyIp">127.0.0.1</entry>
+<entry key="usernamefeldwert"/>
+<entry key="resultxpath">//div[@id='maincontent']//a[contains(text(),'Download It')]</entry>
+</properties>

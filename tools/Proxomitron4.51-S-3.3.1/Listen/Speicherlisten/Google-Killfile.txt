@@ -1,0 +1,8 @@
+# Google-Killfile (NoAddURL)
+#
+# Speicherliste der Google-Killfile-Filter
+# Hier landen die vom Benutzer als in Suchergebnissen unerwünscht markierten Domains.
+#
+#
+
+

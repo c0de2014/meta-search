@@ -1,0 +1,27 @@
+# URLAliasList (NoAddURL)
+#
+# Diese Liste ist praktisch die Konfigurationsdatei für den Filter
+# ".URL: (Out) 30 Seitenaufruf über Schlüsselworte [SL,MB]".
+#
+# Die hier eingetragenen Zuordnungen von Schlüsselworten zu URLs werden
+# vom Headerfilter als Umleitungen ausgeführt.
+#
+# Die Schreibweise ist folgende:
+#
+# Schlüsselwort $JUMP(http://url.zur.Seite/)
+#
+# Beispiel:
+# prox $JUMP(http://www.buerschgens.de/Prox/)
+#
+# Diese Zeile würde dafür sorgen, dass der Aufruf von "prox." im Browser
+# sofort auf die deutschen Proxomitron-Webseiten umgeleitet wird.
+# Wichtig ist, dass der Punkt hinter dem Kürzel zwar im Browser eingegeben
+# werden muss, hier in der Liste aber nicht vorkommt.
+
+
+
+# Proxomitron-Links
+list $JUMP(http://groups.yahoo.com/group/prox-list/)
+prox $JUMP(http://www.buerschgens.de/Prox/)
+
+

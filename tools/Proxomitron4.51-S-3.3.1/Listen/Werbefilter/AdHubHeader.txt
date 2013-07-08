@@ -1,0 +1,82 @@
+# AdHubHeader (NoAddURL NoHash)
+#
+# Diese Liste ist Teil der modularen Blocklisten, mit deren Hilfe
+# Proxomitron unerwünschte Werbung und andere Objekte erkennt und
+# filtert.
+#
+# Hier stehen weder Schlüsselworte noch URLs.
+# Diese Liste dient ausschließlich als Verteiler für die anderen Listen.
+#
+# Die meisten Filter, die auf die Blocklisten zurückgreifen, rufen eine
+# der Verteilerlisten "AdHubHeader", "AdHubSourceA" und "AdHubSourceB" auf.
+# Aus diesen Listen heraus werden dann die verschiedenen Unterlisten
+# aufgerufen und auf die einzelnen URL-Bestandteile angewandt.
+#
+#
+# Michael Bürschgens (12.12..2007)
+# http://www.buerschgens.de/Prox/
+
+
+
+
+($LST(AdHosts))\9$SET(URLKillSubstr=\9)$SET(URLKillList=AdHosts)$SET(URLKillComment=Die Werbefilterung ist eingeschaltet. Um diese Webseite aufrufen zu können, müssen Sie entweder die Werbefilterung ausschalten, den für diese Filterung verantwortlichen Listeneintrag entfernen, oder Proxomitron zeitweilig auf [Bypass] schalten.<br>Wenn die URL-Filterung nur für eine einzige Übertragung deaktiviert werden soll, können Sie auch einfach die Taste [U] auf der Tastatur gedrückt halten, während Sie im Browser auf die Schaltfläche zur Neuübertragung der Seite klicken. Sobald Sie [U] loslassen, ist die Sperre wieder aktiv.)
+
+
+
+# Um die Filterung von CWS-Domains zu aktivieren, müssen in dieser Liste folgende Änderungen vorgenommen werden:
+# 
+# 1. Der folgende Abschnitt muss auskommentiert werden:
+
+#[a-z0-9\-.]+&&(*.|)
+#    (
+#        ($LST(DialerDomains))\9$SET(URLKillSubstr=\9)$SET(URLKillList=DialerDomains)$SET(URLKillComment=Von der blockierten Domain sollte möglicherweise ein Dialer heruntergeladen werden. Wenn das beabsichtigt war, können Sie Proxomitron einfach auf [Bypass] schalten und durch einen erneuten Seitenaufruf den Download starten. Alternativ können Sie auch die Taste [U] auf der Tastatur gedrückt halten, während Sie im Browser auf die Schaltfläche zur Neuübertragung der Seite klicken. In diesem Fall wird die Sperre wieder aktiv, sobald Sie [U] loslassen.)
+#        |
+#        ($LST(AdDomains))\9$SET(URLKillSubstr=\9)$SET(URLKillList=AdDomains)$SET(URLKillComment=Die Werbefilterung ist eingeschaltet. Um diese Webseite aufrufen zu können, müssen Sie entweder die Werbefilterung ausschalten, den für diese Filterung verantwortlichen Listeneintrag entfernen, oder Proxomitron zeitweilig auf [Bypass] schalten.<br>Wenn die URL-Filterung nur für eine einzige Übertragung deaktiviert werden soll, können Sie auch einfach die Taste [U] auf der Tastatur gedrückt halten, während Sie im Browser auf die Schaltfläche zur Neuübertragung der Seite klicken. Sobald Sie [U] loslassen, ist die Sperre wieder aktiv.)
+#        |
+#        ($LST(AdHostKeywords))\9.*$SET(URLKillSubstr=\9)$SET(URLKillList=AdHostKeywords)$SET(URLKillComment=Die Werbefilterung ist eingeschaltet. Um diese Webseite aufrufen zu können, müssen Sie entweder die Werbefilterung ausschalten, den für diese Filterung verantwortlichen Listeneintrag entfernen, oder Proxomitron zeitweilig auf [Bypass] schalten.<br>Wenn die URL-Filterung nur für eine einzige Übertragung deaktiviert werden soll, können Sie auch einfach die Taste [U] auf der Tastatur gedrückt halten, während Sie im Browser auf die Schaltfläche zur Neuübertragung der Seite klicken. Sobald Sie [U] loslassen, ist die Sperre wieder aktiv.)
+#    )
+
+# 
+# 2. Statt dessen muss folgender Bereich aktiviert werden:
+# 
+
+($LST(CWSHosts))\9$SET(URLKillSubstr=\9)$SET(URLKillList=CWSHosts)$SET(URLKillComment=Die blockierte Domain wird oder wurde von einem so genannten Browser-Hijacker als Downloadquelle oder Weiterleitungsziel benutzt. Wenn Sie diese Webseite nicht absichtlich aufgerufen haben, oder diese Seite sogar ohne erkennbaren Grund auf dem Bildschirm erschienen ist, dann ist Ihr System sehr wahrscheinlich mit einem Browser-Hijacker infiziert.<br>Wenn Sie diese Webseite absichtlich aufgerufen haben und sicher sind, dass davon keine Gefahr ausgeht, dann handelt es sich möglicherweise um einen Fehleintrag in der zuständigen Liste. In diesem Fall könnten Sie aktiv zur Verbesserung der Filtergenauigkeit beitragen, indem Sie diesen Fehler melden.)
+
+[a-z0-9\-.]+&&(*.|)
+    (
+        ($LST(CWSDomains))\9$SET(URLKillSubstr=\9)$SET(URLKillList=CWSDomains)$SET(URLKillComment=Die blockierte Domain wird oder wurde von einem so genannten Browser-Hijacker als Downloadquelle oder Weiterleitungsziel benutzt. Wenn Sie diese Webseite nicht absichtlich aufgerufen haben, oder diese Seite sogar ohne erkennbaren Grund auf dem Bildschirm erschienen ist, dann ist Ihr System sehr wahrscheinlich mit einem Browser-Hijacker infiziert.<br>Wenn Sie diese Webseite absichtlich aufgerufen haben und sicher sind, dass davon keine Gefahr ausgeht, dann handelt es sich möglicherweise um einen Fehleintrag in der zuständigen Liste. In diesem Fall könnten Sie aktiv zur Verbesserung der Filtergenauigkeit beitragen, indem Sie diesen Fehler melden.)
+        |
+        ($LST(DialerDomains))\9$SET(URLKillSubstr=\9)$SET(URLKillList=DialerDomains)$SET(URLKillComment=Von der blockierten Domain sollte möglicherweise ein Dialer heruntergeladen werden. Wenn das beabsichtigt war, können Sie Proxomitron einfach auf [Bypass] schalten und durch einen erneuten Seitenaufruf den Download starten. Alternativ können Sie auch die Taste [U] auf der Tastatur gedrückt halten, während Sie im Browser auf die Schaltfläche zur Neuübertragung der Seite klicken. In diesem Fall wird die Sperre wieder aktiv, sobald Sie [U] loslassen.)
+        |
+        ($LST(AdDomains))\9$SET(URLKillSubstr=\9)$SET(URLKillList=AdDomains)$SET(URLKillComment=Die Werbefilterung ist eingeschaltet. Um diese Webseite aufrufen zu können, müssen Sie entweder die Werbefilterung ausschalten, den für diese Filterung verantwortlichen Listeneintrag entfernen, oder Proxomitron zeitweilig auf [Bypass] schalten.<br>Wenn die URL-Filterung nur für eine einzige Übertragung deaktiviert werden soll, können Sie auch einfach die Taste [U] auf der Tastatur gedrückt halten, während Sie im Browser auf die Schaltfläche zur Neuübertragung der Seite klicken. Sobald Sie [U] loslassen, ist die Sperre wieder aktiv.)
+        |
+        ($LST(AdHostKeywords))\9.*$SET(URLKillSubstr=\9)$SET(URLKillList=AdHostKeywords)$SET(URLKillComment=Die Werbefilterung ist eingeschaltet. Um diese Webseite aufrufen zu können, müssen Sie entweder die Werbefilterung ausschalten, den für diese Filterung verantwortlichen Listeneintrag entfernen, oder Proxomitron zeitweilig auf [Bypass] schalten.<br>Wenn die URL-Filterung nur für eine einzige Übertragung deaktiviert werden soll, können Sie auch einfach die Taste [U] auf der Tastatur gedrückt halten, während Sie im Browser auf die Schaltfläche zur Neuübertragung der Seite klicken. Sobald Sie [U] loslassen, ist die Sperre wieder aktiv.)
+    )
+
+# 
+# Ähnliche Änderungen müssen auch in den Listen "AdHubSourceA" und "AdHubSourceB" vorgenommen werden.
+# 
+# Außerdem müssen folgende Zeilen in die Konfigurationsdatei, in den Abschnitt "[Blocklists]" eingefügt werden:
+# 
+# ----------------------------------
+# List.CWSDomains = "..\Listen\Werbefilter\CWSDomains.txt"
+# List.CWSHosts = "..\Listen\Werbefilter\CWSHosts.txt"
+# ----------------------------------
+#
+# Fertig.
+#
+
+
+
+*/($LST(AdPathKeywords))\9$SET(URLKillSubstr=\9)$SET(URLKillList=AdPathKeywords)$SET(URLKillComment=Die Werbefilterung ist eingeschaltet. Um diese Webseite aufrufen zu können, müssen Sie entweder die Werbefilterung ausschalten, den für diese Filterung verantwortlichen Listeneintrag entfernen, oder Proxomitron zeitweilig auf [Bypass] schalten.<br>Wenn die URL-Filterung nur für eine einzige Übertragung deaktiviert werden soll, können Sie auch einfach die Taste [U] auf der Tastatur gedrückt halten, während Sie im Browser auf die Schaltfläche zur Neuübertragung der Seite klicken. Sobald Sie [U] loslassen, ist die Sperre wieder aktiv.)
+
+
+
+~$LST(NoAdURLs)
+
+
+
+
+
+
+

@@ -1,0 +1,1629 @@
+##
+## Proxomitron Config File
+##
+
+[Global]
+Enable = TRUE
+FreezeGIF = FALSE
+FilterHTML = TRUE
+FilterHeadersOut = TRUE
+FilterHeadersIn = TRUE
+EnableProxy = FALSE
+EnableAutoRun = FALSE
+ForceTextures = FALSE
+NoTextures = TRUE
+SysTray = TRUE
+UseSSLeay = FALSE
+CloseLocal = TRUE
+PriorityBoost = TRUE
+BypassURL = "(($LST(BypassOn)|$KEYCHK(b))&($LST(NoExternalProxyOn)$USEPROXY(false)|))"
+UCPrefix = "prox.serv/"
+Port = 8080
+MaxCapURL = 1000
+
+[WinSizes]
+
+[Blocklists]
+List.BypassOn = "..\Listen\Ausnahmen\BypassOn.txt"
+List.NoExternalProxyOn = "..\Listen\Ausnahmen\NoExternalProxyOn.txt"
+List.-------[Ausnahmelisten]------- = "..\Listen\---Trenner--.txt"
+List.Ausnahmeregeln = "..\Listen\Ausnahmen\Ausnahmeregeln.txt"
+List.AllowAnimGIFs = "..\Listen\Ausnahmen\AllowAnimGIFs.txt"
+List.AllowBannersOn = "..\Listen\Ausnahmen\AllowBannersOn.txt"
+List.AllowCookiesOn = "..\Listen\Ausnahmen\AllowCookiesOn.txt"
+List.--------[Werbefilter]--------- = "..\Listen\---Trenner--.txt"
+List.AdDomains = "..\Listen\Werbefilter\AdDomains.txt"
+List.AdHosts = "..\Listen\Werbefilter\AdHosts.txt"
+List.AdURLs = "..\Listen\Werbefilter\AdURLs.txt"
+List.NoAdURLs = "..\Listen\Werbefilter\NoAdURLs.txt"
+List.AdHostKeywords = "..\Listen\Werbefilter\AdHostKeywords.txt"
+List.AdPathKeywords = "..\Listen\Werbefilter\AdPathKeywords.txt"
+List.AdScriptKeywords = "..\Listen\Werbefilter\AdScriptKeywords.txt"
+List.AdComments = "..\Listen\Werbefilter\AdComments.txt"
+List.AdDimensions = "..\Listen\Werbefilter\AdDimensions.txt"
+List.AdAttribs = "..\Listen\Werbefilter\AdAttribs.txt"
+List.AdAttribs-S = "..\Listen\Werbefilter\AdAttribs-S.txt"
+List.DialerDomains = "..\Listen\Werbefilter\DialerDomains.txt"
+List.-------[konfigurierbar]------- = "..\Listen\---Trenner--.txt"
+List.CorrectContentTypes = "..\Listen\CorrectContentTypes.txt"
+List.URLAliasList = "..\Listen\URL Alias List.txt"
+List.-------[Speicherlisten]------- = "..\Listen\---Trenner---.txt"
+List.SSLManagerAllow = "..\Listen\Speicherlisten\SSLManagerAllow.txt"
+List.SSLManagerDeny = "..\Listen\Speicherlisten\SSLManagerDeny.txt"
+List.Google-Killfile = "..\Listen\Speicherlisten\Google-Killfile.txt"
+List.---------[Hilfslisten]-------- = "..\Listen\---Trenner---.txt"
+List.JSURLs = "..\Listen\JSURLs.txt"
+List.TLDList = "..\Listen\TLDList.txt"
+List.AdHubHeader = "..\Listen\Werbefilter\AdHubHeader.txt"
+List.AdHubSourceA = "..\Listen\Werbefilter\AdHubSourceA.txt"
+List.AdHubSourceB = "..\Listen\Werbefilter\AdHubSourceB.txt"
+List.ListWriter-Lists = "..\Listen\ListWriter-Lists.txt"
+List.URLHub = "..\Listen\URLHub.txt"
+
+[HTTP headers]
+In = FALSE
+Out = TRUE
+Key = ".Prox: (Out) 01 [# WICHTIG! #] Prox: Ausnahmen, lokale URLs und Variablen verarbeiten [MB]"
+URL = "($OHDR(User-Agent:\1)$SET(HdrUAgent=\1)|)((local.ptron/|subspace.ptron/&$LST(URLHub))|)($OHDR(Referer:\1)$SET(HdrReferer=\1)|)($LST(Ausnahmeregeln)|)"
+
+In = FALSE
+Out = TRUE
+Key = ".Prox: (Out) 02 [# WICHTIG! #] Prox: Listenschreiber [MB] v.1.1.0"
+URL = "listwriter.local/([^/]++)\1$SET(Liste=\1)/\?\2/&$SET(Daten=\2)$SET(temp1=$WESC($UESC($GET(Daten))))$LST(ListWriter-Lists)$LOG(CAdded to BlockList $GET(Liste): "$GET(Daten)")$RDIR(http://local.ptron/killed.gif)"
+
+In = FALSE
+Out = FALSE
+Key = ".URL: (Out) 03 Externen Proxy für bestimmte URLs deaktivieren [MB] v.1.1.0"
+URL = "$LST(NoExternalProxyOn)$USEPROXY(false)"
+
+In = FALSE
+Out = FALSE
+Key = ".URL: (Out) 05 SSL-Manager [MB] v.1.1.0"
+URL = "$URL(https://)$ASK(SSLManagerAllow, SSLManagerDeny, SSL-Verbindung nach "\h" erlauben?\n\nURL: \u, \h)"
+Replace = "\k"
+
+In = FALSE
+Out = FALSE
+Key = ".URL: (Out) 10 Verbindungen verhindern, auf Basis der Filterlisten [MB] v.6.0.1"
+URL = "(($LST(AdHubHeader)&(^$OHDR(Referer:http(s|)://$LST(AllowBannersOn)*)|$LST(AllowBannersOn)))|($LST(AdURLs))\9$SET(URLKillSubstr=\9)$SET(URLKillList=AdURLs))&($URL(http://)(^$KEYCHK(u))$LOG(WBlocked $DTM(c): \u)((*.(gif|png|jpg|jpeg)|$TST(AdCType=gif))$RDIR(http://local.ptron/killed.gif)|(*.js(\?|(^?))|$LST(JSURLs)|$TST(AdCType=js))$RDIR(http://local.ptron/killed.js)|*.css$RDIR(http://local.ptron/killed.css)|$SET(URLKillMatched=\u)$RDIR(http://local.ptron/killed-pro.html))|$URL(https://)(^$KEYCHK(u))$LOG(WBlocked (SSL) $DTM(c): \u))"
+Match = "$URL(https://)"
+Replace = "\k"
+
+In = FALSE
+Out = TRUE
+Key = "Accept-Encoding: (Out) Datenkompression: Nur unterstützte Verfahren erlauben [MB]"
+Match = "*"
+Replace = "gzip, deflate"
+
+In = FALSE
+Out = FALSE
+Key = "Cache-Control: (In) Browsercache nicht beeinflussen lassen [SL]"
+Match = "*"
+
+In = FALSE
+Out = FALSE
+Key = "Connection: (In+Out) Verbindungen nicht wiederverwenden [SL]"
+Replace = "close"
+
+In = FALSE
+Out = TRUE
+Key = "Connection: (Out) Proxy vor überempfindlichen Blogspamsperren verstecken [MB]"
+Match = "\1$OHDR(TE:*)"
+Replace = "\1, TE"
+
+In = FALSE
+Out = FALSE
+Key = "Content-Encoding: (In) Fehlerhafte Angaben entfernen [MB] v.0.0.2"
+Match = "(^gzip|x-gzip|deflate)?"
+
+In = TRUE
+Out = FALSE
+Key = "Content-Type: (In) 00 [# WICHTIG! #] Prox: Verarbeitung lokaler Dateien steuern [MB] v.1.0.4"
+URL = "local.ptron/*.(jpg$SET(temp1=image/jpeg)|png$SET(temp1=image/png)|js$SET(temp1=text/javascript; charset=iso-8859-1)$FILTER(false)|css$SET(temp1=text/css; charset=iso-8859-1)$FILTER(false))"
+Match = "*"
+Replace = "$GET(temp1)"
+
+In = TRUE
+Out = FALSE
+Key = "Content-Type: (In) 01 [# WICHTIG! #] Prox: Wenn bekanntes externes Skript --> Korrigieren [MB] v.2.1.1"
+URL = "$LST(JSURLs)"
+Match = "((^text/javascript|application/x-javascript|application/json)*)\1"
+Replace = "text/javascript$LOG(BInfo $DTM(c): Known script: \1 --> text/javascript)"
+
+In = TRUE
+Out = FALSE
+Key = "Content-Type: (In) 02 Falsche Angaben regelbasiert korrigieren [MB] v.1.0.4"
+Match = "$RESP((200|301|302)*)(text/plain|unknown|text/x-js|application/javascript|text/script|text/x-javascript|(^?))\1$URL([^/]+/[^=?]++.([a-z0-9]+{2,8}(^?)&&$LST(CorrectContentTypes)))"
+Replace = "\0$TST(CTKill=true)\k"
+
+In = TRUE
+Out = FALSE
+Key = "Content-Type: (In) 03 [# WICHTIG! #] Prox: Filterung nach Content-Type steuern [MB] 1.0.1"
+Match = "(^(application/x-javascript|text/javascript)$SET(CType=js)|(text/html|multipart/x-mixed-replace)$SET(CType=html)|application/xhtml\+xml$SET(CType=xhtml)|text/css$SET(CType=css)|text/vbscript$SET(CType=vbs)|image/gif$SET(CType=gif)|application/json(request|)$SET(CType=json)|text/plain$IHDR(Server: Proxomitron)$RESP(200 Local File))\1$FILTER(false)"
+Replace = "\1"
+
+In = FALSE
+Out = FALSE
+Key = "Content-Type: (In) 30 Bestimmte GIF-Animationen nicht einfrieren [MB]"
+URL = "$LST(AllowAnimGIFs)"
+Match = "(image/gif)\1$FILTER(false)"
+Replace = "\1"
+
+In = FALSE
+Out = FALSE
+Key = "Content-Type: (In) 31 CSS-Daten nicht filtern (Opera-Bug) [MB] v.1.0.2"
+URL = "$TST(HdrUAgent=*opera*)(^$TST(ScfModify=*hdr.filterCss*))"
+Match = "(text/css*)\1$FILTER(false)"
+Replace = "\1$LOG(BInfo $DTM(c):CSS-Daten nicht filtern (Opera-Bug))"
+
+In = FALSE
+Out = FALSE
+Key = "Cookie: (Out) 13 Tinyurl.com,Qurl.net: Vorschau aktivieren [MB] v.1.0.1"
+URL = "tinyurl.com/$SET(temp1=preview=1)|forwarding.tinyurl.com/$SET(temp1=preview=1)|qurl.net/$SET(temp1=redirect_mode=Manual)"
+Replace = "$GET(temp1)$LOG(VHMatch $DTM(c): Cookie: (Out) Tinyurl.com,Qurl.net: Vorschau aktivieren [MB])"
+
+In = FALSE
+Out = FALSE
+Key = "ETag: (In) Browsercache nicht beeinflussen lassen [MB]"
+Match = "*"
+
+In = FALSE
+Out = FALSE
+Key = "Expires: (In) Browsercache nicht beeinflussen lassen [SL]"
+Match = "*"
+
+In = FALSE
+Out = FALSE
+Key = "If-Modified-Since: (Out) Seiten immer neu anfordern [SL]"
+Match = "*"
+
+In = FALSE
+Out = FALSE
+Key = "If-None-Match: (Out) Seiten immer neu anfordern [MB]"
+Match = "*"
+
+In = FALSE
+Out = FALSE
+Key = "Last-Modified: (In) Browsercache nicht beeinflussen lassen [SL]"
+Match = "*"
+
+In = FALSE
+Out = FALSE
+Key = "Referer: (Out) 01 <nichts> [MB] v.1.0.1"
+URL = "(^$TST(ScfAllow=*hdr.referer*))"
+Match = "*"
+
+In = FALSE
+Out = TRUE
+Key = "Referer: (Out) 02 Google: Bildersuche trotz Fremdlinkblocker [MB]"
+Match = "http://images.google.[a-z]+{2,3}/*"
+Replace = "\u"
+
+In = FALSE
+Out = FALSE
+Key = "Referer: (Out) 03 Google: Bei Klicks auf Suchergebnisse Referrer unterdrücken [MB]"
+Match = "http://([^/]++.)google.[a-z]+{2,3}/*"
+Replace = "\u"
+
+In = FALSE
+Out = FALSE
+Key = "Referer: (Out) 04 URL der aktuellen Seite [SL] v.1.0.1"
+URL = "(^$TST(ScfAllow=*hdr.referer*))"
+Match = "*"
+Replace = "\u"
+
+In = FALSE
+Out = TRUE
+Key = "Referer: (Out) 05 Prox: URL-Kommandos und Präfix entfernen [MB] v.1.1.1"
+Match = "http://*(local.ptron/.pinfo/urls/$SET(\1=)$SET(\2=\u)|file(..|//)$SET(\1=)$SET(\2=))|(http(s|)://)\1*((bypass|bweb|bout|bin|https)(..|//))+{1,*}\2"
+Replace = "\1\2"
+
+In = FALSE
+Out = FALSE
+Key = "User-Agent: (Out) <nichts> [MB]"
+Match = "*"
+
+In = FALSE
+Out = FALSE
+Key = "User-Agent: (Out) Chrome 2 WinXP [MB]"
+Match = "*"
+Replace = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/530.5 (KHTML, like Gecko) Chrome/2.0.172.33 Safari/530.5"
+
+In = FALSE
+Out = FALSE
+Key = "User-Agent: (Out) Firefox 1.5 WinXP [MB]"
+Match = "*"
+Replace = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8) Gecko/20051111 Firefox/1.5"
+
+In = FALSE
+Out = FALSE
+Key = "User-Agent: (Out) Firefox 2.0 Linux [MB]"
+Match = "*"
+Replace = "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.5) Gecko/20070722 Firefox/2.0.0.5"
+
+In = FALSE
+Out = FALSE
+Key = "User-Agent: (Out) Firefox 2.0 Win98 [MB]"
+Match = "*"
+Replace = "Mozilla/5.0 (Windows; U; Win98; de; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1"
+
+In = FALSE
+Out = FALSE
+Key = "User-Agent: (Out) Firefox 2.0 WinVista [MB]"
+Match = "*"
+Replace = "Mozilla/5.0 (Windows; U; Windows NT 6.0; de; rv:1.8.1) Gecko/20061010 Firefox/2.0"
+
+In = FALSE
+Out = FALSE
+Key = "User-Agent: (Out) Firefox 2.0 WinXP [MB]"
+Match = "*"
+Replace = "Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1"
+
+In = FALSE
+Out = FALSE
+Key = "User-Agent: (Out) IE5.5 Win2000 [MB]"
+Match = "*"
+Replace = "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0)"
+
+In = FALSE
+Out = FALSE
+Key = "User-Agent: (Out) IE6.0 WinXP [MB]"
+Match = "*"
+Replace = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)"
+
+In = FALSE
+Out = FALSE
+Key = "User-Agent: (Out) IE6.0 WinXP SP2 [MB]"
+Match = "*"
+Replace = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)"
+
+In = FALSE
+Out = FALSE
+Key = "User-Agent: (Out) IE7.0 WinVista [MB]"
+Match = "*"
+Replace = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; SLCC1; .NET CLR 2.0.50727; .NET CLR 3.0.04506)"
+
+In = FALSE
+Out = FALSE
+Key = "User-Agent: (Out) IE7.0 WinXP [MB]"
+Match = "*"
+Replace = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; .NET CLR 1.1.4322; .NET CLR 2.0.50727; .NET CLR 3.0.04506.30)"
+
+In = FALSE
+Out = FALSE
+Key = "User-Agent: (Out) Opera 9.10 Linux [MB]"
+Match = "*"
+Replace = "Opera/9.10 (X11; Linux i686; U; de)"
+
+In = FALSE
+Out = FALSE
+Key = "User-Agent: (Out) Opera 9.10 WinVista [MB]"
+Match = "*"
+Replace = "Opera/9.10 (Windows NT 6.0; U; de)"
+
+In = FALSE
+Out = FALSE
+Key = "User-Agent: (Out) Opera 9.10 WinXP [MB]"
+Match = "*"
+Replace = "Opera/9.10 (Windows NT 5.1; U; de)"
+
+In = FALSE
+Out = FALSE
+Key = "User-Agent: (Out) Space Bison [SL]"
+Match = "*"
+Replace = "Space Bison/0.02 [fu] (Win67; X; SK)"
+
+
+[Patterns]
+Name = "++++ Hinweis: Beschreibungstexte unter http://www.buerschgens.de/Prox/ +++++++"
+Active = FALSE
+URL = "(^?) ======= Dieser Filter dient nur als Hinweistext und sollte niemals aktiviert sein! Er kann problemlos gelöscht werden."
+Limit = 256
+Match = "Aktuelle Beschreibungstexte zu allen mitgelieferten Filtern gibt es hier:"
+        "http://www.buerschgens.de/Prox/"
+        ""
+        "Über den Menüpunkt [Hilfe] im Hauptfenster können sowohl die deutschen"
+        "als auch die englischen Anleitungsseiten aufgerufen werden."
+
+Name = "==== Gemeinsam genutzte Funktionen; Start-Block; Nicht ausschalten! ==========="
+Active = FALSE
+URL = "(^?) ======= Dieser Filter dient nur als Trennlinie und sollte niemals aktiviert sein!"
+Limit = 256
+Match = "-"
+        "## Start-Block ##"
+        ""
+        "Die meisten Filter in diesem Block stellen Daten oder Funktionen bereit,"
+        "die von anderen Filtern benötigt werden."
+        ""
+        "Die Filter im Start-Block sollten deshalb weder deaktiviert, noch innerhalb der"
+        "Filterliste nach unten verschoben werden."
+        ""
+        "Einzige Ausnahme ist der Filter, der das Start-Skript einfügt. Er ist in zwei"
+        "Versionen vorhanden, von denen immer nur eine eingeschaltet sein soll."
+
+Name = "Prox: (X)HTML: Aktuelle Position in Seitenstruktur ermitteln v.1.4.2"
+Active = TRUE
+Multi = TRUE
+URL = "($TYPE(htm)|$TST(CType=xhtml))$SET(Dep01=1)$SET(PosInScript=0)$SET(PosInStyle=0)$SET(PosInLink=0)$SET(PosInTxtAr=0)$SET(PosInObj=0)$SET(PosInComm=0)"
+Limit = 1000
+Match = "<("
+        "t[dh]$SET(PosInTableGapV=0)|"
+        "/t[dh]$SET(PosInTableGapV=1)|"
+        "(a\s)$TST(PosInScript=0)$SET(PosInLink=1)|"
+        "/a >$SET(PosInLink=0)|"
+        "tr(\s|>)$SET(PosInTableGapH=0)$SET(PosInTableGapV=1)|"
+        "/tr(\s|>)$SET(PosInTableGapH=1)|"
+        "table(\s|>)$SET(PosInTableGapH=1)$SET(PosInLink=0)|"
+        "/table >$SET(PosInTableGapH=0)$SET(PosInTableGapV=0)$SET(PosInLink=0)|"
+        "(script(^[^>]++src=)*>)$SET(PosInScript=1)$SET(PosInLink=0)|"
+        "/script >$SET(PosInScript=0)|"
+        "object\s[^>]+>$TST(PosInScript=0)$SET(PosInObj=1)|"
+        "/object >$SET(PosInObj=0)|"
+        "style(\s|>)$SET(PosInStyle=1)|"
+        "/style >$SET(PosInStyle=0)|"
+        "textarea(\s|>)$TST(PosInScript=0)$SET(PosInTxtAr=1)|"
+        "/textarea >$SET(PosInTxtAr=0)|"
+        "head(\s|>)$SET(PosInHead=1)|"
+        "/head >$SET(PosInHead=0)$SET(PosInTableGapV=0)$SET(PosInTableGapH=0)|"
+        "body(\s|>)$SET(PosInBody=1)$SET(PosInHead=0)$SET(PosInTableGapV=0)$SET(PosInTableGapH=0)|"
+        "!--$TST(PosInScript=0)$TST(PosInStyle=0)$SET(PosInComm=1)"
+        ")"
+        "|"
+        "("
+        "-->$TST(PosInScript=0)$TST(PosInStyle=0)$SET(PosInComm=0)"
+        ")"
+        "&&xx"
+
+Name = "Prox: HTML: Start-Filterskript einfügen v.5.3.2"
+Active = TRUE
+URL = "$TYPE(htm)(^local.ptron/)(^$TST(Mtx03=1))$SET(Mtx03=1)(^$OHDR(X-Requested-With: XMLHttpRequest)|$OHDR(X-MicrosoftAjax: *))$SET(Dep04=1)$TST($DTM(tc)=(?)\1(?)\2(?)\3(?+{0,2})\4$SET(EnvConId=\2\4\1\3)*)"
+Limit = 2000
+Match = "("
+        "(<head(\s[^>]+>| >)"
+        "( <meta http-equiv=$AV(X-UA-Compatible)[^>]+>| $NEST(<title,</title>))+{0,2}"
+        ")\1 "
+        "|"
+        "(^(^< (frameset|body|style|script|table|a\s|object|iframe|noscript|textarea|embed|applet|noframes|div|p(^[a-z]))*>))"
+        ")"
+        "(^$TST(SnCType=*))"
+Replace = "\1\r\n\r\n"
+          ""
+          "$SET(\2=$TST(CfgRepVerb=*InfoTags=1*)<meta name="Proxomitron-Debug" url="\u"></meta>\r\n)"
+          "$SET(\3=$TST(ScfJSAdID=*), ConfJSAdID:"$GET(ScfJSAdID)")"
+          ""
+          "\2"
+          "<!-- <Proxomitron filter="Prox: Start-Filterskript einfuegen"> -->\r\n"
+          ""
+          "<script type="text/javascript" id="ProxHS_$GET(EnvConId)">\r\n"
+          "(function(){"
+          "if (!window.ProxLCO&&location.protocol!="file:") {\r\n"
+          "ProxLCO = {Status:{HSRel:"20100221",HSVer:"5.3.2",HSVar:"HTML"}, ConfSC:"$GET(InsHeadStrSC)"\3, FS:{}}; "
+          "ProxLCO.Prox_newElm = function(tag){return document.createElement(tag);}; "
+          "var obSS1 = ProxLCO.Prox_newElm("script"); obSS1.type = "text/javascript"; obSS1.src = "http://local.ptron/ProxJS-"+ProxLCO.Status.HSRel+".js"; "
+          "var obSS2 = ProxLCO.Prox_newElm("link"); obSS2.type = "text/css"; obSS2.rel = "stylesheet"; obSS2.href = "http://local.ptron/ProxCSS-"+ProxLCO.Status.HSRel+".css"; "
+          "var dhHS = document.getElementById("ProxHS_$GET(EnvConId)"); dhHS.parentNode.appendChild(obSS1); dhHS.parentNode.appendChild(obSS2);\r\n"
+          "}"
+          "})();\r\n"
+          "</script>\r\n"
+          ""
+          ""
+          "$SET(ScfInsHeadStrJS=$TST(ScfInsHeadStrJS=*)<script type="text/javascript">$GET(ScfInsHeadStrJS)</script>\r\n)$GET(ScfInsHeadStrJS)"
+          "<style type="text/css">.ProxJSElm{display:none;}$SET(InsHeadStrCSS=$TST(InsHeadStrCSS=*) GET(InsHeadStrCSS) )$GET(InsHeadStrCSS)</style>\r\n"
+          ""
+          "<!-- </Proxomitron> -->\r\n\r\n"
+          ""
+          "$SET(StatusHeadCode=eingefuegt)$STOP()"
+
+Name = "Prox: XHTML: Start-Filterskript einfügen v.3.3.1"
+Active = TRUE
+URL = "$TST(CType=xhtml)(^$TST(Mtx03=1))$SET(Mtx03=1)(^$OHDR(X-Requested-With: XMLHttpRequest))$SET(Dep04=1)$TST($DTM(tc)=(?)\1(?)\2(?)\3(?+{0,2})\4$SET(EnvConId=\2\4\1\3)*)"
+Limit = 2000
+Match = "(<head(\s[^>]++>| >))\1"
+        "(^$TST(SnCType=*))"
+Replace = "\1\r\n\r\n"
+          ""
+          "$SET(\2=$TST(CfgRepVerb=*InfoTags=1*)<!-- <Proxomitron url="\u"></Proxomitron> -->\r\n)"
+          "$SET(\3=$TST(ScfJSAdID=*), ConfJSAdID:"$GET(ScfJSAdID)")"
+          ""
+          "\2"
+          "<!-- <Proxomitron filter="Prox: XHTML: Start-Filterskript einfuegen"> -->\r\n"
+          ""
+          "<script type="text/javascript" id="ProxHS_$GET(EnvConId)">\r\n"
+          "//<![CDATA[\r\n"
+          "(function(){"
+          "if (!window.ProxLCO&&location.protocol!="file:") {\r\n"
+          "ProxLCO = {Status:{HSRel:"20100221",HSVer:"3.3.1",HSVar:"XHTML"}, ConfSC:"$GET(InsHeadStrSC)"\3, FS:{}}; "
+          "ProxLCO.DocNS = document.documentElement ? document.documentElement.namespaceURI : null; "
+          "if (ProxLCO.DocNS == "http://www.w3.org/1999/xhtml") {ProxLCO.Prox_newElm = function(tag){return document.createElementNS(ProxLCO.DocNS,tag);}} "
+          "else {ProxLCO.Prox_newElm = document.createElement;} "
+          "var obSS1 = ProxLCO.Prox_newElm("script"); obSS1.type = "text/javascript"; obSS1.src = "http://local.ptron/ProxJS-"+ProxLCO.Status.HSRel+".js"; "
+          "var obSS2 = ProxLCO.Prox_newElm("link"); obSS2.type = "text/css"; obSS2.rel = "stylesheet"; obSS2.href = "http://local.ptron/ProxCSS-"+ProxLCO.Status.HSRel+".css"; "
+          "var dhHS = document.getElementById("ProxHS_$GET(EnvConId)"); dhHS.parentNode.appendChild(obSS1); dhHS.parentNode.appendChild(obSS2);\r\n"
+          "}"
+          "})();\r\n"
+          "//]]>\r\n"
+          "</script>\r\n"
+          ""
+          "$SET(ScfInsHeadStrJS=$TST(ScfInsHeadStrJS=*)<script type="text/javascript">\r\n//<![CDATA[\r\n$GET(ScfInsHeadStrJS)\r\n//]]>\r\n</script>\r\n)$GET(ScfInsHeadStrJS)"
+          "<style type="text/css">.ProxJSElm{display:none;}$SET(InsHeadStrCSS=$TST(InsHeadStrCSS=*) GET(InsHeadStrCSS) )$GET(InsHeadStrCSS)</style>\r\n"
+          ""
+          "<!-- </Proxomitron> -->\r\n\r\n"
+          ""
+          "$SET(StatusHeadCode=eingefuegt)$STOP()"
+
+Name = "==== Skriptsteuerung von Browserfunktionen einschränken ====================="
+Active = FALSE
+URL = "(^?) ======= Dieser Filter dient nur als Trennlinie und sollte niemals aktiviert sein!"
+Limit = 256
+Match = "\1"
+Replace = "\1"
+
+Name = "JS.Fn: Größen- und Positionsänderungen einschränken v.1.0.1"
+Active = TRUE
+URL = "(^$TST(ScfAllow=*js.setWinSize*))($TYPE(htm)|$TST(CType=xhtml))$SET(InsHeadStrSC=$GET(InsHeadStrSC)RstrFktWinMovRes,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "JS.Fn: Größen- und Positionsänderungen verhindern v.1.0.1"
+Active = FALSE
+URL = "(^$TST(ScfAllow=*js.setWinSize*))($TYPE(htm)|$TST(CType=xhtml))$SET(InsHeadStrSC=$GET(InsHeadStrSC)NopFktWinMovRes,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "JS.Fn: Fokusänderung (Vordergrund/Hintergrund) verhindern"
+Active = FALSE
+URL = "($TYPE(htm)|$TST(CType=xhtml))(^$TST(ScfAllow=*js.setWinFocus*))$SET(InsHeadStrSC=$GET(InsHeadStrSC)FktWinFocBlu,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "JS.Fn: Schließen von Fenstern verhindern"
+Active = FALSE
+URL = "($TYPE(htm)|$TST(CType=xhtml))$SET(InsHeadStrSC=$GET(InsHeadStrSC)FktWinClose,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "JS.Fn: Automatisches "Neu Laden" von Webseiten verhindern {IE,OP}"
+Active = FALSE
+URL = "($TYPE(htm)|$TST(CType=xhtml))(^$TST(ScfAllow=*js.relNavHst*))$SET(InsHeadStrSC=$GET(InsHeadStrSC)FktWinLocReload,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "==== Skriptüberwachung von Browserereignissen einschränken ================="
+Active = FALSE
+URL = "(^?) ======= Dieser Filter dient nur als Trennlinie und sollte niemals aktiviert sein!"
+Limit = 256
+Match = "\1"
+Replace = "\1"
+
+Name = "JS.EH: Kopieren/Ausschneiden in Zwischenablage {IE}"
+Active = FALSE
+URL = "($TYPE(htm)|$TST(CType=xhtml))(^$TST(ScfAllow=*js.uiTrespass*))$SET(InsHeadStrSC=$GET(InsHeadStrSC)EHClipb,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "JS.EH: Drag-and-Drop von Text oder Objekten {IE,FF}"
+Active = FALSE
+URL = "($TYPE(htm)|$TST(CType=xhtml))(^$TST(ScfAllow=*js.uiTrespass*))$SET(InsHeadStrSC=$GET(InsHeadStrSC)EHDragElem,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "JS.EH: Bewegung des Mauszeigers"
+Active = FALSE
+URL = "($TYPE(htm)|$TST(CType=xhtml))$SET(InsHeadStrSC=$GET(InsHeadStrSC)EHMouseMove,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "JS.EH: Drücken/Loslassen von Maustasten (down/up): Bilder+Links"
+Active = FALSE
+URL = "($TYPE(htm)|$TST(CType=xhtml))(^$TST(ScfAllow=*js.onmousedown*))$SET(InsHeadStrSC=$GET(InsHeadStrSC)EHMouseDownUpElem,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "JS.EH: Änderung der Fenstergröße"
+Active = FALSE
+URL = "($TYPE(htm)|$TST(CType=xhtml))(^$TST(ScfAllow=*js.onWinRes*))$SET(InsHeadStrSC=$GET(InsHeadStrSC)EHWinMoveRes,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "JS.EH: Verlassen der Seite / Schließen des Fensters"
+Active = FALSE
+URL = "($TYPE(htm)|$TST(CType=xhtml))(^$TST(ScfAllow=*js.onunload*))$SET(InsHeadStrSC=$GET(InsHeadStrSC)EHPageUnload,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "JS.EH: Aufruf der Druckfunktion {IE}"
+Active = FALSE
+URL = "($TYPE(htm)|$TST(CType=xhtml))(^$TST(ScfAllow=*js.uiTrespass*))$SET(InsHeadStrSC=$GET(InsHeadStrSC)EHPrint,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "JS.Tx: Fehler bei der Skriptverarbeitung"
+Active = FALSE
+Multi = TRUE
+URL = "($TYPE(htm)|$TYPE(js))"
+Limit = 8000
+Match = "($NEST(<script,*.onerror=*,</script>)$TYPE(htm)&&(\#(.onerror)\#=$SET(\#=_wegdamit = ))+\#)"
+        "|"
+        "((.onerror)\1=$TYPE(js)$SET(\2=_wegdamit=))"
+Replace = "\@\1\2"
+
+Name = "==== PopUp-Kontrolle =================================================="
+Active = FALSE
+URL = "(^?) ======= Dieser Filter dient nur als Trennlinie und sollte niemals aktiviert sein!"
+Limit = 256
+Match = "\1"
+Replace = "\1"
+
+Name = "JS.Fn: PopUp-Behandlung einschalten"
+Active = FALSE
+URL = "($TYPE(htm)|$TST(CType=xhtml))(^$TST(ScfAllow=*js.popups*))(^$KEYCHK(o))$SET(Dep03=1)$SET(InsHeadStrSC=$GET(InsHeadStrSC)WOCActive,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "JS.Fn.Konf: Nach jedem Mausklick für 2 Sekunden PopUps zulassen v.1.1.5"
+Active = FALSE
+URL = "($TYPE(htm)|$TST(CType=xhtml))$TST(Dep03=1)(^$TST(ScfKonf=*js.popups.noAOC*))$SET(InsHeadStrSC=$GET(InsHeadStrSC)WOCAllowOnClick,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "JS.Fn.Konf: Alle Bedienelemente zugelassener PopUps aktivieren"
+Active = FALSE
+URL = "($TYPE(htm)|$TST(CType=xhtml))$TST(Dep03=1)$SET(InsHeadStrSC=$GET(InsHeadStrSC)WOCForceCon,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "JS.Fn.Konf: Größe und Position zugelassener PopUps einschränken"
+Active = FALSE
+URL = "($TYPE(htm)|$TST(CType=xhtml))$TST(Dep03=1)$SET(InsHeadStrSC=$GET(InsHeadStrSC)WOCRestSnP,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "JS.Fn.Konf: Unterdrückte PopUps optisch melden"
+Active = FALSE
+URL = "($TYPE(htm)|$TST(CType=xhtml))$TST(Dep03=1)$SET(InsHeadStrSC=$GET(InsHeadStrSC)WOCNotifOpt,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "==== Sonstige Skriptfilter ================================================"
+Active = FALSE
+URL = "(^?) ======= Dieser Filter dient nur als Trennlinie und sollte niemals aktiviert sein!"
+Limit = 256
+Match = "\1"
+Replace = "\1"
+
+Name = "HTML: Alle eingebetteten Skripten deaktivieren [MB] v.1.3.4"
+Active = FALSE
+URL = "$TYPE(htm)(^$TST(ScfAllow=*ob.scripts*))"
+Bounds = "$NEST(<script,>)( </script>|)"
+Limit = 5000
+Match = "("
+        "((<sc)\1(ript[^>]++src=*>)\2)$SET(\3=\1-\2)(( </sc)\5(ript>)\6$SET(\3=\1-\2\5-\6)|)"
+        "|"
+        "(<script(^*src=)*>$SET(\3=<script language="ShonenScript 9.3276" type="text/plain">))"
+        ")"
+        ""
+        "&("
+        "$TST(CfgRepVerb=*ObjekttypErsOb=2*)$TST(PosInBody=1)$SET(\0=<Proxomitron filter="HTML: Alle eingebetteten Skripten deaktivieren [MB]">\r\n<table class="ProxElemRepText"><tr>\r\n<td><img src="http://local.ptron/ProxIcon16.png" alt="Proxomitron-Icon"></td><td>Skript deaktiviert</td>\r\n</tr></table>\r\n</Proxomitron>)"
+        "|$TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="HTML: Alle eingebetteten Skripten deaktivieren [MB]"></Proxomitron>)"
+        "|)"
+Replace = "\r\n"
+          "\0\r\n"
+          "\3"
+
+Name = "HTML: VBScript deaktivieren [MB] v.1.3.5"
+Active = FALSE
+URL = "$TYPE(htm)(^$TST(ScfAllow=*ob.vbs*))"
+Bounds = "$NEST(<script\s,*vbscript*,>)( </script>|)"
+Limit = 5000
+Match = "("
+        "((<sc)\1(ript[^>]++src=*>)\2)$SET(\3=\1-\2)(( </sc)\5(ript>)\6$SET(\3=\1-\2\5-\6)|)|"
+        "(<script(^*src=)*>$SET(\3=<script language="ShonenScript 9.3276" type="text/plain">))"
+        ")"
+        ""
+        "&("
+        "$TST(CfgRepVerb=*ObjekttypErsOb=2*)$TST(PosInBody=1)$SET(\0=<Proxomitron filter="HTML: VBScript deaktivieren [MB]">\r\n<table class="ProxElemRepText"><tr>\r\n<td><img src="http://local.ptron/ProxIcon16.png" alt="Proxomitron-Icon"></td><td>VisualBasic-Skript deaktiviert</td>\r\n</tr></table>\r\n</Proxomitron>)"
+        "|$TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="HTML: VBScript deaktivieren [MB]"></Proxomitron>)"
+        "|)"
+Replace = "\r\n"
+          "\0\r\n"
+          "\3"
+
+Name = "==== Auffällige Techniken/Objekttypen ===================================="
+Active = FALSE
+URL = "(^?) ======= Dieser Filter dient nur als Trennlinie und sollte niemals aktiviert sein!"
+Limit = 256
+Match = "\1"
+Replace = "\1"
+
+Name = "HTML: Verschlüsselte Skripten deaktivieren [MB] v.2.7.3"
+Active = FALSE
+URL = "$TYPE(htm)(^$TST(ScfAllow=*ob.js.encrypted*))"
+Bounds = "$NEST(<script,</script>)|<script*"
+Limit = 2000
+Match = "("
+        "<script[^>]++(jscript|vbscript).encode[^>]++>|"
+        "<script( >|\s[^>]++>)"
+        ""
+        "("
+        "(*unescape \( [^)]++{0,10} (%[a-z0-9]+{2} )+{60})\1($TST($UESC(\1)=(*.write&*href&*mailto)*)$SET(\3=nichtMelden)|)|"
+        "(*arguments&*.callee&*.toString&(*.length|*.charAt|*.indexOf))\1|"
+        "(*.length&*.charAt\(&*.indexOf\(&*eval\(&*.fromCharCode\(&*math.abs\(&*charCodeAt\()\1|"
+        "(*.length&*eval\(&(*.(charAt\(|indexOf\(|fromCharCode\())+{8}&(*(<<|>>))+{5})\1|"
+        "(*.length&*.substring\(&*with \( math \)&*round\(&*pow\(&*log\()\1|"
+        "(*.length&*.charAt\(&*.indexOf\(&*if\(\(\([a-z]>>=1\)\&256\)==0\)&*if\(\([a-z]=[a-z]\([a-z],0\)\)==[a-z]\) break;)\1|"
+        "(*for (\(|%28)?++([a-z0-9]++)\6 (\+\+|\+\=[0-9]) (\)|%29)*(charCodeAt|charAt)(\(|%28) $TST(\6) (\)|%29))\1|"
+        "(?++{0,10}function ([a-z0-9]++\()\5*=$TST(\5) " [a-z0-9]+{30})\1|"
+        "(*var ([a-z0-9]++{1,*})\5=(unescape|"[a-z0-9]+{200})&*for \([^)]++$TST(\5).length&*$TST(\5).(substr|charcodeat))\1|"
+        "(*eval%28unescape%28?++{0,20}eval\(unescape\()\1|"
+        "( ([a-z0-9]++{1,*})\5=new array \(&*for \([^)]++$TST(\5).length*\+= string.fromcharcode \( \( $TST(\5)\[)\1|"
+        "(?++{0,30} (=|\( ") ((\\x[a-z0-9]+{2} )+{30}|(\\u[a-z0-9]+{4} )+{30}))\1|"
+        "(?++{0,30}.fromcharcode \( ([0-9]++{2,3},)+{30})\1|"
+        "(?++{0,60} =("|) ([0-9]+{2,3}!)+{20})\1|"
+        "(*('[^ ]++{100,200}' (\+|\+=) )+{5})\1"
+        ")"
+        "&&(^"
+        "*function UnCryptMailto\(|*function doIPcheck\("
+        ")*"
+        ""
+        ")"
+        " \2"
+        ""
+        "&("
+        "(^$TST(CfgRepVerb=*ObjekttypErsOb=0*))$TST(PosInBody=1)$SET(\0=<Proxomitron filter="HTML: Verschluesselte Skripten deaktivieren [MB]">\r\n<table class="ProxElemRepText"><tr><td><img src="http://local.ptron/ProxIcon16.png" alt="Proxomitron-Icon"></td><td>Verschl&uuml;sseltes Skript deaktiviert</td></tr></table>\r\n</Proxomitron>\r\n)"
+        "|$TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="HTML: Verschluesselte Skripten deaktivieren [MB]"></Proxomitron>\r\n)"
+        "|)"
+        ""
+        "&("
+        "$TST((\3)=nichtMelden)$SET(\3=)"
+        "|$SET(\3=<script language="JavaScript" type="text/javascript">\r\nProxLCO.ProxMeldung\("LeisteBlink","Ro",6000,"Vorsicht! Verschluesseltes Skript entdeckt."\);\r\n</script>\r\n\r\n)"
+        ")"
+Replace = "\r\n\r\n"
+          "\3\0"
+          "<script language="ShonenScript 9.3276" type="text/plain">"
+          "\1\2"
+          "$SET(PosInScript=0)"
+
+Name = "HTML: iFrames mit JavaScript-URLs deaktivieren [MB] v.1.0.7"
+Active = FALSE
+URL = "$TYPE(htm)$TST(Dep01=1)(^$TST(ScfAllow=*ob.jsUrls*))"
+Bounds = "($NEST(<iframe\s,</iframe>)|<iframe\s*>)&$TST(PosInScript=0)"
+Limit = 4000
+Match = "((<i)\1(frame*>)\2&&*\ssrc=$AV( javascript:*)*)"
+        "$SET(\3=</i-frame>)*"
+        ""
+        "&("
+        "(^$TST(CfgRepVerb=*ObjekttypErsOb=0*))$SET(\0=<Proxomitron filter="HTML: iFrames mit JavaScript-URLs deaktivieren [MB]">\r\n<table class="ProxElemRepText"><tr>\r\n<td><img src="http://local.ptron/ProxIcon16.png" alt="Proxomitron-Icon"></td><td>iFrame mit JavaScript-URL deaktiviert</td>\r\n</tr></table>\r\n</Proxomitron>)"
+        "|$TST(CfgRepVerb=*InfoTags=0*)$SET(\0=<Proxomitron filter="HTML: iFrames mit JavaScript-URLs deaktivieren [MB]"></Proxomitron>)"
+        "|)"
+Replace = "\r\n"
+          "\0\r\n"
+          "\1-\2\3\r\n"
+
+Name = "HTML: Unsichtbare iFrames entfernen [MB] v.1.3.9"
+Active = FALSE
+URL = "$TYPE(htm)$TST(Dep01=1)(^$TST(ScfAllow=*ob.hiddenIframes*))"
+Bounds = "($NEST(<iframe\s,</iframe>)|<iframe\s*>)&$TST(PosInScript=0)"
+Limit = 1500
+Match = "("
+        "(<i)\1(frame*>)\2&&"
+        "("
+        "*(\swidth=$AV([#0:3](%|))|\sheight=$AV([#0:3](%|))|\sstyle=$AV((|*[ ;])(visibility: hidden|display: none|width: [#0:3]|height: [#0:3]|top: -|left: -)*))&"
+        "(*\sid=$AV(\4)$SET(\5= \(id\=&quot;\4&quot;\))|*\sname=$AV(\4)$SET(\5= \(name\=&quot;\4&quot;\))|)"
+        ")"
+        "*"
+        ")"
+        "$SET(\3=</i-frame>)*"
+        ""
+        "&("
+        "(^$TST(CfgRepVerb=*ObjekttypErsOb=0*))$SET(\0=<Proxomitron filter="HTML: Unsichtbare iFrames entfernen [MB]">\r\n<table class="ProxElemRepText"><tr>\r\n<td><img src="http://local.ptron/ProxIcon16.png" alt="Proxomitron-Icon"></td><td>Unsichtbarer iFrame entfernt\5</td>\r\n</tr></table>\r\n</Proxomitron>)"
+        "|$TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="HTML: Unsichtbare iFrames entfernen [MB]"></Proxomitron>)"
+        "|)"
+Replace = "\r\n"
+          "\0\r\n"
+          "\1-\2\3"
+
+Name = "Konf: Sichtbare Ersatzobjekte einfügen: Alle (auch weniger wichtige) [MB]"
+Active = FALSE
+URL = "$TYPE(htm)"
+Limit = 64
+Match = "$STOP()(^$TST(CfgRepVerb=*ObjekttypErsOb=*))$SET(CfgRepVerb=$GET(CfgRepVerb)ObjekttypErsOb=2,)"
+
+Name = "Konf: Sichtbare Ersatzobjekte einfügen: Keine (auch keine wichtigen) [MB]"
+Active = FALSE
+URL = "$TYPE(htm)"
+Limit = 64
+Match = "$STOP()(^$TST(CfgRepVerb=*ObjekttypErsOb=*))$SET(CfgRepVerb=$GET(CfgRepVerb)ObjekttypErsOb=0,)"
+
+Name = "==== (Multimedia-)Objekte verändern oder ersetzen ==========================="
+Active = FALSE
+URL = "(^?) ======= Dieser Filter dient nur als Trennlinie und sollte niemals aktiviert sein!"
+Limit = 256
+Match = "\1"
+Replace = "\1"
+
+Name = "Java: Nur auf bestimmten Seiten Java-Applets zulassen [MB] v.1.3.3"
+Active = FALSE
+URL = "$TYPE(htm)(^$TST(ScfAllow=*ob.applets*))"
+Limit = 1500
+Match = "("
+        "(<app)\1(let\s*>)\2|"
+        "(<ob)\1(ject[^>]++classid="java:*>)\2"
+        ")"
+        ""
+        "&("
+        "$TST(CfgRepVerb=*ObjekttypErsOb=2*)$TST(PosInBody=1)$SET(\0=<Proxomitron filter="Java: Nur auf bestimmten Seiten Java-Applets zulassen [MB]">\r\n<table class="ProxElemRepText"><tr>\r\n<td><img src="http://local.ptron/ProxIcon16.png" alt="Proxomitron-Icon"></td><td>Java-Applet deaktiviert</td>\r\n</tr></table>\r\n</Proxomitron>)"
+        "|$TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="Java: Nur auf bestimmten Seiten Java-Applets zulassen [MB]"></Proxomitron>)"
+        "|)"
+Replace = "\r\n"
+          "\0\r\n"
+          "\1-\2"
+
+Name = "Flash-Objekte: Entfernen [MB] v.1.0.2"
+Active = FALSE
+URL = "$TYPE(htm)$TST(Dep01=1)(^$TST(ScfAllow=*ob.flash*))"
+Limit = 6000
+Match = "("
+        "($NEST(<script,</script>)&&(*classid=$AV(clsid:D27CDB6E-AE6D-11cf-96B8-444553540000)|*codebase=$AV(*macromedia.com*)|*type=$AV(application/x-shockwave-flash)|*pluginspace=$AV(*macromedia.com*))$SET(PosInScript=0)*)|"
+        "($NEST(<object,</object>)$TST(PosInScript=0)&&(*classid=$AV(clsid:D27CDB6E-AE6D-11cf-96B8-444553540000)|*codebase=$AV(*macromedia.com*)|*value=$AV(*.swf*))*)|"
+        "($NEST(<embed,</embed>)$TST(PosInObj=0)$TST(PosInScript=0)&&(*type=$AV(application/x-shockwave-flash)|*pluginspace=$AV(*macromedia.com*)|*src=$AV(*.swf))*)|"
+        "(<embed$TST(PosInObj=0)$TST(PosInScript=0)[^>]++>&&(*type=$AV(application/x-shockwave-flash)|*pluginspace=$AV(*macromedia.com*)|*src=$AV(*.swf))*)"
+        ")"
+        ""
+        "&("
+        "$TST(CfgRepVerb=*MediaErsOb=2*)$TST(PosInBody=1)$SET(\0=<Proxomitron filter="Flash-Objekte: Entfernen [MB]">\r\n<table class="ProxMultimediaRepTab"><tr>\r\n<td><img src="http://local.ptron/ProxIcon24.png"></td><td>Flash-Animation entfernt</td>\r\n</tr></table>\r\n</Proxomitron>)"
+        "|$TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="Flash-Objekte: Entfernen [MB]"></Proxomitron>)"
+        "|)"
+Replace = "\r\n"
+          "\0\r\n"
+
+Name = "Flash-Objekte: Durch Links ersetzen [MB] v.1.5.1"
+Active = FALSE
+URL = "$TYPE(htm)$TST(Dep01=1)(^$TST(ScfAllow=*ob.flash*))"
+Limit = 6000
+Match = "("
+        "($NEST(<object,</object>)$TST(PosInScript=0)&&(((<object\s[^>]+>&&(*classid=$AV(clsid:D27CDB6E-AE6D-11cf-96B8-444553540000)|*codebase=$AV(*macromedia.com*)|*type=$AV(application/x-shockwave-flash))*)*(<param\s[^>]+>&&(*name=$AV(movie|src)&*value=$AV(\1))*))|*(<param\s[^>]+>&&(*name=$AV(movie|src)&*value=$AV((*.swf)\1))*))*)"
+        "|"
+        "($NEST(<embed,</embed>)$TST(PosInObj=0)$TST(PosInScript=0)&&(<embed[^>]+>&&(((*type=$AV(application/x-shockwave-flash)|*pluginspace=$AV(*macromedia.com*))&*src=$AV(\1))|*src=$AV((*.swf)\1))*)*)"
+        "|"
+        "(<embed\s$TST(PosInObj=0)$TST(PosInScript=0)[^>]+>&&(((*type=$AV(application/x-shockwave-flash)|*pluginspace=$AV(*macromedia.com*))&*src=$AV(\1))|*src=$AV((*.swf)\1))*)"
+        ")"
+        ""
+        "&("
+        "$TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="Flash-Objekte: Durch Links ersetzen [MB]"></Proxomitron>\r\n)"
+        "|)"
+Replace = "\r\n"
+          "\0"
+          "<table class="ProxMultimediaRepTab"><tr>\r\n"
+          "<td><img src="http://local.ptron/ProxIcon24.png"></td><td><a href="\1">[Flash]</a></td>\r\n"
+          "</tr></table>\r\n"
+
+Name = "Flash-Objekte: Durch Platzhalter ersetzen {FF,OP} [MB] v.1.2.0"
+Active = FALSE
+URL = "$TYPE(htm)$TST(Dep01=1)(^$TST(ScfAllow=*ob.flash*))$TST(HdrUAgent=((^*msie)|*opera)*)"
+Bounds = "($NEST(<object,<(\\|)/object>)|$NEST(<embed,</embed>)|<embed*>)\1&$TST(PosInTxtAr=0)&($TST(PosInScript=1)$SET(\5=\\)|)"
+Limit = 6000
+Match = "("
+        "((<object*>&&(*classid=$AV(clsid:D27CDB6E-AE6D-11cf-96B8-444553540000)|*codebase=$AV(*macromedia.com*)|*type=$AV(application/x-shockwave-flash))*)|*(<param*>&&(*name=$AV(movie|src)&*value=$AV(*.swf*))*))"
+        "&"
+        "(<object*>&&(*width=$AV(\2)&*height=$AV(\3))*)"
+        ")*"
+        "|"
+        "("
+        "(<embed*>&&(*type=$AV(application/x-shockwave-flash)|*pluginspace=$AV(*macromedia.com*)|*src=$AV(*.swf))*)"
+        "&"
+        "(<embed*>&&(*width=$AV(\2)&*height=$AV(\3))*)"
+        ")*"
+        ""
+        "&"
+        ""
+        "("
+        "($TST(\2=[#750:*])$TST(\3=[#112:*])|$TST(\3=[#550:*])$TST(\2=[#300:*]))$SET(\4=background-image:url(http://local.ptron/Symb-SwfBlk1-300.png); background-repeat:no-repeat; background-position:center center; background-color:#D0D0D0; border:outset 4px #e0e0e0; cursor: pointer;)"
+        "|"
+        "$TST(\2=[#300:*])$TST(\3=[#112:*])$SET(\4=background-image:url(http://local.ptron/Symb-SwfBlk1-300.png); background-repeat:no-repeat; background-position:center center; cursor: pointer;)"
+        "|"
+        "$TST(\2=[#200:*])$TST(\3=[#75:*])$SET(\4=background-image:url(http://local.ptron/Symb-SwfBlk1-200.png); background-repeat:no-repeat; background-position:center center; cursor: pointer;)"
+        "|"
+        "$TST(\2=[#100:*])$TST(\3=[#37:*])$SET(\4=background-image:url(http://local.ptron/Symb-SwfBlk1-100.png); background-repeat:no-repeat; background-position:center center; cursor: pointer;)"
+        "|"
+        "$TST(\2=100%)$TST(\3=[#37:*])$SET(\4=background-image:url(http://local.ptron/Symb-SwfBlk1-100.png); background-repeat:no-repeat; background-position:center center; cursor: pointer;)"
+        "|"
+        "$TST(\2=[#32:*])$TST(\3=[#32:*])$SET(\4=background-image:url(http://local.ptron/Icon-Flash1-32.png); background-repeat:no-repeat; background-position:center center; background-color:#D0D0D0; cursor: pointer;)"
+        "|"
+        "$TST(\2=[#16:*])$TST(\3=[#16:*])$SET(\4=background-image:url(http://local.ptron/Icon-Flash1-16.png); background-repeat:no-repeat; background-position:center center; cursor: pointer; outline:#f00000 dashed 1px;)"
+        ""
+        ""
+        "|"
+        "$SET(\4=background-image:url(http://local.ptron/Icon-Flash1-48.png); background-repeat:no-repeat; background-position:center center; background-color:#D0D0D0; cursor: pointer;)"
+        ")"
+Replace = "<object type=\5"image/png\5" data=\5"http://local.ptron/klar-32.png\5" style=\5"\4\5" width=\5"\2\5" height=\5"\3\5" onclick=\5"ProxLCO.MMFlashLadenOP(this);\5">"
+          "\1"
+          "<\5/object>"
+
+Name = "Video-Objekte: Durch Links ersetzen [MB] v.1.1.0"
+Active = FALSE
+URL = "$TYPE(htm)$TST(Dep01=1)(^$TST(ScfAllow=*ob.video*))"
+Limit = 6000
+Match = "("
+        "($NEST(<object,</object>)$TST(PosInScript=0)&&(((<object\s[^>]+>&&(*classid=$AV(clsid:22d6f312-b0f6-11d0-94ab-0080c74c7e95|FDC7A535-4070-4B92-A0EA-D9994BCC0DC5|CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA|02BF25D5-8C17-4B23-BC80-D3488ABDDC6B)|*type=$AV(application/x-mplayer2))*)*(<param\s[^>]+>&&(*name=$AV(src|filename)&*value=$AV(\1))*))|*(<param\s[^>]+>&&((*name=$AV(movie|src)&*value=$AV((http://www.youtube.com/*)\1))|(*name=$AV(src|filename)&*value=$AV((*.(rm|ram|avi|asf|qt|mpg|mpeg|mov|wmv|asx))\1)))*))*)"
+        "|"
+        "($NEST(<embed,</embed>)$TST(PosInObj=0)$TST(PosInScript=0)&&(<embed[^>]+>&&(((*type=$AV(application/x-mplayer2)|*pluginspage=$AV(*www.microsoft.com/*MediaPlayer*))&*src=$AV(\1))|*src=$AV((*.(rm|ram|avi|asf|qt|mpg|mpeg|mov|wmv|asx))\1)|(*type=$AV(application/x-shockwave-flash)&*src=$AV((http://www.youtube.com/*)\1)))*)*)"
+        "|"
+        "(<embed\s$TST(PosInObj=0)$TST(PosInScript=0)[^>]+>&&(((*type=$AV(application/x-mplayer2)|*pluginspage=$AV(*www.microsoft.com/*MediaPlayer*))&*src=$AV(\1))|*src=$AV((*.(rm|ram|avi|asf|qt|mpg|mpeg|mov|wmv|asx))\1))*)"
+        ")"
+        ""
+        "&("
+        "$TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="Video-Objekte: Durch Links ersetzen [MB]"></Proxomitron>\r\n)"
+        "|)"
+Replace = "\r\n"
+          "\0"
+          "<table class="ProxMultimediaRepTab"><tr>\r\n"
+          "<td><img src="http://local.ptron/ProxIcon24.png"></td><td><a href="\1">[Video]</a></td>\r\n"
+          "</tr></table>\r\n"
+
+Name = "Audio-Objekte: Durch Links ersetzen [MB] v.1.7.3"
+Active = FALSE
+URL = "$TYPE(htm)$TST(Dep01=1)(^$TST(ScfAllow=*ob.audio*))"
+Limit = 6000
+Match = "("
+        "($NEST(<object,</object>)$TST(PosInScript=0)&&*(<param\s[^>]+>&&(*name=$AV(src|filename)&*value=$AV((*.(mid|mp3|wav|rm|ram|pls|wma)\2)\1))*)*)"
+        "|"
+        "($NEST(<embed,</embed>)$TST(PosInObj=0)$TST(PosInScript=0)&&(<embed[^>]+>&&*src=$AV((*.(mid|mp3|wav|rm|ram|pls|wma)\2)\1)*)*)"
+        "|"
+        "(<embed\s$TST(PosInObj=0)$TST(PosInScript=0)[^>]+>&&*src=$AV((*.(mid|mp3|wav|rm|ram|pls|wma)\2)\1)*)"
+        "|"
+        "(<bgsound\s[^>]+>&&*src=$AV((*.(mid|mp3|wav|rm|ram|pls|wma)\2)\1)*)"
+        ")"
+        ""
+        "&("
+        "$TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="Audio-Objekte: Durch Links ersetzen [MB]"></Proxomitron>\r\n)"
+        "|)"
+Replace = "\r\n"
+          "\0"
+          "<table class="ProxMultimediaRepTab"><tr>\r\n"
+          "<td><img src="http://local.ptron/ProxIcon24.png"></td><td><a href="\1">[Sound:&nbsp;\2]</a></td>\r\n"
+          "</tr></table>\r\n"
+
+Name = "iFrame/iLayer: Durch Links ersetzen [MB] v.1.1.5"
+Active = FALSE
+URL = "$TYPE(htm)(^$TST(ScfAllow=*ob.iframes*))"
+Bounds = "$NEST(<iframe\s,</iframe>)|$NEST(<ilayer\s,</ilayer>)"
+Limit = 1000
+Match = "("
+        "<(iframe$SET(\1=iFrame)|ilayer$SET(\1=iLayer))*src=$AV(\2)*"
+        ")"
+        ""
+        "&("
+        "$TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="iFrame/iLayer: Durch Links ersetzen [MB]"></Proxomitron>\r\n)"
+        "|)"
+Replace = "\r\n"
+          "\0"
+          "<table class="ProxMultimediaRepTab"><tr>\r\n"
+          "<td><img src="http://local.ptron/ProxIcon24.png"></td><td><a href="\2">[\1]</a></td>\r\n"
+          "</tr></table>\r\n"
+
+Name = "PDF-Objekte: Download-Links hinzufügen [MB] v.1.0.0"
+Active = FALSE
+Multi = TRUE
+URL = "$TYPE(htm)$TST(Dep01=1)"
+Limit = 6000
+Match = "("
+        "($NEST(<object,</object>)$TST(PosInScript=0)&&((<object\s[^>]+>&&*data=$AV(*.pdf)*)|((<object\s[^>]+>&&(*classid=$AV(clsid:CA8A9780-280D-11CF-A24D-444553540000)|*type=$AV(application/pdf))*)*(<param\s[^>]+>&&(*name=$AV(src)&*value=$AV(\1))*))|*(<param\s[^>]+>&&(*name=$AV(src)&*value=$AV((*.pdf)\1))*))*)"
+        "|"
+        "($NEST(<embed,</embed>)$TST(PosInObj=0)$TST(PosInScript=0)&&(<embed[^>]+>&&((*type=$AV(application/pdf)&*src=$AV(\1))|*src=$AV((*.pdf(#*|))\1))*)*)"
+        "|"
+        "(<embed\s$TST(PosInObj=0)$TST(PosInScript=0)[^>]+>&&((*type=$AV(application/pdf)&*src=$AV(\1))|*src=$AV((*.pdf(#*|))\1))*)"
+        ")\3"
+        ""
+        "&("
+        "$TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="PDF-Objekte: Download-Links hinzufuegen [MB]"></Proxomitron>\r\n)"
+        "|)"
+Replace = "\3\r\n"
+          "\0"
+          "<table class="ProxMultimediaRepTab"><tr>\r\n"
+          "<td><img src="http://local.ptron/ProxIcon24.png"></td><td><a href="\1">Link zur PDF-Datei</a></td>\r\n"
+          "</tr></table>\r\n"
+
+Name = "Lightbox und Klone blockieren [MB] v.1.0.7"
+Active = FALSE
+URL = "$TYPE(js)"
+Limit = 400
+Match = "(function initLightbox\(\) \{)\2$SET(\3=function originalInitLightbox() {)|"
+        "(function TB_init\(\) \{)\2$SET(\3=function TB_initOriginal(){)|"
+        "(init:function\(\) \{)\2(?++{5,30}thumbnail)\4$SET(\5=,)$SET(\3=initOriginal:function(){)|"
+        "(init: function\(options\) \{)\2(?++{*,300}animateCaption)\4$SET(\5=,)$SET(\3=initOriginal:function(options){)|"
+        "(function lightWindowInit\(\) \{)\2$SET(\3=function original_lightWindowInit() {)|"
+        "(initialize: function\(\) \{)\2( this.updateImageList\(\); ?++{*,300}if \(LightboxOptions.resizeSpeed > 10\))\4$SET(\3=initialize_original: function() {)|"
+        "(,initialize: function\(\) \{)\2( this.updateImageList\(\); ?++{*,300}if \(LightboxOptions.resizeSpeed > 10\))\4$SET(\3=,initialize_original: function() {)|"
+        "(function _initialize\(\) \{)\2(?++{*,300}jQuery lightBox plugin)\4$SET(\3=function original_initialize() {)|"
+        "(function init_postbit_lightbox$NEST(\(,\)) \{)\2$SET(\3=function originalInit_postbit_lightbox() {)|"
+        "(function tb_init\(domChunk\)\{)\2$SET(\3=function originalTb_init() {)|"
+        "(function initLytebox\(\) \{)\2$SET(\3=function originalInitLytebox() {)|"
+        "(function decoGreyboxLinks\(\)\{)\2$SET(\3=function originalDecoGreyboxLinks(){)|"
+        "(Shadowbox.init=function\(opts\){)\2$SET(\3=Shadowbox.originalInit=function(opts){)"
+Replace = "\2 return; }\5\r\n"
+          "\3\4"
+
+Name = "Konf: Ersatztexte für entfernte Multimedia-Objekte einfügen [MB]"
+Active = FALSE
+URL = "$TYPE(htm)"
+Limit = 64
+Match = "$STOP()(^$TST(CfgRepVerb=*MediaErsOb=*))$SET(CfgRepVerb=$GET(CfgRepVerb)MediaErsOb=2,)"
+
+Name = "==== Werbung und ähnliche Objekte ======================================"
+Active = FALSE
+URL = "(^?) ======= Dieser Filter dient nur als Trennlinie und sollte niemals aktiviert sein!"
+Limit = 256
+Match = "\1"
+Replace = "\1"
+
+Name = "Werbung: Durch Kommentare gekennzeichnete Bereiche [MB,Qw] v.1.0.4"
+Active = FALSE
+URL = "$TYPE(htm)(^$LST(AllowBannersOn))(^$OHDR(Referer:http(s|)://$LST(AllowBannersOn)*))(^$TST(ScfAllow=*fp.ad.comments*))"
+Limit = 20000
+Match = "<!-+ $LST(AdComments)"
+        ""
+        "&("
+        "$TST(CfgRepVerb=*AdBannerErsOb=2*)$TST(PosInBody=1)$TST(PosInTableGapH=0)$TST(PosInTableGapV=0)$SET(\0=<Proxomitron filter="Werbung: Durch Kommentare gekennzeichnete Bereiche [MB,Qw]">\r\n<table class="ProxElemRepText"><tr>\r\n<td><img src="http://local.ptron/ProxIcon16.png" alt="Proxomitron-Icon"></td><td>In Kommentare eingefasster Bereich entfernt</td>\r\n</tr></table>\r\n</Proxomitron>)"
+        "|$TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="Werbung: Durch Kommentare gekennzeichnete Bereiche [MB,Qw]"></Proxomitron>)"
+        "|)"
+Replace = "\r\n"
+          "\0\r\n"
+
+Name = "Werbung: Container-Elemente (allgemein, XHTML) [Qw,MB] v.1.0.0"
+Active = FALSE
+URL = "$TST(CType=xhtml)(^$LST(AllowBannersOn))(^$TST(ScfAllow=*fp.ad.container*))"
+Limit = 10000
+Match = "<(div|table)\1\s[^>]++"
+        "(class|id|style)\2=$AV(($LST(AdAttribs))\3)"
+        "$INEST(<$TST(\1),</$TST(\1)>)</$TST(\1)>"
+
+Name = "Werbung: Container-Elemente (allgemein, HTML) [Qw,MB] v.1.0.3"
+Active = FALSE
+URL = "$TYPE(htm)(^$LST(AllowBannersOn))(^$OHDR(Referer:http(s|)://$LST(AllowBannersOn)*))(^$TST(ScfAllow=*fp.ad.container*))"
+Limit = 10000
+Match = "<(div|table)\1\s[^>]++"
+        "(class|id|style)\2=$AV(($LST(AdAttribs))\3)$TST(PosInScript=0)"
+        "$INEST(<$TST(\1),</$TST(\1)>)</$TST(\1)>"
+        ""
+        "&("
+        "$TST(CfgRepVerb=*AdBannerErsOb=2*)$TST(PosInBody=1)$TST(PosInTableGapH=0)$TST(PosInTableGapV=0)$SET(\0=<Proxomitron filter="Werbung: Container-Elemente (allgemein, HTML) [Qw,MB]" tag="\1" attribut="\2" inhalt="\3">\r\n<table class="ProxElemRepText"><tr>\r\n<td><img src="http://local.ptron/ProxIcon16.png" alt="Proxomitron-Icon"></td><td>Container-Element entfernt</td>\r\n</tr></table>\r\n</Proxomitron>)"
+        "|$TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="Werbung: Container-Elemente (allgemein, HTML) [Qw,MB]" tag="\1" attribut="\2" inhalt="\3"></Proxomitron>)"
+        "|)"
+Replace = "\r\n"
+          "\0\r\n"
+
+Name = "Werbung: Container-Elemente (Site-spezifisch, XHTML) [Si,MB] v.1.0.0"
+Active = FALSE
+URL = "$TST(CType=xhtml)$LST(AdAttribs-S)"
+Limit = 30000
+Match = "<(div|table|iframe)\1\s[^>]++"
+        "("
+        "(id)\2=$AV(\3&$TST(ScfAdID=*,$TST(\3),*))"
+        "|"
+        "(class)\2=$AV(\3&$TST(ScfAdClass=*,$TST(\3),*))"
+        "|"
+        "(style)\2=$AV(\3&$TST(ScfAdStyle=*,$TST(\3),*))"
+        "|"
+        "(name)\2=$AV(\3&$TST(ScfAdName=*,$TST(\3),*))"
+        ")"
+        "$INEST(<$TST(\1),</$TST(\1)>)</$TST(\1)>"
+
+Name = "Werbung: Container-Elemente (Site-spezifisch, HTML) [Si,MB] v.1.1.2"
+Active = FALSE
+URL = "$TYPE(htm)$LST(AdAttribs-S)"
+Limit = 30000
+Match = "<(div|table|iframe)\1\s[^>]++"
+        "("
+        "(id)\2=$AV(\3&$TST(ScfAdID=*,$TST(\3),*))"
+        "|"
+        "(class)\2=$AV(\3&$TST(ScfAdClass=*,$TST(\3),*))"
+        "|"
+        "(style)\2=$AV(\3&$TST(ScfAdStyle=*,$TST(\3),*))"
+        "|"
+        "(name)\2=$AV(\3&$TST(ScfAdName=*,$TST(\3),*))"
+        ")"
+        "$TST(PosInScript=0)$INEST(<$TST(\1),</$TST(\1)>)</$TST(\1)>"
+        ""
+        "&("
+        "$TST(CfgRepVerb=*AdBannerErsOb=2*)$TST(PosInBody=1)$TST(PosInTableGapH=0)$TST(PosInTableGapV=0)$SET(\0=<Proxomitron filter="Werbung: Container-Elemente (Site-spezifisch, HTML) [Si,MB]" tag="\1" attribut="\2" inhalt="\3">\r\n<table class="ProxElemRepText"><tr>\r\n<td><img src="http://local.ptron/ProxIcon16.png" alt="Proxomitron-Icon"></td><td>Container-Element entfernt</td>\r\n</tr></table>\r\n</Proxomitron>)"
+        "|$TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="Werbung: Container-Elemente (Site-spezifisch, HTML) [Si,MB]" tag="\1" attribut="\2" inhalt="\3"></Proxomitron>)"
+        "|)"
+Replace = "\r\n"
+          "\0\r\n"
+
+Name = "Werbung: Container-Elemente (Paare, Site-spezifisch, HTML) [MB] v.1.0.0"
+Active = FALSE
+URL = "$TYPE(htm)$LST(AdAttribs-S)"
+Bounds = "<div\s[^>]++(id|class)=$AV(\1&$TST(ScfAdPair=*,$TST(\1)/*))$INEST(<div,</div>)</div>"
+Limit = 6000
+Match = "<div[^>]+>*"
+        "(id|class)=$AV(\2&$TST(ScfAdPair=*,$TST(\1)/$TST(\2),*))"
+        "*"
+        ""
+        "&$TST(PosInScript=0)"
+        "&($TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="Werbung: Container-Elemente (Paare, Site-spezifisch, HTML) [MB]" wert1="\1" wert2="\2"></Proxomitron>)|)"
+Replace = "\0"
+
+Name = "Werbung: Formulare [MB] v.1.3.3"
+Active = FALSE
+URL = "$TYPE(htm)(^$LST(AllowBannersOn))(^$TST(ScfAllow=*fp.ad.forms*))"
+Bounds = "$NEST(<form\s,</form>)"
+Limit = 8000
+Match = "<form[^>]++action=$AV(($LST(AdHubSourceB)*)\3)*"
+        ""
+        "&("
+        "(^$TST(CfgRepVerb=*AdBannerErsOb=0*))$TST(PosInBody=1)$SET(\0=<Proxomitron filter="Werbung: Formulare [MB]" actionurl="\3">\r\n<table class="ProxElemRepText"><tr>\r\n<td><img src="http://local.ptron/ProxIcon16.png" alt="Proxomitron-Icon"></td><td>Formular entfernt</td>\r\n</tr></table>\r\n</Proxomitron>)"
+        "|$TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="Werbung: Formulare [MB]" actionurl="\3"></Proxomitron>)"
+        "|)"
+Replace = "\r\n"
+          "\0\r\n"
+
+Name = "Werbung: Frames [MB] v.1.1.4"
+Active = FALSE
+Multi = TRUE
+URL = "$TYPE(htm)(^$LST(AllowBannersOn))"
+Bounds = "$NEST(<frameset\s,[^>]++(rows|cols)=$AV(*,*)*,</frameset>)"
+Limit = 6000
+Match = "(\#"
+        "(<frame\s)\#"
+        "[^>]++((name=$AV(*) )\#[^>]++|)"
+        "src=$AV(($LST(AdHubSourceB)*)\3)$SET(\#=src="about:blank" )"
+        "[^>]++((name=$AV(*) )\#[^>]++|)"
+        ">$SET(\#= onload="ProxLCO.frameMinimieren(this);">)"
+        "($TST(CfgRepVerb=*InfoTags=1*)$SET(\#=<Proxomitron filter="Werbung: Frames [MB]" frmurl="\3"></Proxomitron>)|)"
+        ")+\#"
+Replace = "\@"
+
+Name = "Werbung: JavaScript (eingebettet) [MB] v.7.14.0"
+Active = FALSE
+URL = "$TYPE(htm)(^$LST(AllowBannersOn))(^$OHDR(Referer:http(s|)://$LST(AllowBannersOn)*))(^$TST(ScfAllow=*fp.ad.scripts*))"
+Limit = 30000
+Match = "("
+        "("
+        "(<sc)\1(ript[^>]++src=$AV( $LST(AdHubSourceB)*)[^>]++>)\2$SET(\3=\1-\2)(( </sc)\5(ript>)\6$SET(\3=\1-\2\5-\6)|)|"
+        "($NEST(<script,</script>)&&<script[^>]+>("
+        ""
+        " $LST(AdScriptKeywords) [(=;.]*"
+        "|"
+        "*("
+        "://$LST(AdHubSourceA)|"
+        ":\\/\\/$LST(AdHubSourceA)|"
+        "\="$LST(AdHubSourceA)|"
+        "location.protocol \+ "//$LST(AdHubSourceA)|"
+        "[ \t\r\n;"'({]$LST(AdScriptKeywords)[ \t\r\n=."'()]|"
+        "write(ln|) $NEST(\(,*(href|src|classid)=(\\|)("|) $LST(AdHubSourceB)*,\))|"
+        "(\s|;|\(|.getElementsBy(Name|TagName)\($AV(*)\) \[[0-9]+\].|.getElementById\($AV(*)\).)[a-z0-9\-_]++{1,30} = $AVQ("(//|)$LST(AdHubSourceA)*)"
+        ")*"
+        ""
+        ")\4)$SET(\3=<script language="ShonenScript 9.3276" type="text/plain">)"
+        ")"
+        "( $NEST(<noscript,</noscript>)|)"
+        ")"
+        ""
+        "&("
+        "$TST(CfgRepVerb=*AdBannerErsOb=2*)$TST(PosInBody=1)$TST(PosInTableGapH=0)$TST(PosInTableGapV=0)$SET(\0=<Proxomitron filter="Werbung: JavaScript (eingebettet) [MB]">\r\n<table class="ProxElemRepText"><tr>\r\n<td><img src="http://local.ptron/ProxIcon16.png" alt="Proxomitron-Icon"></td><td>JavaScript-Banner entfernt</td>\r\n</tr></table>\r\n</Proxomitron>)"
+        "|$TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="Werbung: JavaScript (eingebettet) [MB]"></Proxomitron>)"
+        "|)"
+Replace = "\r\n"
+          "\0\r\n"
+          "\3"
+          "\4"
+          "$SET(PosInScript=0)"
+
+Name = "Werbung: JavaScript (in externer Datei) [MB] v.1.9.2"
+Active = FALSE
+URL = "$TYPE(js)(^$LST(AllowBannersOn))(^$OHDR(Referer:http(s|)://$LST(AllowBannersOn)*))(^$TST(ScfAllow=*fp.ad.scripts*))$SET(JSAdString1=)"
+Limit = 8000
+Match = "("
+        "var\s$TST(JSAdString1)(\[[0-9]\]|) (\+\=|=(^=)) $AV(*)|"
+        "(\s|\( )\2$TST(JSAdString1)(\[[0-9]\]|) (\+\=|=(^=)) $AV(*)$SET(\1=\2)"
+        ")"
+        "( \+ ([a-z0-9\-_.]++{1,*}$NEST(\(,\))|[a-z0-9\-_]+{1,*}|$AV(*)))+( ;|(^(^ }))|(^(^[\r\n])))"
+        ""
+        "|"
+        ""
+        "("
+        "(var\s([a-z0-9\-_]+)\2(\[[0-9]\]|) (\+\=|=(^=)) )\3(^(^"))$AV((*://|)$LST(AdHubSourceA)*)$SET(\1=\3"";)|"
+        "(\s([a-z0-9\-_]+)\2(\[[0-9]\]|) (\+\=|=(^=)) )\3(^(^"))$AV((*://|)$LST(AdHubSourceA)*)$SET(\1=\3"";)"
+        ")"
+        "( \+ ([a-z0-9\-_.]++{1,*}$NEST(\(,\))|[a-z0-9\-_]+{1,*}|$AV(*)))+( ;|(^(^ }))|(^(^[\r\n])))"
+        "$SET(JSAdString1=\2)"
+        ""
+        "|"
+        ""
+        "("
+        ": ($NEST(\[,\])&&*"(*://|)$LST(AdHubSourceA)*)$SET(\1=:["","","","","","","","","",""])"
+        ")"
+        ""
+        "|"
+        ""
+        "((var)\6(\s)\2($LST(AdScriptKeywords))\5|(\s)\2($LST(AdScriptKeywords))\5)"
+        "("
+        "( "
+        "("
+        "\=(^=) new array $NEST(\(,\))|"
+        "\=(^=) $NEST({,})|"
+        "(\+\=|\=(^=)) $AV(*)( \+ ([a-z0-9\-_.]++{1,*}$NEST(\(,\))|[a-z0-9\-_]+{1,*}|$AV(*)))+|"
+        "($NEST(\[,\]))+ \=(^=) $AV(*)|"
+        "$NEST(\(,\))"
+        ")"
+        "( ;|(^(^ }))|(^(^[\r\n]))|(^?))$SET(\1=\2;)"
+        ")"
+        "|"
+        "( ([:=] function $NEST(\(,\)) )\4$NEST(\{,\})( ,|)\3$SET(\1=\6\2\5\4{ return ""; }\3))"
+        "|"
+        "(\s$TST(JSAdKill=true)$SET(\1=\2))"
+        ")"
+        ""
+        ""
+        "|"
+        ""
+        "(function\s[a-z0-9\-_]+ $NEST(\(,\)))\2 $NEST({,*://$LST(AdHubSourceA)*,})(;|)$SET(\1=\2{ return ""; })"
+        "|"
+        "(function\s([a-z0-9\-_]+&&$LST(AdScriptKeywords)) $NEST(\(,\)))\2 $NEST({,})(;|)$SET(\1=\2 { return ""; })"
+        "|"
+        "(.write(ln|))\3 $NEST(\(,*((href=|src=)$AV($LST(AdHubSourceB)*)|://$LST(AdHubSourceA)|$TST(JSAdString1))*,\))$SET(\1=\3\(""\))"
+        "|"
+        "([ \r\n\t;])\2(^array|document.write)[a-z0-9\-_.]+{2,15} $NEST(\(,*://$LST(AdHubSourceA)*,\))$SET(\1=\2)"
+        "|"
+        "if $NEST(\(, (*\s|)(!|)$LST(AdScriptKeywords)*,\)) $NEST({,})( else if $NEST(\(,\)) $NEST({,})|)( else $NEST({,})|)"
+Replace = "\1"
+          "$TST(JSAdKill=true)\r\n\r\n/* Prox: Ganzes Skript als unerwuenscht eingestuft; Uebertragung abgebrochen. */\r\n\k"
+
+Name = "Werbung: iFrames/Objects (XHTML) [MB] v.1.0.0"
+Active = FALSE
+Multi = TRUE
+URL = "$TST(CType=xhtml)(^$LST(AllowBannersOn))"
+Bounds = "$NEST(<iframe\s,</iframe>)|$NEST(<object,</object>)"
+Limit = 10000
+Match = "$NEST(<,*(data|src)=$AV( $LST(AdHubSourceB)*)*,>)"
+        "*"
+
+Name = "Werbung: iFrames (HTML) [MB] v.2.10.0"
+Active = FALSE
+Multi = TRUE
+URL = "$TYPE(htm)(^$LST(AllowBannersOn))"
+Bounds = "($NEST(<iframe\s,</iframe>)|<iframe\s*>)&(^$TST(PosInScript=1))"
+Limit = 3000
+Match = "("
+        "(<i)\5(frame*>)\6&&"
+        "("
+        "*src=$AV( ($LST(AdHubSourceB)*)\3)$SET(\1=frmurl)|"
+        "((^$TST(ScfAllow=*fp.ad.dimensions*))&$LST(AdDimensions)&(*src=$AV(\3)|)$SET(\1=Dimension)$SET(\4=&nbsp;(D)))"
+        ")*"
+        ")"
+        "*(</iframe>$SET(\8=</i-frame>)|(^?))"
+        ""
+        "&("
+        "$TST(CfgRepVerb=*AdBannerErsOb=2*)$SET(\0=<Proxomitron filter="Werbung: iFrames (HTML) [MB]" grund="\1" frmurl="\3">\r\n<table class="ProxElemRepText"><tr>\r\n<td><img src="http://local.ptron/ProxIcon16.png" alt="Proxomitron-Icon"></td><td><a href="\3" target="_blank">iFrame</a> entfernt\4</td>\r\n</tr></table>\r\n</Proxomitron>)"
+        "|$TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="Werbung: iFrames (HTML) [MB]" grund="\1" frmurl="\3"></Proxomitron>)"
+        "|)"
+Replace = "\r\n"
+          "\0\r\n"
+          "\5-\6\8"
+
+Name = "Werbung: Flash-Objekte [MB] v.1.3.3"
+Active = FALSE
+URL = "$TYPE(htm)(^$LST(AllowBannersOn))(^$OHDR(Referer:http(s|)://$LST(AllowBannersOn)*))"
+Bounds = "($NEST(<object,</object>)|$NEST(<embed,</embed>)|<embed*>)&(^$TST(PosInScript=1))"
+Limit = 6000
+Match = "("
+        "("
+        "((<object*>&&(*classid=$AV(clsid:D27CDB6E-AE6D-11cf-96B8-444553540000)|*codebase=$AV(*macromedia.com*))*)|*(<param*>&&(*name=$AV(movie|src)&*value=$AV(*.swf*))*))&"
+        "(((^$TST(ScfAllow=*fp.ad.dimensions*))&<object*>&&$LST(AdDimensions)*)$SET(\1=Dimension)$SET(\4=&nbsp;(D))|*(<param*>&&(*name=$AV(movie|src)&*value=$AV($LST(AdHubSourceB)*)$SET(\1=swfurl))*))&"
+        "*(<param*>&&(*name=$AV(movie|src)&*value=$AV(\3))*)"
+        ")*"
+        "|"
+        "("
+        "<embed*>&&"
+        "(*type=$AV(application/x-shockwave-flash)|*pluginspace=$AV(*macromedia.com*)|*src=$AV(*.swf))*&&"
+        "(*src=$AV($LST(AdHubSourceB)*)$SET(\1=swfurl)|((^$TST(ScfAllow=*fp.ad.dimensions*))&$LST(AdDimensions)$SET(\1=Dimension)$SET(\4=&nbsp;(D))))*&&"
+        "*src=$AV(\3)*"
+        ")*"
+        ")"
+        ""
+        "&("
+        "$TST(CfgRepVerb=*AdBannerErsOb=2*)$SET(\0=<Proxomitron filter="Werbung: Flash-Objekte (radikal) [MB]" grund="\1" swfurl="\3">\r\n<table class="ProxElemRepText"><tr>\r\n<td><img src="http://local.ptron/ProxIcon16.png" alt="Proxomitron-Icon"></td><td><a href="\3">Flash-Banner</a> entfernt\4</td>\r\n</tr></table>\r\n</Proxomitron>)"
+        "|$TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="Werbung: Flash-Objekte (radikal) [MB]" grund="\1" swfurl="\3"></Proxomitron>)"
+        "|)"
+Replace = "\r\n"
+          "\0\r\n"
+
+Name = "Werbung: Grafik-Banner [MB] v.7.10.2"
+Active = FALSE
+URL = "$TYPE(htm)(^$LST(AllowBannersOn))(^$OHDR(Referer:http(s|)://$LST(AllowBannersOn)*))"
+Bounds = "$NEST(<a\s,*<(img|image)*,<(/|)a >)(^$TST(PosInScript=1))"
+Limit = 1024
+Match = "("
+        "("
+        "(<a\s[^>]++href=$AV( $LST(AdHubSourceB)*)$SET(\1=hrefurl))|"
+        "(*<(img|image)\s[^>]++src=$AV( $LST(AdHubSourceB)*)$SET(\1=imgurl))|"
+        "((^$TST(ScfAllow=*fp.ad.dimensions*))&(*<[^>]++(src|href)=$AV((http(s|):|)//(^\h)*))&(*(<(img|image)\s*>&&$LST(AdDimensions)*)$SET(\1=Dimension)$SET(\4=&nbsp;(D))))"
+        ")"
+        "&<a\s[^>]++href=$AV(\2)&*<(img|image)\s[^>]++src=$AV(\3)"
+        ")*"
+        ""
+        "&("
+        "$TST(CfgRepVerb=*AdBannerErsOb=2*)$SET(\0=<Proxomitron filter="Werbung: Grafik-Banner [MB]" grund="\1" imgurl="\3" hrefurl="\2">\r\n<table class="ProxElemRepText"><tr>\r\n<td><img src="http://local.ptron/ProxIcon16.png" alt="Proxomitron-Icon"></td><td><a href="\2" target="_blank">Img-Banner</a> entfernt\4</td>\r\n</tr></table>\r\n</Proxomitron>)"
+        "|$TST(CfgRepVerb=*InfoTags=1*)$SET(\0=<Proxomitron filter="Werbung: Grafik-Banner [MB]" grund="\1" imgurl="\3" hrefurl="\2"></Proxomitron>)"
+        "|)"
+Replace = "\r\n"
+          "\0\r\n"
+
+Name = "Konf: Sichtbare Ersatzobjekte einfügen: Alle (auch weniger wichtige)"
+Active = FALSE
+URL = "$TYPE(htm)"
+Limit = 64
+Match = "$STOP()(^$TST(CfgRepVerb=*AdBannerErsOb=*))$SET(CfgRepVerb=$GET(CfgRepVerb)AdBannerErsOb=2,)"
+
+Name = "Konf: Sichtbare Ersatzobjekte einfügen: Keine (auch keine wichtigen)"
+Active = FALSE
+URL = "$TYPE(htm)"
+Limit = 64
+Match = "$STOP()(^$TST(CfgRepVerb=*AdBannerErsOb=*))$SET(CfgRepVerb=$GET(CfgRepVerb)AdBannerErsOb=0,)"
+
+Name = "==== Links =========================================================="
+Active = FALSE
+URL = "(^?) ======= Dieser Filter dient nur als Trennlinie und sollte niemals aktiviert sein!"
+Limit = 256
+Match = "\1"
+Replace = "\1"
+
+Name = "Links: Text-URLs umwandeln (http) [MB] v.2.2.4"
+Active = FALSE
+Multi = TRUE
+URL = "$TYPE(htm)$TST(Dep01=1)(^$TST(Mtx01=1))$SET(Mtx01=1)(^$TST(ScfAllow=*tr.txtUrls*))"
+Limit = 512
+Match = "($NEST(<,>)[^<]++)\1"
+        "((http(s|)://)\2|(www.)$SET(\2=http://www.))"
+        "$TST(PosInBody=1)$TST(PosInScript=0)$TST(PosInStyle=0)$TST(PosInLink=0)$TST(PosInTxtAr=0)"
+        "("
+        "(([0-9a-z\-]+.)+$LST(TLDList)|([#0:255].)++{3}[#0:255])(:[0-9]+|)"
+        "([/?][/0-9a-z\-_.?&+\#%=~;,{}()\:!$*\[\]]++|)"
+        ")\3"
+        "(\s|<|\&nbsp;)\4"
+Replace = "\1<span class="ProxConvertedURL1"><a href="\2\3">\2\3</a></span>\4"
+
+Name = "Links: Text-URLs umwandeln (http, ftp, nntp) [MB] v.2.2.4"
+Active = FALSE
+Multi = TRUE
+URL = "$TYPE(htm)$TST(Dep01=1)(^$TST(Mtx01=1))$SET(Mtx01=1)(^$TST(ScfAllow=*tr.txtUrls*))"
+Limit = 512
+Match = "($NEST(<,>)[^<]++)\1"
+        "(((http|ftp|nntp)(s|)://)\2|(www.)$SET(\2=http://www.)|(ftp.)$SET(\2=ftp://ftp.)|(news.)$SET(\2=nntp://news.))"
+        "$TST(PosInBody=1)$TST(PosInScript=0)$TST(PosInStyle=0)$TST(PosInLink=0)$TST(PosInTxtAr=0)"
+        "("
+        "(([0-9a-z\-]+.)+$LST(TLDList)|([#0:255].)++{3}[#0:255])(:[0-9]+|)"
+        "([/?][/0-9a-z\-_.?&+\#%=~;,{}()\:!$*\[\]]++|)"
+        ")\3"
+        "(\s|<|\&nbsp;)\4"
+Replace = "\1<span class="ProxConvertedURL1"><a href="\2\3">\2\3</a></span>\4"
+
+Name = "Links: Nicht als neue Fenster/Seiten öffnen [MB] v.2.0.0"
+Active = FALSE
+URL = "$TYPE(htm)(^$TST(ScfAllow=*tr.lnkTarget*))(^$TST(Mtx05=1))$SET(Mtx05=1)$SET(InsHeadStrSC=$GET(InsHeadStrSC)LnkRemTgtIfNoFrmName,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "Links: Nicht als neue Fenster/Seiten öffnen (nur Downloads) [SH] v.3.0.5"
+Active = FALSE
+Multi = TRUE
+URL = "$TYPE(htm)(^$TST(ScfAllow=*tr.lnkTarget*))(^$TST(Mtx05=1))"
+Bounds = "$NEST(<a\s,>)"
+Limit = 500
+Match = "\1(target=$AV((_|)(blank|blanc|new))|onfocus=$AV(*target=*))(\2)"
+        "&"
+        "*href=$AV(*.(exe|zip|rar|ace|msi|avi|pdf|7z)*)"
+Replace = "\1\2"
+
+Name = "Links: MouseOver-Ereignis entfernen [MB]"
+Active = FALSE
+URL = "($TYPE(htm)|$TST(CType=xhtml))(^$TST(ScfAllow=*js.onmouseover*))$SET(InsHeadStrSC=$GET(InsHeadStrSC)EHMouseOverLnk,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "Links: MouseOver-Ereignis entfernen, wenn Linkziel andere Domain [MB]"
+Active = FALSE
+URL = "($TYPE(htm)|$TST(CType=xhtml))(^$TST(ScfAllow=*js.onmouseover*))$SET(InsHeadStrSC=$GET(InsHeadStrSC)EHMouseOverExtLnk,)"
+Limit = 64
+Match = "$STOP()"
+
+Name = "==== Sonstiges ======================================================="
+Active = FALSE
+URL = "(^?) ======= Dieser Filter dient nur als Trennlinie und sollte niemals aktiviert sein!"
+Limit = 256
+Match = "\1"
+Replace = "\1"
+
+Name = "HTML: Seitentitel: "Prox:" am Anfang einfügen [MB] v.1.2.1"
+Active = FALSE
+Multi = TRUE
+URL = "$TYPE(htm)"
+Bounds = "$NEST(<title,</title>)"
+Limit = 512
+Match = "(<title[^>]+>)\1\2"
+Replace = "\1Prox: \2"
+
+Name = "==== Für bestimmte Websites ============================================"
+Active = FALSE
+URL = "(^?) ======= Dieser Filter dient nur als Trennlinie und sollte niemals aktiviert sein!"
+Limit = 256
+Match = "\1"
+Replace = "\1"
+
+Name = "====>==== Google ===================================================="
+Active = FALSE
+URL = "(^?) ======= Dieser Filter dient nur als Trennlinie und sollte niemals aktiviert sein!"
+Limit = 256
+Match = "\1"
+Replace = "\1"
+
+Name = "Suche: Google-Killfile (Treffer entfernen) [MB] v.3.0.6"
+Active = TRUE
+URL = "$TYPE(htm)www.google.(de|com|ch|at)/search\?*q\=(^cache)"
+Limit = 4000
+Match = "<li class=$AV(g( w0| s|))( style="margin-left:3em"|)>(<table[^>]+><tr><td[^>]+>|)($NEST(<span,</span>) |)<h3 class=r><a href\=$AV(http(s|)://([^/]++.|)$LST(Google-Killfile)*)$INEST(<a\s,</a>)</a></h3>($NEST(<span,</span>)|)($NEST(<div,</div>)|$INEST(<table,</table>)</table>)|"
+        "(<li class=$AV(g( w0| s|))( style="margin-left:3em"|)>(<table[^>]+><tr><td[^>]+>|)($NEST(<span,</span>) |)<h3 class=r><a href\=$AV(http(s|)://(([^/]++.|)([a-z0-9-]++.$LST(TLDList))\1|([#1:254].[#1:254].[#1:254].[#1:254])\1)(:[0-9]+|)/*)$INEST(<a\s,</a>)</a>)\2(</h3>($NEST(<span,</span>)|)($NEST(<div,</div>)|$INEST(<table,</table>)</table>))\4$SET(\3=<span class="ProxGoogleKillfile ProxJSElm" onclick="return ProxLCO.listwriter\(this,'Google-Killfile','$ESC(\1)'\)" title="Suchtreffer von \'\1\' zukuenftig ausblenden"> [<img src="http://local.ptron/ProxIcon16.png">Domain&nbsp;filtern]</span>)"
+Replace = "\2\3\4"
+
+Name = "Suche: Google-Killfile (Treffer blasser darstellen) [MB] v.1.0.10"
+Active = FALSE
+URL = "$TYPE(htm)www.google.(de|com|ch|at)/search\?*q\=(^cache)"
+Limit = 4000
+Match = "(<li class=)\2$AV(g( w0| s|)&\5)(( style="margin-left:3em"|)>(<table[^>]+><tr><td[^>]+>|)($NEST(<span,</span>) |)<h3 class=r><a href\=$AV(http(s|)://([^/]++.|)$LST(Google-Killfile)*)$INEST(<a\s,</a>)</a></h3>)\4$SET(\3="kf\5")|"
+        "(<li class=$AV(g( w0| s|))( style="margin-left:3em"|)>(<table[^>]+><tr><td[^>]+>|)($NEST(<span,</span>) |)<h3 class=r><a href\=$AV(http(s|)://(([^/]++.|)([a-z0-9-]++.$LST(TLDList))\1|([#1:254].[#1:254].[#1:254].[#1:254])\1)(:[0-9]+|)/*)$INEST(<a\s,</a>)</a>)\2(</h3>($NEST(<span,</span>)|)($NEST(<div,</div>)|$INEST(<table,</table>)</table>))\4$SET(\3=<span class="ProxGoogleKillfile ProxJSElm" onclick="return ProxLCO.listwriter\(this,'Google-Killfile','$ESC(\1)'\)" title="Suchtreffer von \'\1\' zukuenftig ausblenden"> [<img src="http://local.ptron/ProxIcon16.png">Domain&nbsp;filtern]</span>)|"
+        "(.g\{margin:([0-9.]+)\6em 0\})\2$SET(\3=\r\nli.kfg {margin:\6em 0;font-size:small;font-family:arial,sans-serif} li.kfg, li.kfg div, li.kfg span {color: #bfbfbf;} li.kfg a:link {color: #b1b1d3;} li.kfg cite {color: #9fc19f;})"
+Replace = "\2\3\4"
+
+Name = "Suche: Layout: Platz für Suchergebnisse maximieren [MB] v.1.0.3"
+Active = FALSE
+Multi = TRUE
+URL = "$TYPE(htm)www.google.(de|com|ch|at)/search\?*q\=(^cache)"
+Limit = 200
+Match = ".s\{max-width:42em(;|)\}"
+Replace = "#mbEnd, #tads {display:none;}"
+          "$STOP()"
+
+Name = "Bildersuche (JS): Direkte Links erzeugen [MB] v.1.2.4"
+Active = FALSE
+URL = "$TYPE(htm)images.google.(de|com|ch|at)/images\?(^*\&nojs=1)"
+Limit = 4000
+Match = "("
+        ":function\(([a-z])\1[^)]+\)\{[^}]++,([a-z])\4\=\[\'<a href"
+        "[^}]++"
+        "\}$TST(\4).push\(\"></a>\"\);"
+        ")\2"
+        "("
+        "*"
+        ":function[^}]++\?q\=tbn:\",$TST(\1)\[[0-9]+\],$TST(\1)\[[0-9]+\]==\"1\"\?($TST(\1)\[[0-9]+\])\5:\"\""
+        ")\3"
+Replace = "\2"
+          "\4.push("<br><a href=\\"" + decodeURIComponent(\5) + "\\" class=\\"ProxGoogleLink\\">[Bild]<\\/a>");"
+          "\3"
+
+Name = "Bildersuche (HTML): Direkte Links erzeugen [MB] v.1.2.3"
+Active = FALSE
+URL = "$TYPE(htm)images.google.(de|com|ch|at)/images\?"
+Bounds = "$NEST(<a\s,</a>)"
+Limit = 2000
+Match = "*href=$AV(/imgres\?imgurl=\5\&imgrefurl*)*"
+        "&"
+        "\1"
+Replace = "\1\r\n"
+          "<br>\r\n"
+          "<a href="$UESC(\5)" class="ProxGoogleLink" style="font-size:10pt;color:green;">[Bild]</a>"
+
+Name = "====>==== Andere ===================================================="
+Active = FALSE
+URL = "(^?) ======= Dieser Filter dient nur als Trennlinie und sollte niemals aktiviert sein!"
+Limit = 256
+Match = "\1"
+Replace = "\1"
+
+Name = "Yahoo.com Bildersuche (JS): Direkte Links erzeugen [FL] v.2.5"
+Active = FALSE
+URL = "($TYPE(js)a.l.yimg.com)|([a-z]+{2}.|)images.search.yahoo.com($TYPE(htm)|$TYPE(js))"
+Limit = 2048
+Match = "("
+        "(function createtd\(*\+(([a-zA-Z]+{1,8}.RES)|storetds)\1\[(?)\2\])\3.href\4( ?.innerHTML=?\+?\+?\+?)\5"
+        "$SET(ersatz=\3.itit\4var bild='<a href="'+\1[\2].href+'">[Bild]</a>';\5+bild)"
+        ")|("
+        "("href":)\1*imgurl=\2%26*,""
+        "$SET(ersatz=\1"http://$UESC($UESC(\2))",")"
+        ")"
+Replace = "$GET(ersatz)"
+
+Name = "==== Zusatzinformationen ==============================================="
+Active = FALSE
+URL = "(^?) ======= Dieser Filter dient nur als Trennlinie und sollte niemals aktiviert sein!"
+Limit = 256
+Match = "\1"
+Replace = "\1"
+
+Name = "Konf: Debug-Infos in Quelltext einfügen [MB] v.1.1.2"
+Active = FALSE
+URL = "$TYPE(htm)"
+Limit = 64
+Match = "$STOP()(^$TST(URLKillStyle=*))$SET(URLKillStyle=debug)"
+        "(^$TST(CfgRepVerb=*InfoTags=*))$SET(CfgRepVerb=$GET(CfgRepVerb)InfoTags=1,)"
+
+Name = "==== Gemeinsam genutzte Funktionen; End-Block; Nicht ausschalten! ============"
+Active = FALSE
+URL = "(^?) ======= Dieser Filter dient nur als Trennlinie und sollte niemals aktiviert sein!"
+Limit = 256
+Match = "-"
+        "## End-Block ##"
+        ""
+        "Die meisten Filter in diesem Block stellen Daten oder Funktionen bereit,"
+        "die von anderen Filtern benötigt werden."
+        ""
+        "Die Filter im End-Block sollten deshalb weder deaktiviert, noch innerhalb der"
+        "Filterliste nach oben verschoben werden."
+
+Name = "Prox: Falsch deklarierte Binärdaten erkennen v.1.0.5"
+Active = TRUE
+URL = "($TYPE(htm)|$TST(CType=xhtml))"
+Limit = 20
+Match = "$STOP()"
+        "(^(^"
+        "GIF8[79]a$SET(SnCType=Bin.gif)|"
+        "[%ff][%d8][%ff][%e0][%00][%10]JFIF$SET(SnCType=Bin.jpeg)|"
+        "[%89]PNG[%0d][%0a][%1a][%0a]$SET(SnCType=Bin.png)|"
+        "[%00][%00][%01][%00]$SET(SnCType=Bin.ico)|"
+        "[%46][%57][%53][%05]$SET(SnCType=Bin.swf)|"
+        "[%43][%57][%53][%06]$SET(SnCType=Bin.swf.c)|"
+        "%PDF-1.[234]4$SET(SnCType=Bin.pdf)|"
+        "[%D7][%CD][%C6][%9A][%00][%00][%00][%00][%00][%00]$SET(SnCType=Bin.wmf)|"
+        " (document.write|var\s|if\(|function)$SET(SnCType=Txt.js)"
+        "))"
+        "$LOG(RInfo $DTM(c): WARNUNG: Falsch deklarierte Binaerdaten! "$GET(SnCType)")"
+        "|"
+        "(^(^"
+        "[%ff][%fe]$SET(SnCType=txt.utf16)"
+        "))"
+        "$LOG(RInfo $DTM(c): Zeichencodierung in "$GET(SnCType)" entdeckt)"
+
+Name = "Prox: Auskommentierte Tags markieren v.1.0.3"
+Active = TRUE
+Multi = TRUE
+URL = "($TYPE(htm)|$TST(CType=xhtml))"
+Bounds = "$NEST(<!--,(($TST(StatusHeadCode=eingefuegt)|(^$TST(Dep04=1)))$STOP()|*),-->)"
+Limit = 4000
+Match = "(\#"
+        ""
+        "("
+        "<script$SET(\#=<s-cript)|"
+        "</script$SET(\#=</s-cript)|"
+        "<span$SET(\#=<s-pan)|"
+        "</span$SET(\#=</s-pan)|"
+        "<a\s$SET(\#=<a-)|"
+        "</a$SET(\#=</a-)|"
+        "<div$SET(\#=<d-iv)|"
+        "</div$SET(\#=</d-iv)|"
+        "<style$SET(\#=<s-tyle)|"
+        "</style$SET(\#=</s-tyle)|"
+        "<table$SET(\#=<t-able)|"
+        "</table$SET(\#=</t-able)|"
+        "<iframe$SET(\#=<i-frame)|"
+        "</iframe$SET(\#=</i-frame)|"
+        "<object$SET(\#=<o-bject)|"
+        "</object$SET(\#=</o-bject)|"
+        "<frameset$SET(\#=<f-rameset)|"
+        "</frameset$SET(\#=</f-rameset)|"
+        "<body$SET(\#=<b-ody)|"
+        "</body$SET(\#=</b-ody)|"
+        "<head$SET(\#=<h-ead)|"
+        "</head$SET(\#=</h-ead)|"
+        "<embed$SET(\#=<e-mbed)|"
+        "</embed$SET(\#=</e-mbed)|"
+        "<applet$SET(\#=<a-pplet)|"
+        "</applet$SET(\#=</a-pplet)|"
+        "<noscript$SET(\#=<n-oscript)|"
+        "</noscript$SET(\#=</n-oscript)|"
+        "<noframes$SET(\#=<n-oframes)|"
+        "</noframes$SET(\#=</n-oframes)"
+        ")"
+        ""
+        ")+{1,*}\#"
+Replace = "\@"
+
+Name = "Prox: URLs externer Skripten speichern v.2.0.5"
+Active = TRUE
+Multi = TRUE
+URL = "($TYPE(htm)|$TST(CType=xhtml))"
+Bounds = "$NEST(<script,*src=*,>)(^$TST(PosInScript=1))"
+Limit = 1000
+Match = "("
+        "<script(*(javascript|jscript)|(^*\s(type|language)))*>"
+        ")\0&&"
+        "("
+        "*src=$AV(http://([^/]+/(^*.js(^?))*)\5)*&"
+        "$SET(temp1=\5)$TST(temp1=(\#\&amp;$SET(\#=\&))+\#)$SET(temp2=\@)"
+        "(^$TST(temp2=$LST(JSURLs)*))"
+        "$ADDLST(JSURLs,$WESC($GET(temp2)))$LOG(BAdd: JSURLs $DTM(c): $GET(temp2))"
+        ")|"
+        "("
+        "*src=$AV(/((^*.js(^?))*)\5)*&"
+        "$URL((http://)\1(([^.@]+@)|(^.))([^/:\\]+)\2(:[0-9]+|)\3/*)"
+        "$SET(temp1=\2\3/\5)$TST(temp1=(\#\&amp;$SET(\#=\&))+\#)$SET(temp2=\@)"
+        "(^$TST(temp2=$LST(JSURLs)*))"
+        "$ADDLST(JSURLs,$WESC($GET(temp2)))$LOG(BAdd: JSURLs2 $DTM(c): $GET(temp2))"
+        ")|"
+        "("
+        "*src=$AV(((../)+{1,3}[a-z0-9](^*.js(^?))*)\5)*&"
+        "$SET(temp1=\5)$TST(temp1=(\#\&amp;$SET(\#=\&))+\#)$SET(temp1=\@)"
+        "$URL((http://)\1(([^.@]+@)|(^.))([^/:\\]+)\2(:[0-9]+|)\3(/([^/?]+/)+)\4*)$SET(temp2=\4)"
+        "$TST(temp1=../\7)$SET(temp1=\7)$TST(temp2=(/([^/?]+/)++)\6[^/]+/(^?))$SET(temp2=\6)"
+        "($TST(temp1=../\7)$TST(temp2=(/([^/?]+/)++)\6[^/]+/(^?))$SET(temp1=\7)$SET(temp2=\6))+"
+        "($TST(temp1=../\7)$TST(temp2=(/([^/?]+/)++)\6[^/]+/(^?))$SET(temp1=\7)$SET(temp2=\6))+"
+        "$SET(temp3=\2\3$GET(temp2)$GET(temp1))"
+        "(^$TST(temp3=$LST(JSURLs)*))"
+        "$ADDLST(JSURLs,$WESC($GET(temp3)))$LOG(BAdd: JSURLs3 $DTM(c): $GET(temp3))"
+        ")|"
+        "("
+        "*src=$AV((^[a-z]++:/)([a-z0-9](^*.js(^?))*)\5)*&"
+        "$URL((http(s|)://)\1(([^.@]+@)|(^.))([^/:\\]+)\2(:[0-9]+|)\3(/([^/?&]+/)+)\4*)"
+        "$SET(temp1=\5)$TST(temp1=(\#\&amp;$SET(\#=\&))+\#)$SET(temp1=\2\3\4\@)"
+        "(^$TST(temp1=$LST(JSURLs)*))"
+        "$ADDLST(JSURLs,$WESC($GET(temp1)))$LOG(BAdd: JSURLs4 $DTM(c): $GET(temp1))"
+        ")"
+Replace = "\0"
+
+Name = "Prox: Textfelder vor Filtern schützen v.1.1.2"
+Active = TRUE
+URL = "($TYPE(htm)|$TST(CType=xhtml))"
+Bounds = "$NEST(<textarea,</textarea>)$SET(PosInTxtAr=0)"
+Limit = 20000
+Match = "\1"
+Replace = "\1"
+
+Name = "Prox: Seite für das End-Filterskript vorbereiten v.1.4.5"
+Active = TRUE
+URL = "$TYPE(htm)"
+Limit = 2000
+Match = "</(body>|html>)(^$TST(PosInScript=1))$TST(StatusHeadCode=eingefuegt)(^ </noframes>)"
+        "( <noscript>| <plaintext>| <object[^>]++>| <textarea[^>]++>| <layer[^>]++>| <style[^>]++>| <applet[^>]++>)+"
+
+Name = "Prox: XHTML: End-Filterskript einfügen v.3.2.1"
+Active = TRUE
+URL = "$TST(CType=xhtml)"
+Limit = 32
+Match = "(</body>)\1"
+        "$TST(StatusHeadCode=eingefuegt)"
+        "$STOP()"
+Replace = "\r\n\r\n"
+          "$SET(InsEndStrTTTags=$TST(InsEndStrTTTags=*)<script type="text/javascript" id="ProxFS_$GET(EnvConId)">\r\n//<![CDATA[\r\n(function(){ if (window.ProxLCO) { ProxLCO.stTTipTags="$GET(InsEndStrTTTags)"; }})();\r\n//]]>\r\n</script>\r\n)$GET(InsEndStrTTTags)"
+          "$SET(ScfInsEndStrJS=$TST(ScfInsEndStrJS=*)<script type="text/javascript">\r\n//<![CDATA[\r\n$GET(ScfInsEndStrJS)\r\n//]]>\r\n</script>\r\n)$GET(ScfInsEndStrJS)"
+          "\1"
+
+Name = "Prox: HTML: End-Filterskript einfügen v.3.2.1"
+Active = TRUE
+URL = "$TYPE(htm)"
+Limit = 32
+Match = "<end>"
+Replace = "$TST(StatusHeadCode=eingefuegt)"
+          "\r\n\r\n"
+          ""
+          "$SET(InsEndStrTTTags=$TST(InsEndStrTTTags=*)<script type="text/javascript" id="ProxFS_$GET(EnvConId)">\r\n(function(){ if(window.ProxLCO){ProxLCO.stTTipTags="$GET(InsEndStrTTTags)"; }})();\r\n</script>\r\n)$GET(InsEndStrTTTags)"
+          "$SET(ScfInsEndStrJS=$TST(ScfInsEndStrJS=*)<script type="text/javascript">\r\n$GET(ScfInsEndStrJS)\r\n</script>\r\n)$GET(ScfInsEndStrJS)"
+          ""
+          "</body>\r\n"
+          "</html>\r\n"
+
+Name = "Prox: Schreibe Details in "Vorgang abgebrochen"-Seiten v.1.1.2"
+Active = TRUE
+Multi = TRUE
+URL = "local.ptron/killed-pro.html"
+Limit = 100
+Match = "<ProxReplace matched URL>*</ProxReplace matched URL>$TST(URLKillMatched=*)$TST(URLKillMatched=\#(<$SET(\#=$lt;)|>$SET(\#=$gt;)|\&$SET(\#=&amp;))+\#)$SET(\1=\@)|"
+        "<ProxReplace substring found in list>*</ProxReplace substring found in list>$TST(URLKillSubstr=*)$SET(\1=$GET(URLKillSubstr))|"
+        "<ProxReplace name of list>*</ProxReplace name of list>$TST(URLKillList=*)$SET(\1=$GET(URLKillList))|"
+        "<ProxReplace comment from list>*</ProxReplace comment from list>$TST(URLKillComment=*)$SET(\1=$GET(URLKillComment))|"
+        "<ProxReplace Style>($TST(URLKillStyle=*)$SET(\1=$GET(URLKillStyle))|$SET(\1=std))"
+Replace = "\1"
+
+
+[Proxies]
+ OpenLog = TRUE
+
+

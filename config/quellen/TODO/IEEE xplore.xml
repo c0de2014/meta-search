@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="passwordfeldattribut"/>
+<entry key="maxanzahl">2000</entry>
+<entry key="resulttag"/>
+<entry key="linktiefe">1</entry>
+<entry key="host">http://ieeexplore.ieee.org</entry>
+<entry key="url">http://ieeexplore.ieee.org/search/advsearch.jsp</entry>
+<entry key="suchbuttontag"/>
+<entry key="suchbuttonwert">submit-selections</entry>
+<entry key="useProxy">false</entry>
+<entry key="suchfeldattribut">name</entry>
+<entry key="suchfeldwert">searchterm_1</entry>
+<entry key="loginbuttonxpath"/>
+<entry key="titlexpath">//</entry>
+<entry key="maxSpeed">0</entry>
+<entry key="proxyPort">4001</entry>
+<entry key="usedocumentxpath">false</entry>
+<entry key="loginbuttonwert"/>
+<entry key="addType">false</entry>
+<entry key="nextpageattribut"/>
+<entry key="loginbuttontag"/>
+<entry key="useIt">false</entry>
+<entry key="suchfeldtag">input</entry>
+<entry key="pdfCrawlerDelay">500</entry>
+<entry key="password"/>
+<entry key="passwordfeldwert"/>
+<entry key="username"/>
+<entry key="nextpagexpath">//*[text()='Next']</entry>
+<entry key="nextpagetag"/>
+<entry key="suchfeldxpath">//*[@id='searchterm_1']</entry>
+<entry key="passwordfeldxpath"/>
+<entry key="resultwert"/>
+<entry key="suchbuttonxpath">//*[@id='submit-selections']</entry>
+<entry key="quellenname">IEEE xplore</entry>
+<entry key="resultattribut"/>
+<entry key="nextpagetext"/>
+<entry key="usernamefeldattribut"/>
+<entry key="zusatz">/search/advsearch.jsp </entry>
+<entry key="loginbuttonattribut"/>
+<entry key="usernamefeldxpath"/>
+<entry key="generateFilename">false</entry>
+<entry key="suchbuttonattribut"/>
+<entry key="documentxpath"/>
+<entry key="useCookies">false</entry>
+<entry key="usernamefeldtag"/>
+<entry key="crawlerDelay">5000</entry>
+<entry key="nextpagewert"/>
+<entry key="javascript">true</entry>
+<entry key="passwordfeldtag"/>
+<entry key="proxyIp">127.0.0.1</entry>
+<entry key="usernamefeldwert"/>
+<entry key="resultxpath">//a[text()='PDF']</entry>
+</properties>

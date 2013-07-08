@@ -1,0 +1,311 @@
+<!-- 
+/* -->
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Proxomitron: Vorgang abgebrochen!</title>
+
+<style type="text/css">
+<!--
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000000;
+}
+
+div#BlockGross, div#BlockGross table, div#BlockNoscript, div#BlockNoscript table {
+	font-size: 12pt;
+}
+
+div#BlockKlein, div#BlockKlein table {
+	font-size: 8pt;
+}
+
+div#BlockGross, div#BlockKlein {
+	display: none;
+}
+
+div#BlockKlein {
+	border: 1px dashed #ddd;
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	right: 1px;
+	bottom: 1px;
+}
+
+table.Aussen {
+	margin-top: 46pt;
+	margin-bottom: 20pt;
+	border-left: 2px outset #d0d0d0;
+	border-bottom: 2px outset #d0d0d0;
+}
+
+table.Aussen td.Reiter {
+	border-top: 2px outset #d0d0d0;
+	border-right: 2px outset #d0d0d0;
+	background-color: #E1DED9;
+	font-weight: bold;
+	font-size: 16pt;
+	padding-left: 4pt;
+	padding-right: 4pt;
+	width: 10%;
+}
+
+table.Aussen td.NebenReiter {
+	border-bottom: 2px inset #d0d0d0;
+	padding: 2pt;
+	padding-left: 4pt;
+}
+
+table.Aussen td.AussenUnten {
+	border-right: 2px outset #d0d0d0;
+}
+
+table.Mitte {
+	margin-left: 16pt;
+	margin-top: 8pt;
+	margin-right: 16pt;
+	margin-bottom: 8pt;
+	border-spacing: 0px;
+}
+
+table.Mitte td.Einzel, table.Innen td {
+	padding: 2pt;
+}
+
+table.Innen {
+	border-spacing: 0px;
+}
+
+table.Innen td.Bezeichner {
+	font-weight: bold;
+}
+
+-->
+</style>
+
+
+<script language="javascript" type="text/javascript">
+<!--
+
+function getHeight() {
+	if(window.innerHeight) {
+		return window.innerHeight;
+	}
+	else {
+		var bodyheight = document.getElementsByTagName("body")[0].clientHeight;
+		if(bodyheight != undefined) {
+			return bodyheight;
+		}
+		else {
+			return 0;
+		}
+	}
+}
+
+function getWidth() {
+	if(window.innerWidth) {
+		return window.innerWidth;
+	}
+	else {
+		var bodywidth = document.getElementsByTagName("body")[0].clientWidth;
+		if(bodywidth != undefined) {
+			return bodywidth;
+		}
+		else {
+			return 0;
+		}
+	}
+}
+
+function isBanner() {
+	var area = getHeight() * getWidth();
+	if (area < 200000 && area > 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+// -->
+</script>
+
+
+</head>
+<body>
+
+
+<div id="BlockKlein">
+	<table>
+	<tr>
+		<td><img src="http://local.ptron/ProxIcon16.png" width="16" height="16" alt="Proxomitron-Logo"></td>
+		<td><span style="font-weight: bold;">Proxomitron: Vorgang abgebrochen.</span></td>
+	</tr>
+	</table>
+	<div style="overflow: auto;">
+	URL: <span style="color:red;"><ProxReplace matched URL>&lt;fehlende Daten&gt; (Konfigurationsfehler)</ProxReplace matched URL></span>
+	</div>
+	<script language="javascript" type="text/javascript">
+	<!--
+	document.write("<a href=\"" + document.URL + "\" target=\"_blank\">[Ganze Meldung in neuem Fenster lesen]</a>");
+	//-->
+	</script>
+</div>
+
+
+
+<div id="BlockGross">
+	<table>
+	<tr>
+		<td><img src="http://local.ptron/ProxIcon64.png" width="64" height="64" alt="Proxomitron-Logo"></td>
+		<td><span style="font-weight: bold;">Proxomitron: Vorgang abgebrochen.</span></td>
+	</tr>
+	</table>
+	Es wurde versucht, folgende Seite/Datei abzurufen:
+	<div style="color:red; overflow: auto;">
+	<ProxReplace matched URL>&lt;fehlende Daten&gt;</ProxReplace matched URL>
+	</div>
+	Aufgrund eines Eintrags in einer Blockliste wurde dies jedoch verhindert.
+	<table class="Aussen" cellspacing="0">
+	<tr>
+		<td class="Reiter">Details:</td>
+		<td class="NebenReiter">&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="AussenUnten">
+			<table class="Mitte">
+			<tr>
+				<td colspan="2" class="Einzel">
+				<span style="font-weight: bold;">Aufgerufener URL:</span><br>
+				<div style="color:red; overflow: auto;">
+				<ProxReplace matched URL>&lt;fehlende Daten&gt; (Konfigurationsfehler)</ProxReplace matched URL>
+				</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+				
+					<table class="Innen">
+						<tr>
+							<td class="Bezeichner">Name der verantwortlichen Liste: </td>
+							<td class="Wert">"<span style="color:green;"><ProxReplace name of list>&lt;fehlende Daten&gt;</ProxReplace name of list></span>"</td>
+						</tr>
+						<tr>
+							<td class="Bezeichner">Von der Liste erfasster URL-Bestandteil: </td>
+							<td class="Wert">"<span style="color:red;"><ProxReplace substring found in list>&lt;fehlende Daten&gt;</ProxReplace substring found in list></span>"</td>
+						</tr>
+					</table>
+				
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" class="Einzel" style="background-color: #F4F1EE;">
+				<strong>Kommentar:</strong><br>
+				<ProxReplace comment from list>kein Kommentar vorhanden</ProxReplace comment from list>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+</div>
+
+
+
+<noscript>
+<div id="BlockNoscript">
+	<table>
+	<tr>
+		<td><img src="http://local.ptron/ProxIcon64.png" width="64" height="64" alt="Proxomitron-Logo"></td>
+		<td><span style="font-weight: bold;">Proxomitron: Vorgang abgebrochen.</span></td>
+	</tr>
+	</table>
+	Es wurde versucht, folgende Seite/Datei abzurufen:
+	<div style="color:red; overflow: auto;">
+	<ProxReplace matched URL>&lt;fehlende Daten&gt;</ProxReplace matched URL>
+	</div>
+	Aufgrund eines Eintrags in einer Blockliste wurde dies jedoch verhindert.
+	<table class="Aussen" cellspacing="0">
+	<tr>
+		<td class="Reiter">Details:</td>
+		<td class="NebenReiter">&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="AussenUnten">
+			<table class="Mitte">
+			<tr>
+				<td colspan="2" class="Einzel">
+				<span style="font-weight: bold;">Aufgerufener URL:</span><br>
+				<div style="color:red; overflow: auto;">
+				<ProxReplace matched URL>&lt;fehlende Daten&gt; (Konfigurationsfehler)</ProxReplace matched URL>
+				</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+				
+					<table class="Innen">
+						<tr>
+							<td class="Bezeichner">Name der verantwortlichen Liste: </td>
+							<td class="Wert">"<span style="color:green;"><ProxReplace name of list>&lt;fehlende Daten&gt;</ProxReplace name of list></span>"</td>
+						</tr>
+						<tr>
+							<td class="Bezeichner">Von der Liste erfasster URL-Bestandteil: </td>
+							<td class="Wert">"<span style="color:red;"><ProxReplace substring found in list>&lt;fehlende Daten&gt;</ProxReplace substring found in list></span>"</td>
+						</tr>
+					</table>
+				
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" class="Einzel" style="background-color: #F4F1EE;">
+				<strong>Kommentar:</strong><br>
+				<ProxReplace comment from list>kein Kommentar vorhanden</ProxReplace comment from list>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+</div>
+</noscript>
+
+
+
+
+<script language="javascript" type="text/javascript">
+<!--
+
+var style = "<ProxReplace Style>";
+
+if (style == "debug") {
+	if (isBanner()) {
+		document.getElementById("BlockKlein").style.display = "block";
+	}
+	else {
+		document.getElementById("BlockGross").style.display = "block";
+	}
+}
+else if (style == "std") {
+	if (!isBanner()) {
+		document.getElementById("BlockGross").style.display = "block";
+	}
+}
+else if (style.match(/^#[0-9a-f]{6}/)) {
+	if (isBanner()) {
+		document.body.style.backgroundColor = style.substr(3, 7);
+	}
+	else {
+		document.getElementById("BlockGross").style.display = "block";
+	}
+}
+
+// -->
+</script>
+
+
+
+</body></html>
+<!-- */ // -->

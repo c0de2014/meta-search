@@ -1,0 +1,7 @@
+# SSLManagerAllow (NoAddUrl)
+#
+# Speicherliste des Filters ".URL: (Out) 05 SSL-Manager [MB]".
+# Hier werden die Hosts gespeichert, zu denen SSL-Verbindungen
+# akzeptiert worden sind.
+#
+

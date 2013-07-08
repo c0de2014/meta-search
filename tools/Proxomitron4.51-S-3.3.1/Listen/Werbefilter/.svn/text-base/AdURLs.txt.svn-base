@@ -1,0 +1,157 @@
+# AdURLs
+#
+# In diese Blockliste werden vollständige URLs unerwünschter Bilder,
+# Seiten oder sonstiger Elemente eingetragen, die von den Werbefiltern
+# erfasst werden sollen.
+#
+# Hinweis:
+# Einträge für die Werbefilter können *entweder* als URL-Bestandteil in
+# eine der Listen "AdDomains", "AdHosts", "AdHostKeywords" oder
+# "AdPathKeywords" eingetragen werden *oder* als vollständiger URL in diese Liste.
+#
+# Die Liste AdURLs sollte nur benutzt werden, wenn ganz gezielt, nur ein
+# spezielles Objekt ausgefiltert werden soll. Neue Werbeserver oder
+# allgemeingültige Stichworte sollten in die dafür vorgesehenen Listen
+# eingetragen werden.
+#
+# Wie Listeneinträge in "AdDomains", "AdHosts", "AdHostKeywords" und
+# "AdPathKeywords" aufgebaut sein müssen, ist in den einzelnen Listen erklärt.
+#
+# Die Einträge dieser Liste sind vom Aufbau her vollständige URLs, ohne
+# Protokollangabe. Ein Eintrag, der auf "http://www.buerschgens.de/" zutreffen soll,
+# muss also "www.buerschgens.de/" heißen.
+# Platzhalter und die üblichen Metazeichen sind auch erlaubt und ermöglichen die
+# Umschreibung veränderlicher URL-Bestandteile.
+#
+# Die URLs werden als "zum Ende hin offen" betrachtet. Wenn der Listeneintrag also
+# "www.buerschgens.de/Prox/" lautet, dann erfasst er alle URLs, die mit dieser
+# Zeichenfolge beginnen. Beispielsweise "www.buerschgens.de/Prox/Seiten/Datei.html".
+#
+# Wenn SSL-verschlüsselte Seiten gefiltert werden und die URLs mit "https://" beginnen,
+# dann muss im Listeneintrag zusätzlich die SSL-Portnummer "443" angegeben werden.
+# Wenn also der URL "https://www.buerschgens.de/Prox/" erfasst werden soll, dann muss
+# in der Liste "www.buerschgens.de:443/Prox/" stehen.
+#
+#
+# ## Beispiele:
+#
+# www.domain.de/bilder/bild1.gif
+#
+# Diese Zeile filtert genau eine Datei aus.
+#
+#
+# www.domain.de/bilder/
+#
+# Diese Zeile filtert alle Dateien aus, die im angegebenen Verzeichnis
+# auf dem angegebenen Server liegen.
+#
+#
+#
+# ## Hinweis:
+# Seit Version 4.3-S-1.53 hat die Liste "AdURLs" Vorrang vor der Liste "AllowBannersOn".
+# Sie eignet sich deshalb, um Objekte auf Seiten zu filtern, die von der
+# normalen Werbefilterung per Ausnahmeliste ausgenommen worden sind.
+#
+#
+#
+# Stand: 21.02.2010
+#
+# Michael Bürschgens
+# http://www.buerschgens.de/Prox/
+
+
+
+## eBay:
+include.ebaystatic.com/aw/pics/js/stats/features/help/ssPageName.js
+include.ebaystatic.com/js/e[0-9]+/de/iframefooter_tracking_e[0-9]+de.js
+secureinclude.ebaystatic.com/aw/pics/js/popout/promo_popout_mediaplex.js
+include.ebaystatic.com/aw/pics/js/popout/promo_popout_mediaplex.js
+de.ebayobjects.com/1aj/ebay.de.signout/
+de.ebayobjects.com/1a/ebay.de.signout/
+de.ebayobjects.com/1ai/ebay.de.[0-9]+/$SET(AdCType=gif)
+de.ebayobjects.com/1aj/mobile.$SET(AdCType=js)
+srx.de.ebayrtm.com/rtm\?RtmCmd\&a=json\wcb=vjo.dsf.assembly.VjClientAssembler._callback0$SET(AdCType=js)
+include.ebaystatic.com/aw/pics/js/cobrand/listings_de.js
+include.ebaystatic.com/aw/pics/js/cobrand/ads/layers_de.js
+
+## GMX:
+bs0[0-9]+.gmx.net(/[0-9]+)+\?[0-9]+.[0-9]+$SET(AdCType=gif)
+bs0[0-9]+.gmx.net/[0-9]+/([0-9]+|flashalt)/\^(id|)[0-9]+/[0-9]+
+service.gmx.net/ad/[0-9]+/index.html
+service.gmx.net/ad/flashbanner_extern.js
+service.gmx.net/de/cgi/g.fcgi/misc/infopixel$SET(AdCType=gif)
+js.ui-portal.de/logoutService/gmx/js/topperad.js
+
+## 1und1:
+bseue0[0-9].1und1.de/[0-9]+/[0-9]+/[0-9]+/[0-9]+[/?][0-9]+.[0-9]+
+bseue0[0-9].1und1.de/[0-9]+/[0-9]+/\^[0-9]+/[0-9]+(\?ord=[0-9]+|)
+bseue0[0-9].1und1.de/[0-9]+/flashalt/(\^|)id[0-9]+/[0-9]+(\?[0-9]+.[0-9]+|)
+portal.1und1.de/static/js/flashbanner_extern.js
+
+## Sonstige:
+zobbler.com/worldmap
+z.about.com/0/js/
+www[0-99]+.kilu.net/extra/a[0-9]/remote_changes.js
+www.teltarif.de/ad/
+www.techweb.com/msdnads/
+www.megavideo.com/xml/invideoad.php
+www.google.com/afsonline/show_afs_ads.js
+www.firstload.de/affiliate/
+www.bild.de/BTO/index,templateId=renderOmnitureJS.jsp.js
+www.angelfire.com/sys/common_scripts.js
+www.angelfire.com/doc/images/track/ot_popupblocked.gif
+www.allesgratis.nl/prijsvragen/boven.html
+us.js1.yimg.com/us.yimg.com/lib/bc/bc_1.7.0.js
+us.i1.yimg.com/us.yimg.com/i/mc/mc.js
+tweakyourpage.com/generators/world
+te.about.com/blank.gif
+static.podcast.de/themes/podcast/js/PodcastRubrics.js\?
+stadtplan.meinestadt.de/adBanner.html$SET(AdCType=gif)
+stadtplan.meinestadt.de/ad.html$SET(AdCType=gif)
+spa.snap.com/snap_preview_anywhere.js
+shots.snap.com/snap_shots.js
+shots.snap.com/\w/snap_shots.js
+search.dooyoo.de/switchpool/
+scripts.lycos.com/catman/init.js
+saugstube.to/ddl/res/(^?)
+pimpmaspace.com/generators/worldvisitormap
+pagead2.googlesyndication.com/pagead/show_ads.js
+o.aolcdn.com/omniunih.js
+network.gofeminin.de/\w/ishow3.asp
+naffis.com/msmaps
+mypimpsplace.com/myspace-map
+mymackspace.com/apps/worldmap
+myflirtyspace.com/apps/worldmap
+modmyprofile.com/worlds
+modmyprofile.com/my/myspace/counter/
+modmyprofile.com/mailtracker
+modmyprofile.com/liveview/counter/
+lycos.com/catman/
+java.yahoo.com/a
+i3.microsoft.com/global/downloads/en/RenderingAssets/webtrends.js
+i.i.com.com/cnwk.1d/Ads/
+home.about.com/snf.htm\?
+freelayouticons.com/worldmap
+firefoxchallenge.com/tracker.php
+dw.com.com/clear/c.gif\?
+developer.mozilla.org/en/docs/skins/devmo/Opera7Fixes.css
+d.yimg.com/mi/ywa.js
+d.yimg.com/mi/eu/ywa.js
+common.ziffdavisinternet.com/js/slider.js
+codestogo.com/world-map
+c.microsoft.com/trans_pixel.asp$SET(AdCType=gif)
+bilder.guenstiger.de/banner/
+
+
+
+
+####################################################################################
+# Benutzerdefinierte Einträge #
+###############################
+
+
+
+
+
+
+

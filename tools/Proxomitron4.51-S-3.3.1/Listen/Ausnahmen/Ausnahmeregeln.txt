@@ -1,0 +1,595 @@
+# Ausnahmeregeln (NoAddURL)
+# 
+# Diese Liste enthält die URL-bezogenen Ausnahmeregeln.
+# 
+# 
+# 
+# == Aufbau der Listeneinträge: ========================================================
+#    
+#    ## Muster:
+#    -----------------------------------------------------------------------------------
+#     <URL> $SET(<Variable>=<zuzuweisende Daten>)
+#    -----------------------------------------------------------------------------------
+#    
+#    ## Bestandteile:
+#    -----------------------------------------------------------------------------------
+#    <URL> ist der URL oder der Anfang der URLs, auf die der jeweilige Listeneintrag
+#          zutreffen soll.
+#          Wie bei allen URL-Listen, wird auch hier das Protokoll nicht mit genannt.
+#          Ein Eintrag, der auf "http://www.buerschgens.de/" zutreffen soll, muss also
+#          "www.buerschgens.de/" lauten.
+#          
+#          Die URLs werden als "zum Ende hin offen" betrachtet.
+#          Wenn <URL> also "www.buerschgens.de/Prox/" lautet, dann erfasst der Eintrag
+#          alle URLs, die mit dieser Zeichenfolge beginnen.
+#          Beispielsweise "www.buerschgens.de/Prox/Seiten/Datei.html".
+#          
+#          Wenn SSL-verschlüsselte Seiten gefiltert werden und die URLs mit "https://"
+#          beginnen, dann muss im Listeneintrag zusätzlich die SSL-Portnummer "443"
+#          angegeben werden.
+#          Wenn also der URL "https://www.buerschgens.de/Prox/" erfasst werden soll,
+#          dann muss <URL> "www.buerschgens.de:443/Prox/" lauten.
+#          
+#          Platzhalter und die üblichen Metazeichen sind auch erlaubt und ermöglichen
+#          z.B. die Umschreibung veränderlicher Sub-Domains.
+#          
+#          
+#          +++ WICHTIG +++++++++++++++++
+#          
+#          Da in URL-Listen immer nur *einer* von mehreren zutreffenden Einträgen
+#          berücksichtigt wird, ist es unbedingt notwendig, die Einträge in dieser Liste
+#          hier so zu formulieren, dass es keine Überschneidungen bei den durch sie
+#          erfassten URLs geben kann.
+#          
+#          So etwas...
+#          -----------------------------------------------------------------------------
+#           stores.ebay.de/    $SET(ScfAllow=ob.noscript)
+#           [^/]++.ebay.de/    $SET(ScfAllow=ob.hiddenIframes,js.brDetection)
+#           my.ebay.de/        $SET(ScfAllow=ob.noscript)
+#          -----------------------------------------------------------------------------
+#          ... würde zwangsläufig zu Fehlern führen, weil die allgemeiner formulierte
+#          zweite Zeile auch auf das zutreffen kann, was die beiden genauer formulierten
+#          Zeilen erfassen sollen.
+#          
+#          Aufgrund der Hash-Algorithmen, mit denen Proxomitron die meisten Listen zur
+#          schnelleren Verarbeitung aufbereitet, werden die Listeneinträge auch nicht
+#          unbedingt in der Reihenfolge verarbeitet, in der sie in der Datei stehen.
+#          Das Ergebnis wäre also schlecht vorhersagbar.
+#          
+#          Damit die Listeneinträge immer zuverlässig funktionieren, kann man sie z.B.
+#          so schreiben:
+#          -----------------------------------------------------------------------------
+#           stores.ebay.de/                $SET(ScfAllow=ob.noscript)
+#           (^stores.|my.)[^/]++.ebay.de/  $SET(ScfAllow=ob.hiddenIframes,js.brDetection)
+#           my.ebay.de/                    $SET(ScfAllow=ob.noscript)
+#          -----------------------------------------------------------------------------
+#          So kann die allgemeiner formulierte Zeile den anderen beiden auf keinen Fall
+#          ihren jeweiligen Spezialfall wegschnappen. Egal, in welcher Reihenfolge die
+#          Zeilen verarbeitet werden.
+#    
+#          +++++++++++++++++++++++++++++
+#    
+#    
+#    <Variable> ist der Name einer globalen Variablen, in der URL-abhängige Daten, wie
+#          z.B. Ausnahmeregeln, gespeichert werden sollen.
+#          
+#          Prinzipiell können in jedem Listeneintrag beliebig viele $SET-Aufrufe
+#          hintereinander stehen und dadurch beliebig viele Variablen URL-abhängig mit
+#          Werten bestückt werden.
+#          
+#          Momentan werden 5 Variablen benutzt:
+#    
+#        "ScfAllow" ist der Name der Variablen, in der die URL-bezogenen Ausnahmeregeln
+#             gespeichert werden. (Um sie dreht sich fast alles in dieser Liste.)
+#             
+#             Die Ausnahmeregeln selbst sind einfach nur Schlüsselworte, deren Namen
+#             relativ frei wählbar sind. Die Funktion von Ausnahmeregeln erhalten diese
+#             Schlüsselworte nämlich erst durch die darauf ausgelegten Filter.
+#             
+#             Alle Filter, die URL-abhängige Ausnahmeregeln verarbeiten können, prüfen,
+#             ob die Variable "ScfAllow" für den gerade verarbeiteten URL gesetzt ist
+#             und wenn ja, ob sie ein dem Filter bekanntes Schlüsselwort enthält.
+#             Wenn ein Filter ein solches Schlüsselwort findet, richtet er sich danach.
+#             
+#             Auf welche Schlüsselworte die einzelnen Filter reagieren, steht - zumindest
+#             bei den mit der deutschen Proxomitron-Distribution standardmäßig
+#             mitgelieferten Filtern - in der zugehörigen Filterbeschreibung.
+#             
+#             Falls auf einen URL mehrere Ausnahmeregeln angewandt werden sollen,
+#             können die Schlüsselworte einfach, durch Kommata getrennt,
+#             aneinandergehängt werden. Ihre Reihenfolge spielt dabei keine Rolle.
+#             
+#             ## Muster:
+#             -------------------------------------------------------------------------------
+#              <URL> $SET(ScfAllow=<Schlüsselwort1>[,<Schlüsselwort2>,<Schlüsselwort3>,...])
+#             -------------------------------------------------------------------------------
+#             
+#             Damit die Ausnahmeregeln möglichst gut lesbar bleiben, soll "ScfAllow" für
+#             Schlüsselworte reserviert bleiben, die irgend etwas erlauben bzw. die Filterung
+#             bestimmter Elemente oder Skriptfunktionen ausschalten.
+#    
+#        "ScfModify" funktioniert technisch genau wie "ScfAllow", soll aber für die
+#             Schlüsselworte benutzt werden, die Filterfunktionen *einschalten*.
+#    
+#        "ScfKonf" funktioniert technisch genau wie "ScfAllow" und "ScfModify" und soll für
+#             Schlüsselworte benutzt werden, die das Verhalten von Filterfunktionen
+#             beeinflussen und dabei weder in das "Erlaube X", noch in das "Modifiziere X"
+#             Schema passen.
+#    
+#        "ScfInsHeadStrJS" ist eine weitere Variable. Sie kann JavaScript-Befehle aufnehmen,
+#             die als Skriptblock hinter dem Start-Filterskript, aber vor dem Seiteninhalt
+#             eingefügt werden sollen.
+#             URL-abhängig eingefügte Skriptbefehle sind eine sehr flexible Methode, um z.B.
+#             Kompatibilitätsprobleme mit fehlerhaften Webseiten zu lösen.
+#    
+#        "ScfInsEndStrJS" funktioniert ähnlich wie "ScfInsHeadStrJS". Der Inhalt wird allerdings
+#             nicht am Seitenanfang, sondern am Seitenende als Skriptblock eingefügt.
+#             
+#             
+#    -----------------------------------------------------------------------------------
+# 
+# ======================================================================================
+# 
+# 
+# 
+# 
+# == Beispiele zum Aufbau der Listeneinträge: ==========================================
+# 
+#    ## Beispiel 1:
+#    -----------------------------------------------------------------
+#     shop.domain.tld/         $SET(ScfAllow=ob.hiddenIframes,js.reload)
+#    -----------------------------------------------------------------
+#    Ein Onlineshop. Er liegt auf einer Subdomain und die Ausnahmeregel soll auch
+#    nur für diese Subdomain gelten.
+#    Da der Warenkorb in einem unsichtbaren iFrame geladen wird und sich außerdem
+#    regelmäßig aktualisiert, sind für diesen Shop zwei entsprechende Ausnahmeregeln
+#    definiert.
+#    (Keine Panik, die Schlüsselworte stehen weiter unten erklärt. ;-) )
+#    
+#    
+#    ## Beispiel 2:
+#    -----------------------------------------------------------------
+#     [^/]++.onlineshop.tld/   $SET(ScfAllow=ob.hiddenIframes,js.reload)
+#    -----------------------------------------------------------------
+#    Ein anderer Onlineshop. Das Angebot ist auf diverse Subdomains verteilt.
+#    Die veränderliche Subdomain wird deshalb durch einen geeigneten Ausdruck
+#    umschrieben.
+# 
+# ======================================================================================
+# 
+# 
+# 
+# 
+# == Bedeutung der Schlüsselworte für "ScfAllow": ======================================
+# 
+#    Da alle hier aufgelisteten Ausnahme-Schlüsselworte nichts anderes tun, als
+#    auf bestimmten Seiten bestimmte Filter zu deaktivieren, hängt die "Funktion"
+#    jedes Schlüsselworts zu 100% von der Funktion der dadurch deaktivierten Filter ab.
+#    
+#    Die folgenden Stichpunkte sind nur als Erinnerungsstütze gedacht.
+#    Welche Filter auf welche Ausnahme-Schlüsselworte reagieren, steht in den
+#    Filterbeschreibungen.
+# 
+#    -----------------------------------------------------------------------------------
+#    
+#    JavaScript-Kontrolle -- Ausnahmeregeln, um einzelne Skriptfunktionen oder
+#                            Funktionsgruppen auf bestimmten Seiten zuzulassen.
+#    
+#    Abfrage von Browservariablen:     js.brDetection
+#    Öffnen von PopUps:                js.popups
+#    Überschreiben der Statuszeile:    js.status
+#    Meldungsfenster:                  js.dlgbox
+#    Fenstergröße ändern:              js.setWinSize
+#    Fenster in Vorder-/Hintergrund:   js.setWinFocus
+#    Mousedown- und Kontextmenü:       js.onmousedown
+#    Mouseover-Effekte:                js.onmouseover
+#    Seite aktualisieren,
+#      Navigation und Weiterleitung:   js.relNavHst
+#    OnUnload-Ereignisse:              js.onunload
+#    Eingriff in Bedienelemente:       js.uiTrespass
+#    Ende des Ladevorgangs:            js.onload
+#    Reaktion auf Änderung der Fenstergröße: js.onWinRes
+#    
+#    -----------------------------------------------------------------------------------
+#    
+#    Objekttypen -- Ausnahmeregeln für Filter, die bestimmte Seitenbestandteile rein
+#                   aufgrund ihres Typs bzw. der verwendeten Technik entfernen.
+#    
+#    Applets:                     ob.applets
+#    Flash:                       ob.flash
+#    iFrames:                     ob.iframes
+#    Audio:                       ob.audio
+#    Video:                       ob.video
+#    VB-Script:                   ob.vbs
+#    Skriptsprachen:              ob.scripts
+#    Noscript-Bereiche:           ob.noscript
+#    Drittanbieter-Bilder:        ob.3rdPartyImgs
+#    Bilder:                      ob.Imgs
+#    
+#    Unsichtbare iFrames:         ob.hiddenIframes
+#    Fehlerhafte End-Tags:        ob.errEndtags
+#    Verschlüsseltes JS:          ob.js.encrypted
+#    Tags mit RFC2397-URLs:       ob.rfc2397
+#    Tags mit JavaScript-URLs:    ob.jsUrls
+#    
+#    -----------------------------------------------------------------------------------
+#    
+#    False-Positives -- Deaktivierung bestimmter Filter oder Teilfunktionen, die
+#                       aufgrund ihrer Arbeitsweise auf einzelnen Seiten zu Fehlern
+#                       führen können.
+#    
+#    Overlay-Banner:              fp.ad.overlays
+#    Ad-Formulare:                fp.ad.forms
+#    Banner, generischer Filter:  fp.ad.genImgs
+#    Banner, nach Größen:         fp.ad.dimensions
+#    Webbugs:                     fp.webbugs
+#    Frameset-Ladeskripten:       fp.js.frameloader
+#    Werbeskripten:               fp.ad.scripts
+#    Container:                   fp.ad.container
+#    Kommentarbereiche:           fp.ad.comments
+#    Unsichtbare Umleitungen      fp.hdr.cntLoc
+#    
+#    -----------------------------------------------------------------------------------
+#    
+#    Änderungen -- Ausnahmeregeln für Filter, die Seitenbestandteile umwandeln oder
+#                  umformatieren
+#    
+#    Text-URLs nicht in Links umwandeln:   tr.txtUrls
+#    Feste Breitenangaben nicht entfernen: tr.fxdwidth
+#    
+#    Zielfensternamen bei Links nicht entfernen: tr.lnkTarget
+#    
+#    -----------------------------------------------------------------------------------
+#    
+#    Tooltips  -- Ausnahmeregeln für Filter, die Zusatzinformationen zu bestimmten
+#                 Seitenbestandteilen in Form von Tooltips einfügen
+#    
+#    Linkziel als Tootip, wenn onClick-Ereignis:   tt.lnk.onclick
+#    Linkziel als Tootip, wenn MouseOver-Ereignis: tt.lnk.onmouseover
+#    
+#    -----------------------------------------------------------------------------------
+#    
+#    Header  -- Ausnahmeregeln für Headerfilter
+#    
+#    hdr.referer        Referrer nicht verändern
+#    
+#    
+#    
+#    -----------------------------------------------------------------------------------
+#    
+# ======================================================================================
+# 
+# 
+# 
+# 
+# == Bedeutung der Schlüsselworte für "ScfKonf": ======================================
+# 
+#    PopUp-Filterung:
+#    Keine 2-Sekunden-Freigabe nach Mausklicks:          js.popups.noAOC
+#    Bei zugelassenen PopUps den Fensternamen entfernen: js.popups.rmName
+#    
+#    
+#    -----------------------------------------------------------------------------------
+# 
+# ======================================================================================
+# 
+# 
+# 
+# 
+# == Bedeutung der Schlüsselworte für "ScfModify": ======================================
+# 
+#    ob.encLnkUrls      Maskierte Zeichen in Link-URLs decodieren: 
+#    ob.chainedUrls     Verkettete URLs in Links kürzen:           
+#    hdr.chainedUrls    Verkettete URLs auf Header-Ebene kürzen:   
+#    
+#    Bilder:
+#    Alle Bilder entfernen:                  img.remove
+#    Alle Bilder durch Platzhalter ersetzen: img.repl.clr
+#                                            img.repl.alttxt
+#    
+#    hdr.filterCss     Externe Stylesheets ausnahmsweise doch filtern, wenn der Filter
+#                      "Content-Type: (In) 31 CSS-Daten nicht filtern (Opera-Bug) [MB]"
+#                      eingeschaltet ist.
+#    
+#    -----------------------------------------------------------------------------------
+# 
+# ======================================================================================
+# 
+# 
+# 
+# 
+# == Andere Möglichkeiten: ======================================
+# 
+#    $FILTER(false)     Dieser Funktionsaufruf am Ende eines Ausnahmeeintrags bewirkt,
+#                       dass alle Seitenfilter deaktiviert werden.
+#                       Im Unterschied zu einem Eintrag in der Bypass-Liste bleiben also
+#                       die Headerfilter weiterhin aktiv.
+#    
+#    
+#    $SET(CfgRepVerb=$GET(CfgRepVerb)ObjekttypErsOb=0,)
+#                       Auch die Variable "CfgRepVerb", die ihre Werte eigentlich durch
+#                       Steuerfilter zugewiesen bekommt, kann prinzipiell von hier aus
+#                       vorbelegt werden.
+#    
+#    -----------------------------------------------------------------------------------
+# 
+# ======================================================================================
+# 
+# 
+# 
+# 
+# Stand: 21.02.2010
+# 
+# Michael Bürschgens
+# http://www.buerschgens.de/Prox/
+
+
+
+
+## eBay:
+[^/]++.ebay.de/                        $SET(ScfAllow=ob.errEndtags,ob.noscript,ob.hiddenIframes,js.brDetection,tt.lnk.onclick,js.relNavHst)
+[^/]++.ebay.de:80/                     $SET(ScfAllow=ob.errEndtags,ob.noscript,ob.hiddenIframes,js.brDetection)
+[^/]++.ebay.de:443/                    $SET(ScfAllow=ob.errEndtags,ob.noscript,ob.hiddenIframes,js.brDetection)
+[^/]++.ebay.com/                       $SET(ScfAllow=ob.errEndtags,ob.noscript,ob.hiddenIframes,js.brDetection)
+[^/]++.ebay.com:443/                   $SET(ScfAllow=ob.errEndtags,ob.noscript,ob.hiddenIframes,js.brDetection)
+include.ebaystatic.com/js/             $SET(ScfAllow=js.brDetection)
+include.ebaystatic.com/css/            $SET(ScfModify=hdr.filterCss)
+secureinclude.ebaystatic.com:443/js/   $SET(ScfAllow=js.brDetection)
+include.ebaystatic.com/v4css/          $SET(ScfModify=hdr.filterCss)
+adfarm.mediaplex.com/ad/\wmpre=http%3A%2F%2Fsearch-desc%2Eebay%2Ede%2F      $SET(ScfAllow=js.relNavHst)
+vi.ebaydesc.de/                        $SET(ScfAllow=ob.hiddenIframes)
+
+## GMX:
+service.gmx.net/de/cgi/ng.fcgi/cffilter    $SET(ScfAllow=js.popups)
+[^.]+.gmx.net/(^de/cgi/ng.fcgi/cffilter)   $SET(ScfAllow=js.brDetection,ob.hiddenIframes)
+[^.]+.gmx.de/                              $SET(ScfAllow=js.brDetection,ob.hiddenIframes)
+[^.]+.gmxattachments.net/                  $SET(ScfAllow=js.brDetection)
+fips.uimserv.net/                          $SET(ScfAllow=js.brDetection)
+
+## Macromedia:
+www.macromedia.com/js/global.js   $SET(ScfAllow=fp.js.frameloader)
+
+## Yahoo:
+eur.i1.yimg.com/                  $SET(ScfAllow=fp.webbugs)
+eur.weather1.yimg.com/            $SET(ScfAllow=fp.webbugs)
+[^/]++de.greetings.yahoo.com/     $SET(ScfAllow=fp.webbugs)
+
+## Google-Dienste:
+www.google.com:443/accounts/ServiceLoginBoxAuth  $SET(ScfAllow=js.popups)
+www.google.com:443/analytics/home/provision      $SET(ScfAllow=ob.hiddenIframes,fp.js.frameloader)
+www.google.com:443/analytics/home/report         $SET(ScfAllow=js.onunload,js.onmousedown,js.status)
+www.google.com:443/analytics/reporting/          $SET(ScfAllow=tt.lnk.onclick)
+earth.google.de/download-earth.html              $SET(ScfInsHeadStrJS=function urchinTracker(){return;})
+maps.google.[a-z]+/                 $SET(ScfAllow=js.brDetection,js.onmousedown,tt.lnk.onclick,fp.js.frameloader,fp.ad.scripts)
+books.google.[a-z]+/                $SET(ScfAllow=js.brDetection,js.onmousedown)
+video.google.[a-z]+/videoplay       $SET(ScfAllow=ob.hiddenIframes,ob.jsUrls,js.onWinRes)
+video.google.[a-z]+/video/js/       $SET(ScfAllow=fp.js.frameloader,js.brDetection)
+[^.]+.google.com/support/           $SET(ScfAllow=fp.js.frameloader,js.brDetection)
+www.google.[a-z]+/search\?          $SET(ScfAllow=ob.js.encrypted)
+
+
+## 1&1:
+login.1und1.de/fsb/all_layout_dt.jsp             $SET(ScfAllow=js.popups)
+login.1und1.de/fsb/all_layoutSelector.jsp        $SET(ScfAllow=js.popups)
+login.1und1.de:443/xml/config/                   $SET(ScfAllow=js.popups)
+
+## Conrad:
+www.cxtreme.de/scripts/wgate/zcxtreme/           $SET(ScfAllow=js.relNavHst,fp.webbugs)
+shop.cxtreme.de/scripts/wgate/zcxtreme/          $SET(ScfAllow=js.relNavHst,fp.webbugs,fp.ad.scripts,tt.lnk.onclick)
+www1.conrad.de/conrad/layout2/search.fh\?        $SET(ScfAllow=js.popups)
+www1.conrad.de/scripts/wgate/zcop_b2c/           $SET(ScfAllow=js.relNavHst,fp.webbugs,tt.lnk.onclick)
+www1.conrad.de:443/scripts/wgate/zcop_b2c/       $SET(ScfAllow=tt.lnk.onclick)
+www1.conrad.de/(^conrad/layout2/search.fh\?|scripts/wgate/zcop_b2c/)     $SET(ScfAllow=fp.webbugs)
+
+## Kurzzeithoster:
+rapidshare.de/                    $SET(ScfAllow=ob.js.encrypted)
+[^.]+.rapidshare.com/             $SET(ScfAllow=ob.js.encrypted)
+www.sendspace.com/                $SET(ScfAllow=ob.js.encrypted)
+shareprotect.t-w.at/              $SET(ScfAllow=ob.js.encrypted)
+(www.|)netload.in/                $SET(ScfAllow=fp.webbugs,fp.ad.scripts)$SET(ScfKonf=js.popups.noAOC)
+www.filefactory.com/              $SET(ScfAllow=ob.iframes,fp.ad.comments)$SET(ScfKonf=js.popups.noAOC)
+(www.|)get-movies.org/            $SET(ScfKonf=js.popups.noAOC)
+(www.|)simpleupload.net/          $SET(ScfKonf=js.popups.noAOC)
+(www.|)uploaded.de/               $SET(ScfKonf=js.popups.noAOC)
+(www.|)uploaded.to/               $SET(ScfKonf=js.popups.noAOC)
+([^/]++.|)xlice.net/              $SET(ScfAllow=ob.hiddenIframes)
+[^.]+.share-online.biz/           $SET(ScfAllow=fp.ad.dimensions,ob.hiddenIframes)
+secured.in/                       $SET(ScfAllow=fp.js.frameloader)
+(www.|)filecache.in/              $SET(ScfAllow=fp.webbugs)$SET(ScfKonf=js.popups.noAOC)
+([^/]++.|)sharebase.de/           $SET(ScfKonf=js.popups.noAOC)
+turboshare.eu/                    $SET(ScfAllow=ob.iframes,ob.hiddenIframes,ob.jsUrls)
+([^/]++.|)meinupload.com/         $SET(ScfKonf=js.popups.noAOC)
+([^/]++.|)linksave.in             $SET(ScfAllow=hdr.referer)
+([^/]++.|)bluehost.to/            $SET(ScfAllow=hdr.referer,fp.ad.scripts)$SET(ScfKonf=js.popups.noAOC)
+depositfiles.com/                 $SET(ScfKonf=js.popups.noAOC)
+share-links.biz/                  $SET(ScfAllow=ob.js.encrypted)
+www.egoshare.com/                 $SET(ScfAllow=ob.js.encrypted)
+
+## Überspringbare Linktrampoline
+clkde.tradedoubler.com/click\?          $SET(ScfModify=hdr.chainedUrls)
+clicks.mentasys.de/log/clicklog.asp\?   $SET(ScfModify=hdr.chainedUrls)
+www.yatego.com/                         $SET(ScfModify=hdr.chainedUrls)
+adfarm.mediaplex.com/ad/                $SET(ScfModify=hdr.chainedUrls)
+de.komtrack.com/redir.log\?             $SET(ScfModify=hdr.chainedUrls)
+counter.eanalyzer.de/index.php\?type=redirect\&  $SET(ScfModify=hdr.chainedUrls)
+www.hifi-forum.de/                      $SET(ScfModify=hdr.chainedUrls)
+de.sitestat.com/talkline/talkline/s\?   $SET(ScfModify=hdr.chainedUrls)
+adclient.uimserv.net/event.ng/Type=click$SET(ScfModify=hdr.chainedUrls)
+rd.apmebf.com/ad/                       $SET(ScfModify=hdr.chainedUrls)
+stats.shopwiki.com/redir.jsp            $SET(ScfModify=hdr.chainedUrls)
+wsdsukapi.infospace.com/clickserver/    $SET(ScfModify=hdr.chainedUrls)
+geizhals.at/redir.cgi\?                 $SET(ScfModify=hdr.chainedUrls)
+shop.fashiononsale.de/tracking.php      $SET(ScfModify=hdr.chainedUrls)
+froogle.heine.de/tracking.php           $SET(ScfModify=hdr.chainedUrls)
+
+## Spiegel.de:
+www.spiegel.de/(^fotostrecke/|contentainer/)    $SET(ScfAllow=ob.hiddenIframes,tr.lnkTarget,tt.lnk.onclick)
+www.spiegel.de/fotostrecke/       $SET(ScfInsHeadStrJS=var name = "SPONbiga";)$SET(CfgRepVerb=$GET(CfgRepVerb)ObjekttypErsOb=0,)
+www.spiegel.de/contentainer/      $FILTER(false)
+www1.spiegel.de/                  $SET(ScfAllow=ob.hiddenIframes)
+service.spiegel.de/               $SET(ScfAllow=ob.hiddenIframes)
+forum.spiegel.de/                 $SET(CfgRepVerb=$GET(CfgRepVerb)ObjekttypErsOb=0,)
+
+## Sonstige:
+www.live.com/                     $SET(ScfAllow=fp.webbugs,js.brDetection)
+support.microsoft.com/            $SET(ScfAllow=ob.hiddenIframes)
+www.fujitsu-siemens.de/           $SET(ScfAllow=js.popups)
+download.fujitsu-siemens.com/     $SET(ScfAllow=js.popups)
+www.vistaprint.de/                $SET(ScfAllow=fp.js.frameloader)
+de.vivisimo.com/                  $SET(ScfAllow=ob.hiddenIframes)
+www.n-tv.de/                      $SET(ScfAllow=ob.hiddenIframes)
+shop.savit.de/                    $SET(ScfAllow=js.popups)
+www.soft-ware.net/                $SET(ScfAllow=fp.ad.scripts)
+www.kenwood.de/                   $SET(ScfAllow=js.popups)
+eu.clickandbuy.com:443/           $SET(ScfAllow=js.popups)
+www.sengpielaudio.com/            $SET(ScfInsHeadStrJS=window.setTimeout=ProxNoopTrue;)
+www.getelementbyid.com/           $SET(ScfInsHeadStrJS=if(window.opera){delete window.opera;})
+www.last.fm/music/                $SET(ScfAllow=ob.hiddenIframes)
+www.lastfm.de/listen/             $SET(ScfAllow=ob.hiddenIframes)
+www.dantotec.de/shop/             $SET(ScfAllow=js.setWinSize)
+www.download.com/                 $SET(ScfAllow=fp.webbugs)
+www.csl-computer.com:443/         $SET(ScfAllow=tr.lnkTarget)
+www.avermedia.de/                 $SET(ScfAllow=js.popups)
+www.contentparadise.com/          $SET(ScfKonf=js.popups.rmName)
+www.pcwelt.de/                    $SET(ScfAllow=fp.webbugs)
+www.classpad.de/                  $SET(ScfAllow=fp.webbugs)
+www.lamy.de/                      $SET(ScfAllow=ob.hiddenIframes)
+de.selfhtml.org/                  $SET(ScfAllow=js.onload)
+www.falk.de/                      $SET(ScfAllow=js.popups)
+www.mobile2day.de/                $SET(ScfAllow=fp.webbugs)
+www.itdat.de/shop/warenkorb.htm   $SET(ScfAllow=fp.js.frameloader)
+www.xonio.com/                    $SET(CfgRepVerb=$GET(CfgRepVerb)ObjekttypErsOb=0,)
+www.buerschgens.de/Prox/          $SET(ScfAllow=tr.txtUrls)
+www.focus.de/                     $SET(ScfAllow=fp.ad.comments)$SET(ScfInsHeadStrJS=function getivw(){})
+[^.]+.webhostlist.de/             $SET(ScfAllow=fp.ad.comments)
+[^.]+.euro.dell.com/              $SET(ScfAllow=js.popups,tr.txtUrls)
+www.zipgenius.it/                 $SET(ScfAllow=fp.js.frameloader)
+doorone.de/                       $SET(ScfAllow=ob.jsUrls)
+sourceforge.net/                  $SET(ScfAllow=ob.hiddenIframes)
+www.inside-handy.de/              $SET(ScfAllow=tr.lnkTarget)
+www.heute.de/                     $SET(ScfAllow=fp.webbugs)
+www.proxxon.de/                   $SET(ScfAllow=js.popups)
+www.snap.com/                     $SET(ScfAllow=ob.hiddenIframes)
+derstandard.at/                   $SET(ScfAllow=ob.hiddenIframes)
+www.thebatworld.de/               $SET(ScfAllow=ob.js.encrypted)
+www.beyerdynamic.de/              $SET(ScfAllow=ob.js.encrypted)
+www.amazon.de/                    $SET(ScfAllow=fp.ad.dimensions,ob.hiddenIframes,ob.js.encrypted)
+www.online-translator.com/        $SET(CfgRepVerb=$GET(CfgRepVerb)ObjekttypErsOb=0,)
+([^/]++.|)peterzahlt.de/          $SET(ScfAllow=js.brDetection,fp.webbugs)$SET(ScfKonf=js.popups.noAOC)
+www.lc-design.de/                 $SET(ScfAllow=js.relNavHst)
+www.spreadshirt.net/              $SET(ScfAllow=js.popups)
+www.nytimes.com/                  $SET(ScfAllow=ob.hiddenIframes)
+maps.fon.com                      $SET(ScfAllow=js.brDetection)
+([^/]++.|)youtube.com/            $SET(ScfAllow=js.brDetection)
+www.chip.de/                      $SET(ScfAllow=ob.hiddenIframes)$SET(ScfInsHeadStrJS=var somtr={};)
+www.flos-freeware.ch/             $SET(ScfAllow=fp.js.frameloader)
+www.tll.de/visuplant/             $SET(ScfAllow=js.popups)
+www.gametrailers.com/             $SET(ScfAllow=js.onmousedown)
+www.computerbase.de/forum/        $SET(ScfAllow=js.popups)
+www.reiseplanung.de/              $SET(ScfAllow=ob.hiddenIframes)
+www.buchhandel.de/(^javascript/)  $SET(ScfAllow=fp.ad.scripts,ob.hiddenIframes)
+www.reichelt.de/                  $SET(ScfAllow=tt.lnk.onclick)
+workfriendly.net/                 $SET(ScfAllow=js.popups)
+[^/]++.wikia.com/                 $SET(ScfAllow=ob.hiddenIframes)
+www.frickeltech.de/               $SET(ScfInsHeadStrJS=var MAX_4=true;)
+www.motor-talk.de/forum/          $SET(CfgRepVerb=$GET(CfgRepVerb)InfoTags=0,)
+www.colorvision.ch/               $SET(ScfAllow=fp.js.frameloader)
+www.local6.com/slideshow/         $SET(ScfAllow=ob.hiddenIframes)
+www.druckerchannel.de/            $SET(ScfAllow=ob.hiddenIframes)
+[^/]++.mapandroute.com/           $SET(ScfAllow=fp.webbugs,ob.hiddenIframes,ob.iframes)
+[^/]++.t-online.de/               $SET(ScfAllow=js.brDetection)
+www.ischgl.com/                   $SET(ScfAllow=ob.iframes)
+[^/]++.myvideo.de/                $SET(ScfAllow=js.brDetection)
+toplist.everground.net/           $SET(ScfAllow=fp.ad.dimensions)
+toplist.gulli.com/                $SET(ScfAllow=fp.ad.dimensions)
+91.121.0.112/                     $SET(ScfAllow=fp.ad.dimensions)$SET(ScfKonf=js.popups.noAOC)
+www.gulli.com/                    $SET(ScfAllow=fp.ad.forms)
+[^.]+.aol.de/                     $SET(ScfInsHeadStrJS=function modifyHyperLinks(a){} function parseLinks(a){} function fixRequestLength(){})
+www.quelle.de/is-bin/             $SET(ScfAllow=ob.js.encrypted,fp.ad.overlays)$SET(CfgRepVerb=$GET(CfgRepVerb)ObjekttypErsOb=0,)
+www.flickr.com/                   $SET(ScfAllow=ob.hiddenIframes)
+[^/]++.arte.tv/                   $SET(ScfAllow=js.brDetection,ob.flash)
+www.bild.de/BILD/                 $SET(ScfInsHeadStrJS=function loadPixels(a){})
+s.ytimg.com/                      $SET(ScfAllow=js.brDetection)
+www.save.tv/                      $SET(ScfAllow=ob.hiddenIframes)
+cdn.fotocommunity.com/            $SET(ScfAllow=hdr.referer)
+help.eclipse.org/                 $SET(ScfAllow=ob.hiddenIframes)
+([^/]++.|)live.de/                $SET(ScfAllow=fp.webbugs,js.brDetection)
+([^/]++.|)live.com/               $SET(ScfAllow=fp.webbugs,js.brDetection)
+www.de.map24.com/(^?)             $SET(ScfAllow=ob.hiddenIframes,ob.iframes)
+([^/]++.|)ask.com/                $SET(ScfAllow=ob.hiddenIframes)
+www.couna.net/                    $SET(ScfAllow=fp.ad.dimensions) 
+toplist.raidrush.ws/              $SET(ScfAllow=fp.ad.dimensions)
+www.aptana.com/                   $SET(ScfAllow=ob.hiddenIframes)
+www.aptana.com:443/store/         $SET(ScfAllow=ob.hiddenIframes)
+pebuzz.com/                       $SET(ScfAllow=ob.hiddenIframes)
+www.teltarif.de/                  $SET(ScfAllow=fp.ad.comments)
+([^/]++.|)magnus.de               $SET(ScfAllow=js.brDetection)
+c1.neweggimages.com/              $SET(ScfAllow=fp.js.frameloader)
+www.ebug-europe.com/              $SET(ScfAllow=tt.lnk.onclick)
+www.berufenet.arbeitsagentur.de/  $SET(ScfAllow=fp.ad.overlays)
+msdn.microsoft.com/               $SET(ScfAllow=fp.ad.scripts,tt.lnk.onclick)
+[^.]+.imageshack.us/              $SET(ScfAllow=fp.ad.scripts)
+www.juvalis.de/                   $SET(ScfAllow=ob.js.encrypted)
+www.kicker.de/                    $SET(ScfAllow=ob.hiddenIframes)
+www.imdb.com/                     $SET(ScfAllow=fp.webbugs)
+www.diigo.com/                    $SET(ScfAllow=js.onload,ob.jsUrls,ob.iframes,ob.hiddenIframes)
+www.kmelektronik.de:443/          $SET(ScfAllow=ob.js.encrypted)
+[^.]+.plimus.com:443/             $SET(ScfAllow=ob.js.encrypted)
+www.reddit.com/                   $SET(ScfAllow=fp.ad.scripts,ob.js.encrypted)
+www.deezer.com/                   $SET(ScfAllow=ob.hiddenIframes)
+www.welt.de/                      $SET(ScfAllow=ob.js.encrypted)
+www.freeware.de/                  $SET(ScfAllow=ob.js.encrypted)
+www.microsoft.com/                $SET(ScfAllow=ob.js.encrypted)
+www.lastfm.de/                    $SET(ScfAllow=fp.ad.comments)
+[^.]+.github.com/                 $SET(ScfAllow=fp.js.frameloader)
+www.sueddeutsche.de/              $SET(ScfInsEndStrJS=function ns_onclick \(a, url, name, type, winopt\) {if \(a !== ""\){ if\(url !== ""\){ location.href=url;} else{location.href=a.href;} } })
+www.guardian.co.uk/world/audio/   $SET(ScfAllow=fp.ad.scripts)
+www.mediafire.com/                $SET(ScfAllow=ob.hiddenIframes)
+wetter.msn.com/                   $SET(ScfInsHeadStrJS=delete HTMLDocument;)
+www.nwshop.fi/productinfo.cfm     $SET(ScfInsEndStrJS=isIE=true;)
+www.cunda.de/Shop/                $SET(ScfInsEndStrJS=function criteowidget(){};)
+[^.]+.cnn.com/                    $SET(ScfAllow=ob.hiddenIframes)
+
+www.wetteronline.de/cgi-bin/cgiakttab\?          $SET(ScfAllow=js.popups)
+www.pollin.de/shop/start.php                     $SET(ScfAllow=js.popups)
+www.pollin.de:443/shop/bestellbestaetigung.php   $SET(ScfAllow=js.popups)
+www.pollin.de:443/shop/warenkorb.php             $SET(ScfAllow=js.popups)
+www.vivanco.de/cms/de/frameset.html              $SET(ScfAllow=fp.js.frameloader)
+tvtotal.prosieben.de/components/videoplayer/     $SET(ScfAllow=fp.webbugs,js.brDetection)
+#www.cnn.com/[a-z0-9/.]++/content.html            $SET(ScfAllow=fp.ad.scripts,ob.hiddenIframes)
+#www.cnn.com/(^[a-z0-9/.]++/content.html)         
+i.l.cnn.net/cnn/.element/js/2.0/main.js          $SET(ScfAllow=fp.js.frameloader)
+www.hirose.co.jp/catalogj_hp/3DMall/             $SET(ScfAllow=js.popups)
+195.14.241.9/ass/client/vrs/assRouteVRS.js       $SET(ScfAllow=fp.js.frameloader)
+www.wincustomize.com/skins.aspx\?                $SET(ScfAllow=ob.hiddenIframes)
+www.strato.de:443/apps/CustomerService           $SET(ScfAllow=tt.lnk.onclick)
+www.zdf.de/ZDFmediathek/js/utils.js              $SET(ScfAllow=fp.js.frameloader)
+
+
+www.heise.de/(*/|)foren/*/forum-[0-9]+/(msg-[0-9]+/read/|list/)$SET(ScfAllow=tt.lnk.onclick)
+www.parallelgraphics.com/products/cortona/download/   $SET(ScfAllow=fp.js.frameloader)
+
+
+
+#### Generische Einträge:
+*/popup_image.php                 $SET(ScfAllow=js.setWinSize)
+
+## Diskussionsforen auf "phpBB"- oder "Invision Power Board"-Basis
+*/posting.php                     $SET(ScfAllow=fp.webbugs,js.brDetection)
+*/privmsg.php                     $SET(ScfAllow=fp.webbugs,js.brDetection)
+*/index.php\?*act\=(Post|Msg)     $SET(ScfAllow=fp.webbugs,js.brDetection,ob.hiddenIframes)
+*/LFH.lib.window.js               $SET(ScfAllow=fp.js.frameloader)
+
+## VBulletin
+*/vbulletin_global.js\?v\=        $SET(ScfAllow=js.brDetection)
+
+
+
+
+####################################################################################
+# Benutzerdefinierte Einträge #
+###############################
+
+
+
+

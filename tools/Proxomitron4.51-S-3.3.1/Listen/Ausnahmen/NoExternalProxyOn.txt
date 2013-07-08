@@ -1,0 +1,52 @@
+# NoExternalProxyOn
+#
+# Diese Liste enthält URLs von Seiten, bei deren Aufruf ein evtl. eingestellter
+# externer Proxy nicht benutzt werden soll.
+#
+# Die Funktion wird durch den Filter
+# ".URL: (Out) 03 Externen Proxy für bestimmte URLs deaktivieren [MB]" bereitgestellt.
+#
+#
+# Die Einträge dieser Liste sind vom Aufbau her vollständige URLs, ohne
+# Protokollangabe. Ein Eintrag, der auf "http://www.buerschgens.de/" zutreffen soll,
+# muss also "www.buerschgens.de/" heißen.
+# Platzhalter und die üblichen Metazeichen sind auch erlaubt und ermöglichen die
+# Umschreibung veränderlicher URL-Bestandteile.
+#
+#
+# ## Beispiele:
+#
+# www.buerschgens.de/Prox/(Seiten|Forum)/
+#
+# [^/]++.buerschgens.de/
+#
+#
+#
+# Die URLs werden als "zum Ende hin offen" betrachtet. Wenn der Listeneintrag also
+# "www.buerschgens.de/Prox/" lautet, dann erfasst er alle URLs, die mit dieser
+# Zeichenfolge beginnen. Beispielsweise "www.buerschgens.de/Prox/Seiten/Datei.html".
+#
+#
+# Wenn SSL-verschlüsselte Seiten gefiltert werden und die URLs mit "https://" beginnen,
+# dann muss im Listeneintrag zusätzlich die SSL-Portnummer "443" angegeben werden.
+# Wenn also der URL "https://www.buerschgens.de/Prox/" erfasst werden soll, dann muss
+# in der Liste "www.buerschgens.de:443/Prox/" stehen.
+#
+# Der Grund für diese Besonderheit ist übrigens nicht etwa Gemeinheit des Programmautors,
+# sondern, dass der URL, den der Browser an Proxomitron sendet, tatsächlich so aufgebaut ist.
+# Browser zeigen die SSL-Portnummer nur normalerweise nicht in der Adresszeile an.
+#
+#
+#
+# Stand: 11.12.2007
+#
+# Michael Bürschgens
+# http://www.buerschgens.de/Prox/
+
+
+fritz.box/
+
+
+
+
+

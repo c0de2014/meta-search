@@ -1,0 +1,19 @@
+<html><head><title>The Proxomitron Reveals...</title>
+
+<link rel="stylesheet" type="text/css" href="Errors.css">
+<script type="text/javascript" src="Errors.js"></script>
+</head> <body>
+<div id="d1"></div><div id="d2"></div><div id="d3"></div><div id="d4"></div>
+<div id="block1">
+<img src="ErrLogo.png" id="i1">
+<div id="block2"> 
+<h1 id="e1">Error connecting to site</h1>  
+<div id="e2">
+The Proxomitron couldn't connect to...
+<div id="e3"> buerschgens.local/ </div>
+The site may be busy or the web server may be down.
+</div>
+    </div>
+</div>
+<div id="d5"></div>
+</body></html>     

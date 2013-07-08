@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>Proxomitron: Vorgang abgebrochen.</title>
+</head>
+<body>
+<table>
+<tr>
+	<td><img src="http://local.ptron/ProxIcon64.png" width="64" height="64" alt="Proxomitron-Logo" border="0"></td>
+	<td><h3>Proxomitron: Vorgang abgebrochen.</h3></td>
+</tr>
+</table>
+Es wurde versucht, folgende Seite/Datei abzurufen:
+<div style="color:red;">
+<script language="javascript" type="text/javascript">
+<!--
+if(!window.document.ProxSK_write){window.document.ProxSK_write=document.write;}
+document.ProxSK_write(document.URL);
+//-->
+</script>
+</div><br>
+Aufgrund eines Eintrags in einer Blockliste wurde dies jedoch verhindert.
+
+
+</body>
+</html>

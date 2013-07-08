@@ -1,0 +1,190 @@
+# CorrectContentTypes (NoAddURL)
+#
+# Diese Liste wird vom Header-Filter "Content-Type: (In) Falsche Angaben regelbasiert korrigieren [MB]"
+# genutzt.
+#
+#
+# Jede Zeile ist ein unabhängiger Ausdruck.
+#
+# Geprüft wird grundsätzlich die Dateiendung der zu übertragenden Datei.
+# Zusätzlich kann mit $TST(\1=...) der vom Server gesendete Content-Type geprüft werden.
+# Mit $SET(\0=...) wird der Content-Type festgelegt, der vom Filter gesetzt werden soll.
+# Wenn der vorhandene Content-Type beibehalten werden soll, kann mit $SET(\0=\1) der alte Wert übernommen werden.
+#
+# Außerdem kann mit $FILTER(true) die Filterung einer Übertragung aktivert werden,
+# obwohl der Content-Type normalerweise eine Filterung verhindern würde.
+# Dabei ist zu beachten, dass Filter, die z.B. mit $TYPE(htm) auf einen bestimmten Dateityp festgelegt sind,
+# trotz manuell aktivierter Filterung nur "ihren" Dateityp filtern.
+# Im Zweifelsfall bietet sich deshalb die Änderung des Content-Types nach "text/html" an.
+#
+# Wenn ein Content-Type unabhängig von der Dateiendung geändert werden soll,
+# dann kann anstelle der Dateiendung "\w" geschrieben werden.
+# In diesem Fall MUSS aber eine andere Abfrage vorhanden sein, damit die Regel nicht
+# für jede Übertragung wahr wird.
+#
+# Auch die Unterbrechung einer bestimmten Übertragung ist hier möglich.
+# Die Regel muss dafür nur den Befehl $SET(CTKill=true) enthalten.
+#
+# 
+# 
+# Stand: 16.08.2009
+# 
+# Michael Bürschgens
+# http://www.buerschgens.de/Prox/
+
+
+
+
+##### Bestimmte, eindeutig korrigierbare, falsche Content-Type-Angaben #####
+
+\w   $TST(\1=text/x-js|application/javascript|text/script|text/x-javascript) $SET(\0=text/javascript)
+
+
+##### Komplexere Ersetzungen, bei denen es auf die Kombination #####
+##### aus Dateiendung und Content-Type ankommt.                #####
+
+# Falls der Server über eine IP-Adresse angesprochen wird, dann alle Übertragungen mit
+# dem Content-Type "text/plain" unterbrechen.
+# \w $URL(*([0-9]+{1,3}.)++{3}[0-9]+{1,3}*) $TST(\1=text/plain) $SET(CTKill=true)
+
+
+
+##### Typzuordnung nach Dateiendung #####
+
+## Text und Quelltext
+htm(l|)  $SET(\0=text/html)
+shtm(l|) $SET(\0=text/html)
+js       $SET(\0=text/javascript)
+css      $SET(\0=text/css)
+txt      $SET(\0=text/plain)
+java     $SET(\0=text/plain)
+bat      $SET(\0=text/plain)
+hs       $SET(\0=text/plain)
+pl       $SET(\0=text/plain)
+cfg      $SET(\0=text/plain)
+cmd      $SET(\0=text/plain)
+
+xml      $SET(\0=text/xml) $FILTER(true) $SET(CType=xml)
+xsl      $SET(\0=text/xml) $FILTER(true) $SET(CType=xml)
+xhtml    $SET(\0=application/xhtml+xml) $FILTER(true) $SET(CType=xhtml)
+xht      $SET(\0=application/xhtml+xml) $FILTER(true) $SET(CType=xhtml)
+
+## Ausführbares
+exe  $SET(\0=application/octet-stream)
+cab  $SET(\0=application/octet-stream)
+jar  $SET(\0=application/java-archive)
+msi  $SET(\0=application/octet-stream)
+chm  $SET(\0=application/octet-stream)
+sis  $SET(\0=application/octet-stream)
+hta  $SET(\0=application/hta)
+msp  $SET(\0=application/octet-stream)
+
+## PlugIn-Dateitypen
+pdf  $SET(\0=application/pdf)
+swf  $SET(\0=application/x-shockwave-flash)
+flv  $SET(\0=video/flv)
+
+## Archive
+arc  $SET(\0=application/octet-stream)
+ace  $SET(\0=application/octet-stream)
+zip  $SET(\0=application/zip)
+# zip  $SET(\0=application/x-zip-compressed)
+rar  $SET(\0=application/x-rar-compressed)
+gzip $SET(\0=application/x-gzip)
+gz   $SET(\0=application/x-gzip)
+tgz  $SET(\0=application/x-gzip)
+tar  $SET(\0=application/x-tar)
+bz2  $SET(\0=application/bzip2)
+7z   $SET(\0=application/octet-stream)
+
+## Bilder
+jpeg $SET(\0=image/jpeg)
+jpg  $SET(\0=image/jpeg)
+gif  $SET(\0=image/gif)
+png  $SET(\0=image/png)
+bmp  $SET(\0=image/bmp)
+jp2  $SET(\0=image/jp2)
+j2k  $SET(\0=image/j2k)
+ico  $SET(\0=image/x-icon)
+
+## Video
+mpv2 $SET(\0=video/mpeg)
+mpg4 $SET(\0=video/mp4)
+mpg  $SET(\0=video/mpeg)
+mpeg $SET(\0=video/mpeg)
+mpe  $SET(\0=video/mpeg)
+mpa  $SET(\0=video/mpeg)
+mp4  $SET(\0=video/mp4)
+mp2v $SET(\0=video/mpeg)
+# mp2  $SET(\0=video/mpeg)
+m2v  $SET(\0=video/mpeg)
+m1v  $SET(\0=video/mpeg)
+mov  $SET(\0=video/quicktime)
+qt   $SET(\0=video/quicktime)
+rv   $SET(\0=video/vnd.rn-realvideo)
+avi  $SET(\0=video/x-msvideo)
+asf  $SET(\0=video/x-ms-asf)
+asx  $SET(\0=video/x-ms-asf)
+wmv  $SET(\0=video/x-ms-wmv)
+wmx  $SET(\0=video/x-ms-wmx)
+wm   $SET(\0=video/x-ms-wm)
+
+## Audio
+mp3  $SET(\0=audio/mpeg)
+# mp3 $SET(0=audio/x-mpeg)
+mpga $SET(\0=audio/mpeg)
+mp2  $SET(\0=audio/mpeg)
+wav  $SET(\0=audio/x-wav)
+wma  $SET(\0=audio/x-ms-wma)
+rmi  $SET(\0=audio/mid)
+midi  $SET(\0=audio/midi)
+mid  $SET(\0=audio/midi)
+# mid  $SET(\0=audio/mid)
+pls  $SET(\0=audio/x-scpls)
+ogg  $SET(\0=application/ogg)
+
+## 1:
+#ram $SET(\0=audio/x-pn-realaudio)
+#rmm $SET(\0=audio/x-pn-realaudio)
+#ra  $SET(\0=audio/x-realaudio)
+#rm  $SET(\0=application/vnd.rn-realmedia)
+
+## 2:
+ram $SET(\0=audio/x-pn-realaudio)
+ra  $SET(\0=audio/x-pn-realaudio)
+rm  $SET(\0=application/x-pn-realmedia)
+rv  $SET(\0=application/x-pn-realmedia)
+rpm $SET(\0=audio/x-pn-realaudio-plugin)
+
+## http://www.forum.nokia.com/document/Cpp_Developers_Library/GUID-75AAA3AE-2A06-420D-A004-DFB329E27253.html
+## http://docs.real.com/docs/techblueprint/webhost.pdf
+
+m4a  $SET(\0=audio/x-m4a)
+m4b  $SET(\0=audio/x-m4b)
+
+## Skins
+wsz $SET(\0=interface/x-winamp-skin)
+dxtheme $SET(\0=application/octet-stream)
+wba $SET(\0=application/wbload)
+dps $SET(\0=application/octet-stream)
+obpack $SET(\0=application/octet-stream)
+
+## Anderes
+nsf $SET(\0=application/vnd.lotus-notes)
+ntf $SET(\0=application/vnd.lotus-notes)
+
+
+
+
+# Falls gar kein Content-Type angegeben ist,
+# dann setzte den Content-Type auf "text/html" und aktiviere die Filterung.
+\w $TST(\1=(^?)) $SET(\0=text/html) $FILTER(true)
+
+
+
+
+
+
+
+
+

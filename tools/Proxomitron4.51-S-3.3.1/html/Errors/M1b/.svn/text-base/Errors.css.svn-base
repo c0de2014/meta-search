@@ -1,0 +1,46 @@
+
+/* Stylesheet für Proxomitron-Fehlermeldungen */
+
+/* Design: M1b */
+
+
+body { 
+	background-image: url(ErrGrad.png);
+	background-repeat: repeat-x;
+	background-color: #ffffff;
+	color: #000000;
+	font-family: Arial, sans-serif;
+	margin: 8px;
+}
+img#i1 {
+	float: left;
+}
+div#block2 {
+	background-color: #F1EFBF;
+	border: dashed #000000 2px;
+	padding: 10px;
+	margin-left: 200px;
+}
+h1#e1 {
+	background-image: url(ErrSymb.png);
+	background-repeat: no-repeat;
+	padding-left: 60px;
+	padding-top: 12px;
+	padding-bottom: 16px;
+	border-bottom: dashed #000000 2px;
+	margin-bottom: 10pt;
+	font-size: 22px;
+	font-weight: bold;
+	margin-top: 0;
+}
+div#e2 {
+	line-height: 1.3em;
+}
+div#e3 {
+	line-height: 1.3em;
+	color: #ff0000;
+	overflow: auto;
+}
+div#d1, div#d2, div#d3, div#d4, div#d5 {
+	display: none;
+}

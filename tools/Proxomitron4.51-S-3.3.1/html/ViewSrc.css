@@ -1,0 +1,93 @@
+@charset "ISO-8859-1";
+
+/* ### Style sheet used by Proxomitron's HTML source view ### */
+
+
+/* Seitenkörper */
+body {
+	font-family: Courier New; 
+	color: #444444;
+	font-size: 10pt;
+}
+
+/* Einmalig; Umschließt HTTP-Header */
+pre.head {
+	font-weight:bold;
+	color:black;
+}
+
+/* Einmalig; Trennt Header und Quelltext */
+hr { }
+
+/* Einmalig ohne Klasse; Umschließt den Quelltext */
+pre { }
+
+/* Proxomitron: <Match>-Tags */
+b.mhd {
+	font-weight: bold;
+	color: red;
+}
+
+/* Proxomitron: Erfasster Text */
+b.mtxt {
+	font-weight: normal;
+	color: darkred;
+}
+
+/* Tagnamen */
+b.t {
+	font-weight: bold;
+	color: black;
+}
+
+/* Attributnamen und anderer Text innerhalb von Tags */
+b.i {
+	font-weight: normal;
+	color: blue;
+}
+
+/* Attributwerte und Strings in Anführungszeichen */
+b.q {
+	font-weight: bold;
+	color: green;
+}
+
+
+
+/* ### Ergaenzung fuer interpretierten Quelltext ### */
+
+div.Kopf { }
+.h2 {
+	color:#000000; 
+}
+table.Daten1, table.Daten1 table {
+	font-family: "Lucida Sans Typewriter", "Andale Mono", Courier, "Courier New", monospace;
+	font-size: 10pt;
+	color: #000000; 
+	border-spacing: 0;
+}
+table.Daten1 {
+	margin-top: 10pt;
+	margin-bottom: 10pt;
+}
+table.Daten1 td {
+	padding: 5px;
+}
+table.Daten1 > tbody > tr > td {
+	border-top: #d3d3d3 1px solid;
+	border-bottom: #c3c3c3 1px solid;
+}
+table.Daten1 td.Bez {
+	border-left: #d3d3d3 1px solid;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+}
+table.Daten1 td.Inh {
+	border-right: #c3c3c3 1px solid;
+	background-color: #EEEEEE;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+
+

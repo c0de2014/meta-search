@@ -1,0 +1,42 @@
+
+/* Stylesheet für Proxomitron-Fehlermeldungen */
+
+/* Design: P1a */
+
+
+body { 
+	background-color: #ffffff;
+	color: #000000;
+	font-family: Tahoma, sans-serif;
+	margin: 8px;
+}
+img#i1 {
+	display: none;
+}
+h1#e1 {
+	margin-bottom: 1em;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+div#e2 {
+	line-height: 1.3em;
+	margin-bottom: 1em;
+}
+div#e3 {
+	line-height: 1.3em;
+	margin-bottom: 1em;
+	color: #ff0000;
+	overflow: auto;
+}
+div#block2:after {
+	display: block;
+	font-size: 0.9em;
+	text-align: right;
+	padding-top: 0.5em;
+	margin-top: 5em;
+	border-top: dashed #000000 2px;
+	content: "Proxomitron Webfilter";
+}
+div#d1, div#d2, div#d3, div#d4, div#d5 {
+	display: none;
+}

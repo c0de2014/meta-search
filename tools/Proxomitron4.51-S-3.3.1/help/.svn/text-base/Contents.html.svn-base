@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META http-equiv="content-language" content="de">
+<META name="author" lang="de" content="Michael Bürschgens">
+<META name="copyright" content="&copy; 2005 Michael Bürschgens">
+<TITLE>Proxomitron - Anleitung</TITLE>
+<LINK REL="stylesheet" type="text/css" href="help.css">
+<STYLE TYPE="TEXT/CSS">
+<!--
+h1
+	{
+	Font-Size: 16pt;
+	font-style: normal;
+	font-weight: bold;
+	margin-top: 20pt;
+	margin-bottom: 16pt;
+	}
+-->
+</STYLE>
+<!-- saved from url=(0014)about:internet -->
+</HEAD>
+<BODY>
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td class="hdr">
+<img src="images/Logo1.gif" align="left" alt="Proxomitron-Logo">
+<div class="hdr">
+<span class="smb">Willkommen in der Hilfe zur deutschen Version von...</span><br>
+<span class="tlb">Proxomitron - Der universelle Webfilter</span>
+</div>
+</td></tr>
+<tr><td class="hdsep"><img src="images/clear.gif" width="1" height="1"></td></tr>
+</table>
+
+<div class="text">
+
+<h1>Übersicht</h1>
+
+<p>
+Leider sind die deutschen Anleitungstexte z.Z. nur online verfügbar. Du kannst aber von dieser Seite aus bequem darauf zugreifen.<br>
+Die englische Programmdokumentation, die auch aus den einzelnen Programmfenstern heraus mit [F1] aufgerufen werden kann, steht lokal zur Verfügung.
+</p>
+
+
+<p style="line-height: 150%;">
+<a href="http://subspace.ptron/.update/index.html">Update-Suche und wichtige Neuigkeiten</a> (lokal; Internetverbindung nötig)<br>
+<a href="http://www.buerschgens.de/Prox/">Deutsche Webseiten mit Anleitung</a> (online)<br>
+<a href="http://www.buerschgens.de/Prox/Forum/">Deutsches Support-Forum</a> (online)<br>
+<a href="Contents2.html">Englische Dokumentation</a> (lokal)
+</p>
+
+
+
+</div>
+
+</BODY>
+</HTML>

@@ -1,0 +1,267 @@
+# JSURLs (NoAddURL,NoAppend)
+#
+# Die Liste "JSURLs" wird benutzt, um externe Skripten auch dann korrekt behandeln
+# zu können, wenn sie vom Server mit einer falschen Content-Type-Angabe
+# übertragen werden.
+#
+# Der Seitenfilter "Prox: URLs externer Skripten speichern" durchsucht Webseiten
+# nach Verweisen auf externe Skripten und trägt gefundene URLs in die Liste
+# "JSURLs" ein. Entsprechende Headerfilter sorgen dann dafür, dass
+# Content-Type-Angaben dieser Skripten, wenn nötig, korrigiert werden.
+#
+# Damit sich nicht mit der Zeit riesige Datenmengen in der Datei ansammeln, werden
+# die während der Laufzeit gesammelten Einträge nicht in die Datei geschrieben,
+# sondern nur im Speicher als Teil der Liste behandelt.
+# Sobald Proxomitron beendet oder die Listen neu eingelesen werden, werden die
+# temporären Listeneinträge gelöscht.
+# Man kann sich "JSURLs" also als eine Mischung aus statischer und virtueller Liste
+# vorstellen. Als Hybrid-Liste, so zu sagen.
+#
+# Die in dieser Datei stehenden statischen Listeneinträge sollen besonders häufig
+# vorkommende URLs abdecken, um das doch recht komplexe Korrektursystem zu entlasten. 
+#
+# Hier können URLs von Servern oder auch nur einzelnen serverseitigen Skripten
+# eingetragen werden, von denen bekannt ist, dass sie ausschließlich JavaScript
+# ausgeben.
+# Alle zutreffenden URLs werden dann grundsätzlich als JavaScript behandelt und
+# reduzieren den Verarbeitungsaufwand bei der Content-Type-Korrektur.
+#
+# Das ist besonders hilfreich, wenn man es mit Servern zu tun hat, deren dynamisch
+# erzeugte URLs eine Zufallskomponente enthalten, die Proxy-Caches überlisten soll.
+# In diesem Fall würden sich schnell Hunderte von Einträgen in der virtuellen Liste
+# ansammeln.
+# Ein mit geeigneten Platzhaltern formulierter statischer Eintrag löst das Problem sofort.
+#
+#
+#
+# Stand: 19.02.2010
+#
+# Michael Bürschgens
+# http://www.buerschgens.de/Prox/
+#
+
+
+
+## Generische Regeln:
+*.js.v[0-9.]+(^?)
+*.js.php\?ver\=[0-9a-z.\-]+(^?)
+*.js;jsessionid\=
+*.js\?
+
+
+
+## Mediawiki/Wikipedia:
+*/index.php\?title=-\&action=raw\&gen=js
+*/index.php\?title=Special:NoticeLocal/anon\&action=raw
+*/index.php\?title=Special:NoticeLoader\&action=raw
+
+## Microsoft/Windows-Update:
+[^.]+.microsoft.com/mnp_utility.mspx/
+[^.]+.microsoft.com/\w/mnp_utility.mspx/menujs\?mnpshell\=
+msdn2.microsoft.com/library/js.aspx\?
+[^/]++.microsoft.com/js.aspx\?
+support.microsoft.com/common/script/gsfx/
+msdn2.microsoft.com/atlasglob.axd
+technet2.microsoft.com/WindowsServer/LogScript.aspx
+technet2.microsoft.com/WindowsServer/FeedbackJavascript.aspx\?
+\w/ScriptResource.axd\?
+\w/WebResource.axd\?
+[^.]+.services.social.microsoft.com/search/Widgets/SearchBox.jss\?
+
+## eBay:
+ilapi.ebay.com/ws/eBayISAPI.dll\?EKServer
+adcmd.ebay.de/ws/eBayISAPI.dll\?SunShineAds\&
+search.ebay.de/ws/eBayISAPI.dll\?SearchFavorite\&
+
+
+#### Verbreitete Skripten:
+
+## WordPress (und PlugIns):
+\w/js/slider.js.php
+\w/js/prototype.js.php
+\w/ultimate-tag-warrior-js.php
+\w/ultimate-tag-warrior-ajax-js.php\?
+\w/js/livesearch.js.php
+\w/js/lightbox.js.php
+\w/js/effects.js.php
+\w/wp-guestmap/stats.php
+
+## Sonstige:
+\w.nsf/js/
+\w/server.php\?request\=track\&output\=jcrpt
+
+
+
+#### Sonstige:
+
+www-s.tucows.com/j/
+www[0-9]+.gmx.net/de/cgi/g.fcgi/js/bookmarkIE\?
+www.xbitlabs.com/admin/module_banner/xbanner.php\?
+www.websitealive3.com/[^/]++/Visitor/vTracker_v2.asp
+www.vibrantmedia.com/intellitxt/front.asp\?
+www.translate.ru/url/jscheck.asp
+www.t-com.de/is-bin/INTERSHOP.enfinity/WFS/\winclude%2Fjavascript.page
+www.swr.de/*/format=javascript/
+www.sponsorads.de/script.php
+www.softwareadsnow.com/adv.php\?
+www.snapfiles.net/rotation/abm.asp
+www.pwcglobal.com/extweb/jsincludes.nsf/
+www.premium-ads.de/ad.php\?
+www.planet-source-code.com/vb/scripts/
+www.pearl.de/main.jsp
+www.pearl.de/catalog.jsp
+www.n-tv.de/17.html\?
+www.news4sites.com/service/newsfeed.php\?tech=js
+www.mytemplatestorage.com/codes/interface_cliplib.php
+www.mytemplatestorage.com/codes/interface.php
+www.mobile2day.de/js/
+www.mobihand.com/common_mall/\w.asp\?
+www.merchanthound.com/javascripts/
+www.meinestadt.de/x/sponsoredLinks.php\?
+www.linkads.de/
+www.laut.de/v2/skripte/
+www.laut.de/skripte/
+www.laut.de/skript/
+www.lastfm.de/listen/tune\?\w\&ajax\=1
+www.lastfm.de/listen/listeningNow\?\w\&ajax\=1
+www.kaspersky.com/informer/itop10.html
+www.kaspersky.com/informer/inewsvl.html
+www.kaspersky.com/informer/inews.html
+www.kaspersky.com/informer/iactiv.html
+www.kaspersky.com/de/informer/itop10.html
+www.google.com/uds/api\?file=uds.js
+www.google.com/reader/public/javascript/
+www.google.com/jsapi
+www.google.com/coop/cse/brand
+www.gmx.net/proxyCache.do\?dest=http*%3Djs\&
+www.freeware.de/napping/code/\?
+www.forum.nokia.com/java/
+www.flickr.com/javascript/
+www.feed-maker.de/scroll.php\?
+www.exalead.de/\w/script\=build.js/
+www.dooyoo.de/adsales/survey/survey.cgi
+www.dooyoo.de/adsales/ssi/\w_js.php\?
+www.computerbase.de/clientscripts/
+www.code-server.biz/code/index.php\?
+www.cnscreen.com/js_new.php
+www.cnscreen.com/english/js_new.php
+www.cnet.com/html/export/r2j/
+www.boersenverlag.de/schablone/deliver_multi.jphp\?
+www.boersenverlag.de/schablone/deliver.jphp\?
+www.boerse.de/schablone/deliver.jphp\?
+www.blogger.com/dyn-js/
+www.areamobile.de/php/ext/svc/
+www.answers.com/main/webanswers\?js=1
+www.answers.com/main/dsdata\?*js=1
+www.alibaba.com/history_maker.htm
+www.affiliatecash.de/v3/b_script.php\?
+www.ad-lister.co.uk/shared/GetJSWidget.aspx
+www.adheaps.com/js/
+www.acesuppliers.com/company/web_count.asp\?
+www.acesuppliers.com/company/menu_html_ex.asp\?
+wrapper.gamespy.com/a\?
+widgetd.technorati.com/linkcount
+web.archive.org/web/[0-9]+js_/
+video.google.de/videoplay\?\w\&output\=json
+tweakers4u.de/p4cms/modules/banner/bannerjs.php
+track.blogcounter.de/js.php\?
+t-mobile.i22-datacenter.de/\w.js
+static.pe.studivz.net/js/
+static.ak.studivz.net/js/
+static.ak.facebook.com/js/
+shots.snap.com/shot_main_js/
+shots.snap.com/javascript/
+servedby.precisionclick.com/midas/
+seal.godaddy.com:443/getSeal\?
+script.revenuepilot.com/servlet/lojs\?
+rpc.blogrolling.com/display.php\?
+rotator.juggler.inetinteractive.com/servlet/ajrotator/
+reviews.harmony-central.com/javascripts/
+pub[0-9]+.bravenet.com/counter/show.php
+promotion-club.de/exchange/banner/b_script.php
+pfp.meinestadt.de/x/sponsoredLinks.php\?
+personal.news.yahoo.com/us/news/ratings/getratingdata.html\?
+partners.dooyoo.net/y3_ofentuere_bc.php
+partners.dooyoo.net/overture_list_de.php
+partners.dooyoo.net/\w_js.php\?
+pages.etology.com/cbjs/
+page.sevenload.com/js/
+onlineshop.obi.de/jsproxy.fit/
+newsimweb.netzeitung.de/modules/moduleNetnewsJS.jsp\?
+media1.break.com/static/js/
+media1.break.com/static/break/js/
+media.fastclick.net/w/get.media\?*\&d=j
+matrix.mediavantage.de/mx.one\?
+maptp35.map24.com/ajax\?appkey\=
+maps.google.de/maps\?file=api
+maps.google.com/maps\?file=api
+mads.webshots.com/mac-ad\?CELT=js\&
+log.go.com/log\?ft=j
+js.ui-portal.de/gmx/home/js/
+itxt.vibrantmedia.com/intellitxt/front.asp\?
+instantcontent.freenet.de/docwrite.php\?
+i.tfag.de/
+i.ixnp.com/shot_main_js/
+hbtrak.com/ap/adpeeps.php\?
+gfx.cdfreaks.com/cache/trackerjs.php\?
+forumz.tomshardware.com/\w/discuss_topic.php\?
+feeds.feedburner.com/~s/\w\?i\=
+feedproxy.google.com/~s/
+fastonlineusers.com/online.php
+embed.technorati.com/linkcount
+dsp.dealtime.com/scripts/GSIsapiExt.dll/
+ds1.harmony-central.com/jserver/
+donnerwetter.de/wetter/net/boxregio.mv\?
+custsurvey.external.hp.com/servlet/spawnsurvey\?
+convert.rss-to-javascript.com/\?
+context3.kanoodle.com/cgi-bin/context.cgi\?
+cnet.links.channelintelligence.com/\w/cii_ppp_api_cnet.asp\?
+cmhtml.overture.com/d/search/p/rtl/js/
+cmhtml.msn.overture.com/d/search/p/msn/js/
+cmhtml.de.overture.com/d/search/p/standard/eu/js/
+bs.yandex.ru/
+bs.serving-sys.com/
+blogsnob.simpleads.net/
+banners.webmasterplan.com/view.asp\?\w\&js\=1
+banner.t-online.de/js.ng/
+as1.falkag.de/sel\?cmd=jsc
+app.blogburst.com/Public/ValidationScript.aspx\?
+api.map24.com/ajax/
+amos.us.alitalk.alibaba.com/userstatusx2.atc\?
+amos.us.alitalk.alibaba.com/muliuserstatusx.atc\?
+amazon.de/gp/associates/jsf/session-id.html
+altfarm.mediaplex.com/ad/js/
+ak.tfag.de/
+adserver.geizkragen.de/adpopup.php\?
+adserver.adtech.de/\?addyn
+ads.addmatic.de/banner.ads\?
+adopt.euroclick.com/adopt.eu\?
+adges.del.icio.us/feeds/json/url/data\?
+ad.chip.de/wb/adjs.php
+a.tfag.de/
+a.dimaso.net/
+\w/cruftless_searching.php\?
+[^/]++.intergenia.de:8081/adj/\?*\&ajtype=jscript
+[^/]++.intellitxt.com/intellitxt/front.asp\?
+[^/]++.exhedra.com/ads/ShowAd.Asp\?*blnJScriptInclude=True
+[^/]++.doubleclick.net/adj/
+[^/]++.channelintelligence.com/scripts/
+[^/]++.addfreestats.com/cgi-bin/afstrack.cgi
+[^/]++.adbrite.com/mb/text_group.php\?
+[^.]+.t-home.de/\w/_js/
+[^.]+.sueddeutsche.de/jsconnect/
+[^.]+.addthis.com/js/
+*/RTE_javascript_common.asp
+*/RTE_javascript.asp\?textArea=
+*/oasisi-j.php\?
+*/non_RTE_javascript.asp\?textArea=
+*/jquery/\w.js
+*/adjs.php\?
+
+
+
+
+
+## Benutzerdefinierte Einträge:
+
+

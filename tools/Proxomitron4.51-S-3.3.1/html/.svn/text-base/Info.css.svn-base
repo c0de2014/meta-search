@@ -1,0 +1,199 @@
+@charset "ISO-8859-1";
+
+/*  Style Sheet for Proxomitron Information pages
+ *  http://local.ptron/.pinfo/
+ */
+
+
+
+body {
+	font-family: Arial, sans-serif;
+	color: #000000;
+}
+
+h2 {
+	background-color: #88ff88;
+	border: solid 1px #000000;
+	margin-bottom: 1em;
+	padding: 0.10em 0.25em;
+	font-size: 1.25em;
+	font-weight: bold;
+}
+
+h3 {
+	background-color: yellow;
+	border: solid 1px #888800;
+	font-size: 1em;
+	padding: 0.10em 0.25em;
+	font-weight: bold;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0px;
+}
+
+td, th {
+	text-align: left;
+	border: solid 1px #000000;
+	padding: 0.10em 0.25em;
+}
+
+th {
+	background-color: yellow;
+	font-weight: bold;
+}
+
+
+
+
+
+/* Blocklist Information / Listeninformationen */
+
+table.bl {
+
+}
+
+table.bl td.c3, table.bl td.c4, table.bl td.c5 {
+	text-align: right;
+}
+
+
+
+
+/* Information for List... / Statistik der Liste... */
+
+th.ld {
+	background-color: #88ff88;
+	font-weight: normal;
+}
+
+table.ld td.c1, table.ld td.c2, table.ld td.c3, table.ld td.c4, table.ld td.c5 {
+	text-align: right;
+}
+
+
+
+/* Recent URLs / Letzte URLs */
+
+table.ru { width: 100%; }
+table.ru td.c2, table.ru th.c2 {text-align: right;}
+table.ru td.c4 {white-space: nowrap;}
+table.ru td.c5, table.ru th.c5 {text-align: right;}
+table.ru td.c6, table.ru th.c6 {width: 100%;}
+
+tr.DNS {background-color: #bbffff;}
+tr.Connecting {background-color: #ffbbbb;}
+tr.Request {background-color: #ffbbff;}
+tr.Reply {background-color: #ffffbb;}
+tr.Loading {background-color: #bbffbb;}
+tr.Retry {background-color: #dd0000; color: white;}
+
+tr.quickfilter input {
+	width: 100%;
+	background-position: right center;
+	background-repeat: repeat-x;
+	background-color: transparent;
+}
+tr.quickfilter td:first-child {
+	text-align: right;
+	font-weight: bold;
+}
+
+tr.quickfilter input#ExcludeEmpty {
+	width: auto;
+}
+tr.quickfilter label {
+	font-size: 0.8em;
+}
+
+
+
+/* Proxomitron Internal Info / Proxomitron Laufzeitdaten */
+
+p#yf {
+	font-style: italic;
+	
+	
+}
+
+
+ul#pi {margin-bottom: 2em;}
+p#cfg {
+	margin-bottom: 2em;
+}
+
+p#values {}
+p#ver {}
+
+
+
+/* Tabelle: Verbindungen */
+
+table#lzdCon {
+	margin-bottom: 2em;
+}
+
+table#lzdCon th {
+	background-color: transparent;
+	border: none;
+	font-weight: normal;
+}
+
+table#lzdCon td {
+	border: none;
+}
+
+
+tr#aCon {
+	
+}
+
+tr#lCon {
+	
+}
+
+tr#rCon {
+	
+}
+
+
+
+
+/* Tabelle: Versionsnummern */
+
+table#lzdVers {
+	margin-bottom: 2em;
+}
+table#lzdVers th {
+	background-color: transparent;
+	border: none;
+	font-weight: normal;
+}
+table#lzdVers td {
+	border: none;
+}
+
+tr#eVer {
+	
+}
+
+tr#pVer td {
+	font-weight: bold;
+}
+
+tr#upd {
+	
+}
+
+
+
+
+/* Zusaetzliche Elemente: */
+
+a:link {color: green;}
+a:active {color: #00ff00;}
+a:visited {color: #88aa88;}
+
+
+

@@ -1,0 +1,58 @@
+# AllowAnimGIFs
+#
+# Diese Ausnahmeliste enthält URLs von GIF-Grafiken, die nicht verändert werden sollen,
+# wenn im Hauptfenster die Option "GIF-Animationen einfrieren" eingeschaltet ist.
+# Die Liste wird nur interpretiert, wenn der Headerfilter
+# "Content-Type: (In) 30 Bestimmte GIF-Animationen nicht einfrieren [MB]" eingeschaltet ist.
+#
+# Die Einträge dieser Liste sind vom Aufbau her vollständige URLs, ohne
+# Protokollangabe. Platzhalter und die üblichen Metazeichen sind auch erlaubt
+# und ermöglichen die Umschreibung veränderlicher URL-Bestandteile.
+#
+# Die URLs werden als "zum Ende hin offen" betrachtet. Wenn der Listeneintrag also
+# "www.buerschgens.de/Prox/" lautet, dann erfasst er alle URLs, die mit dieser
+# Zeichenfolge beginnen. Beispielsweise "www.buerschgens.de/Prox/Seiten/Datei.html".
+#
+# Wenn SSL-verschlüsselte Seiten gefiltert werden und die URLs mit "https://" beginnen,
+# dann muss im Listeneintrag zusätzlich die SSL-Portnummer "443" angegeben werden.
+# Wenn also der URL "https://www.buerschgens.de/Prox/" erfasst werden soll, dann muss
+# in der Liste "www.buerschgens.de:443/Prox/" stehen.
+#
+#
+#
+# Stand: 11.12.2007
+#
+# Michael Bürschgens
+# http://www.buerschgens.de/Prox/
+
+
+
+
+*/smilies/
+*/smilie/
+*/smileys/
+*/smiley/
+*/smiles/
+*/smile/
+*/smilys/
+*/smily/
+*/avatars/
+*/forum/
+*/board/
+*/phpbb/
+*/style_emoticons/
+*/images/folder_
+
+www.my-smileys.de/smileys2/*.gif
+www.clicksmilies.com/*.gif
+instagiber.net/smiliesdotcom/*.gif
+www.cheesebuerger.de/images/
+www.smileymania.at/*.gif
+www.cosgan.de/*.gif
+
+[^.]+.smiliedb.de/*.gif
+#img[0-9].smiliedb.de/*.gif
+#img.smiliedb.de/*.gif
+#www.smiliedb.de/*.gif
+
+

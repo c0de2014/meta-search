@@ -1,0 +1,190 @@
+@charset "ISO-8859-1";
+
+
+
+span.ProxJSElm, a.ProxJSElm {
+	display: inline;
+}
+div.ProxJSElm {
+	display: block;
+}
+@media print {
+	.ProxJSElm {
+		display: none !important;
+	}
+}
+
+
+
+
+/* ANFANG Formatierungen für Ersatztexte für ersetzte Elemente */
+table.ProxElemRepText, table.ProxElemRepText td, table.ProxElemRepText a {
+	font-size: 10pt;
+	font-style: normal;
+	font-weight: normal;
+	text-transform: none !important;
+	line-height: 100% !important;
+	background: transparent !important;
+}
+table.ProxElemRepText {
+	border: 1px dashed #bbb !important;
+	border-spacing: 0px !important;
+	padding: 0px !important;
+	width: auto !important
+}
+table.ProxElemRepText td {
+	border: none !important;
+	border-spacing: 0px !important;
+	padding: 1px !important;
+	width: auto !important;
+}
+table.ProxElemRepText img {
+	background: transparent !important;
+	padding: 0px !important;
+	margin: 0px !important;
+	border: none !important;
+	width: auto !important;
+	height: auto !important;
+}
+table.ProxElemRepText a {
+	border: none !important;
+	text-decoration: underline !important;
+	display: inline !important;
+	padding: 0px !important;
+}
+table.ProxElemRepText:hover, table.ProxElemRepText:hover td, table.ProxElemRepText:hover a {
+	background-color: #808080 !important;
+	color: #FFF000 !important;
+}
+@media print {
+	table.ProxElemRepText {
+		display: none;
+	}
+}
+/* ENDE Formatierungen für Ersatztexte für ersetzte Elemente */
+
+
+/* ANFANG Formatierungen für Ersatztexte für ersetzte Multimedia-Objekte */
+table.ProxMultimediaRepTab, table.ProxMultimediaRepTab td, table.ProxMultimediaRepTab a {
+	font-size: 10pt;
+	font-style: normal;
+	font-weight: normal;
+	text-transform: none !important;
+	background: transparent !important;
+}
+table.ProxMultimediaRepTab {
+	border: 1px dashed #bbb;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px !important;
+	border-collapse: separate;
+}
+table.ProxMultimediaRepTab td {
+	vertical-align: middle !important;
+	border: none !important;
+	padding: 1px !important;
+}
+table.ProxMultimediaRepTab a {
+	text-decoration: underline !important;
+	display: inline !important;
+	border: none !important;
+	padding: 0px !important;
+}
+table.ProxMultimediaRepTab:hover, table.ProxMultimediaRepTab:hover td, table.ProxMultimediaRepTab:hover a {
+	background-color: #808080 !important;
+	color: #FFF000 !important;
+}
+table.ProxMultimediaRepTab img {
+	margin: 0px !important;
+	border: none !important;
+}
+/* ENDE Formatierungen für Ersatztexte für ersetzte Multimedia-Objekte */
+
+
+/* ANFANG Formatierung für Links, die durch Umwandlung aus Text-URLs erzeugt wurden */
+@media screen {
+	span.ProxConvertedURL1 a, span.ProxConvertedURL1 a:link, span.ProxConvertedURL1 a:visited, span.ProxConvertedURL1 a:hover, span.ProxConvertedURL1 a:active, span.ProxConvertedURL1 a:focus {
+		text-decoration: underline;
+	}
+	span.ProxConvertedURL1 a:hover {
+		color: #ffffff;
+		background-color: #00C000;
+	}
+}
+/* ENDE Formatierung für Links, die durch Umwandlung aus Text-URLs erzeugt wurden */
+
+
+/* ANFANG Formatierung für durch Text ersetzte Bilder */
+span.ProxImgRepText {
+	border: 1px dashed #bbb !important;
+}
+/* ENDE Formatierung für durch Text ersetzte Bilder */
+
+
+/* ANFANG Formatierung für sichtbar gemachte Skripten und Stylesheets in eBay-Artikelbeschreibungen */
+table.ProxSiteEbaySource, table.ProxSiteEbaySource td {
+	font-size: 12pt !important;
+	font-family: sans-serif;
+	background: #FFFFFF !important;
+	color: #000000 !important;
+	font-style: normal !important;
+	font-weight: normal !important;
+	text-transform: none !important;
+	line-height: 100% !important;
+}
+table.ProxSiteEbaySource {
+	border: 1px dashed #f00 !important;
+	border-spacing: 0px !important;
+	padding: 0px !important;
+	width: auto !important
+}
+table.ProxSiteEbaySource td {
+	border: none !important;
+	border-spacing: 0px !important;
+	padding: 1px !important;
+	width: auto !important;
+}
+table.ProxSiteEbaySource img {
+	background: transparent !important;
+	padding: 0px !important;
+	margin: 0px !important;
+	border: none !important;
+	width: auto !important;
+	height: auto !important;
+}
+textarea.ProxSiteEbaySource {
+	border: 5px red solid !important;
+}
+/* ENDE Formatierung für sichtbar gemachte Skripten und Stylesheets in eBay-Artikelbeschreibungen */
+
+
+/* ANFANG Formatierung für Google-Killfile */
+span.ProxGoogleKillfile {
+	font-size: 10pt;
+	color: green;
+	cursor: pointer;
+}
+span.ProxGoogleKillfile img {
+	border: none;
+	vertical-align: middle;
+	margin-right: 2px;
+}
+/* ENDE Formatierung für Google-Killfile */
+
+
+/* ANFANG Formatierung für Google-Zusatzlinks */
+a.ProxGoogleLink, a.ProxGoogleLink:link {
+	font-size: 10pt;
+	color: green;
+}
+a.ProxGoogleLink img {
+	border: none;
+	vertical-align: middle;
+	margin-right: 2px;
+}
+/* ENDE Formatierung für Google-Zusatzlinks */
+
+
+
+
+
